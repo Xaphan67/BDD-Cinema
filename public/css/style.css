@@ -1,0 +1,38 @@
+* {
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+}
+
+/* Header */
+
+header {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 956px;
+    margin-inline:auto;
+}
+
+#banner {
+    height: 125px;
+}
+
+nav {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20%;
+}
+
+nav a:link, a:visited {
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+main {
+    max-width: 956px;
+    margin-inline: auto;
+}
