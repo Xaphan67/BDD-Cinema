@@ -51,4 +51,17 @@ class CinemaController
         // Appel à la vue
         require "view/listActeurs.php";
     }
+
+    // Liste des genres
+    public function listGenres()
+    {
+        // Préparation d'une requête
+        $requete = $this->connectToBDD()->query("
+        SELECT *
+        FROM genre_film
+        ");
+
+        // Appel à la vue
+        require "view/listGenres.php";
+    }
 }
