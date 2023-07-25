@@ -11,10 +11,10 @@
     <!-- Navigation -->
     <nav>
         <a href="index.php">Films</a>
-        <a href="index.php&action=listRealisateurs">Réalisateurs</a>
-        <a href="index.php&action=listActeurs">Acteurs</a>
-        <a href="index.php&action=listGenres">Genres</a>
-        <a href="index.php&action=listRoles">Rôles</a>
+        <a href="index.php?action=listRealisateurs">Réalisateurs</a>
+        <a href="index.php?action=listActeurs">Acteurs</a>
+        <a href="index.php?action=listGenres">Genres</a>
+        <a href="index.php?action=listRoles">Rôles</a>
     </nav>
     <?= $contenu ?>
 </body>

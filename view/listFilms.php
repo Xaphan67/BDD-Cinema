@@ -6,7 +6,11 @@
     <thead>
         <tr>
             <th>TITRE</th>
-            <th>ANNE SORTIE</th>
+            <th>ANNEE SORTIE</th>
+            <th>DUREE</th>
+            <th>AFFICHE</th>
+            <th>NOTE</th>
+            <th>SYNOPSIS</th>
         </tr>
     </thead>
     <tbody>
@@ -17,6 +21,10 @@
                 <tr>
                     <td><?= $film["titre_film"] ?></td>
                     <td><?= $film["anneeSortie_film"] ?></td>
+                    <td><?= $film["duree_film"] ?></td>
+                    <td><?= $film["affiche_film"] ?></td>
+                    <td><?= $film["note_film"] ?></td>
+                    <td><?= $film["synopsis_film"] ?></td>
                 </tr>
             <?php } ?>
     </tbody>

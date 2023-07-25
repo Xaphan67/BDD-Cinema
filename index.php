@@ -19,6 +19,10 @@ if (isset($_GET["action"])) // Action spécifiée - Affiche la page correspondan
         case "listFilms": // Liste des films
             $ctrlCinema->listFilms();
             break;
+
+        case "listActeurs": // liste des acteurs
+            $ctrlCinema->listActeurs();
+            break;
     }
 }
 else // Aucune action spécifiée - Affiche la liste des films
