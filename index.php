@@ -31,6 +31,10 @@ if (isset($_GET["action"])) // Action spécifiée - Affiche la page correspondan
         case "listGenres": // liste des genres
             $ctrlCinema->listGenres();
             break;
+        
+        case "listRoles": // liste des roles
+            $ctrlCinema->listRoles();
+            break;
     }
 }
 else // Aucune action spécifiée - Affiche la liste des films

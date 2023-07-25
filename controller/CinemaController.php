@@ -64,4 +64,17 @@ class CinemaController
         // Appel à la vue
         require "view/listGenres.php";
     }
+
+    // Liste des rôles
+    public function listRoles()
+    {
+        // Préparation d'une requête
+        $requete = $this->connectToBDD()->query("
+        SELECT *
+        FROM rôle
+        ");
+
+        // Appel à la vue
+        require "view/listRoles.php";
+    }
 }
