@@ -5,14 +5,17 @@ use Model\Connect;
 
 class CinemaController
 {
+    // Connexion à la BDD
+    public function connectToBDD()
+    {
+        return Connect::seConnecter();
+    }
+
     // Liste les films
     public function listFilms()
     {
-        // Connexion à la BDD
-        $pdo = Connect::seConnecter();
-
         // Préparation d'une requête
-        $requete = $pdo->query("
+        $requete = $this->connectToBDD()->query("
         SELECT *
         FROM film
         ");
@@ -21,14 +24,25 @@ class CinemaController
         require "view/listFilms.php";
     }
 
+    // Liste des réalisateurs
+    public function listRealisateurs()
+    {
+        // Préparation d'une requête
+        $requete = $this->connectToBDD()->query("
+        SELECT nom_personne, prenom_personne, sexe_personne, dateNaissance_personne
+        FROM realisateur r
+        INNER JOIN personne p ON r.id_personne = p.id_personne
+        ");
+
+        // Appel à la vue
+        require "view/listRealisateurs.php";
+    }
+
     // Liste des acteurs
     public function listActeurs()
     {
-        // Connexion à la BDD
-        $pdo = Connect::seConnecter();
-
         // Préparation d'une requête
-        $requete = $pdo->query("
+        $requete = $this->connectToBDD()->query("
         SELECT nom_personne, prenom_personne, sexe_personne, dateNaissance_personne
         FROM acteur a
         INNER JOIN personne p ON a.id_personne = p.id_personne
