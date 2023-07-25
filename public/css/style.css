@@ -2,6 +2,7 @@
     margin:0px;
     padding:0px;
     box-sizing: border-box;
+    font-family: sans-serif;
 }
 
 /* Header */
@@ -32,7 +33,30 @@ nav a:link, a:visited {
     font-size: 16px;
 }
 
+/* Main container */
+
 main {
     max-width: 956px;
     margin-inline: auto;
+    display:flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Film Box */
+
+.film-box {
+    width: 473px;
+    height: 350px;
+    display:flex;
+    background-color: rgb(231,231,231);
+    box-shadow: 0 5px 5px rgb(194, 194, 194);
+}
+
+.film-side {
+    width: 30%;
+}
+
+.film-main {
+    width: 70%;
 }

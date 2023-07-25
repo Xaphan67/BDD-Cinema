@@ -1,36 +1,22 @@
-<?php ob_start(); ?>
+<?php ob_start();
 
-<p></p>Il y a <?= $requete->rowCount() ?> films</p>
-
-<table>
-    <thead>
-        <tr>
-            <th>TITRE</th>
-            <th>ANNEE SORTIE</th>
-            <th>DUREE</th>
-            <th>AFFICHE</th>
-            <th>NOTE</th>
-            <th>SYNOPSIS</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-            foreach($requete->fetchALL() as $film)
-            {
-                ?>
-                <tr>
-                    <td><?= $film["titre_film"] ?></td>
-                    <td><?= $film["anneeSortie_film"] ?></td>
-                    <td><?= $film["duree_film"] ?></td>
-                    <td><?= $film["affiche_film"] ?></td>
-                    <td><?= $film["note_film"] ?></td>
-                    <td><?= $film["synopsis_film"] ?></td>
-                </tr>
-            <?php } ?>
-    </tbody>
-</table>
-
-<?php
+foreach($films->fetchALL() as $film)
+{
+    ?>
+    <div class="film-box">
+        <div class="film-side">
+            <img src="public/img/<?= $film["affiche_film"] ?>" alt="affiche"></img></br>
+            <?= $film["note_film"] ?>
+        </div>
+        <div class="film-main">
+            <?= $film["titre_film"] ?></br>
+            <?= $film["anneeSortie_film"] . " / " . $film["duree"] . " / " . $film["genres"]?></br>
+            De : <?= $film["realisateurFilm"] ?></br>
+            Avec : <?= $film["acteursFilm"] ?></br>
+            <?=$film["synopsis_film"] ?>
+        </div>
+    </div>
+<?php } 
 
 $titre = "Liste des films";
 $titre_secondaire = "Liste des films";
