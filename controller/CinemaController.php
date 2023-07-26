@@ -102,8 +102,14 @@ class CinemaController
     {
         // Préparation d'une requête
         $requete = $this->connectToBDD()->query("
-        SELECT *
-        FROM genre_film
+        SELECT
+        gf.id_genre_film,
+        gf.libelle_genre_film,
+        COUNT(*) AS nbFilms
+        FROM film f
+        INNER JOIN posseder p ON f.id_film = p.id_film
+        INNER JOIN genre_film gf ON p.id_genre_film = gf.id_genre_film
+        GROUP BY gf.id_genre_film
         ");
 
         // Appel à la vue

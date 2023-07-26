@@ -2,7 +2,7 @@
 
 foreach ($requete->fetchALL() as $acteur) {
 ?>
-    <div class="personne-box">
+    <div class="personne-box bg">
         <img src="public/img/avatar.png" class="avatar"></img>
         <div class="personne-main">
             <h1><a href="index.php?action=infoActeur&id=<?= $acteur["id_acteur"] ?>"><?= $acteur["acteurFilm"] ?></a></h1>

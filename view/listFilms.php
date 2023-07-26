@@ -2,7 +2,7 @@
 
 foreach ($films->fetchALL() as $film) {
 ?>
-    <div class="film-box">
+    <div class="film-box bg">
         <div class="film-side">
             <img class="affiche" src="public/img/posters/<?= $film["affiche_film"] ?>" alt="affiche"></img>
             <div class="note">
