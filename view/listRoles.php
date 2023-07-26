@@ -1,26 +1,12 @@
-<?php ob_start(); ?>
+<?php ob_start();
 
-<p></p>Il y a <?= $requete->rowCount() ?> rôles</p>
-
-<table>
-    <thead>
-        <tr>
-            <th>NOM</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-            foreach($requete->fetchALL() as $role)
-            {
-                ?>
-                <tr>
-                    <td><?= $role["nom_rôle"] ?></td>
-                </tr>
-            <?php } ?>
-    </tbody>
-</table>
-
-<?php
+foreach ($requete->fetchALL() as $role) {
+?>
+    <div class="genre-role-box bg">
+        <h1><a href="index.php?action=infoRole&id=<?= $role["id_rôle"] ?>"><?= $role["nom_rôle"] ?></a></h1>
+        <p>Il existe <?= $role["nbActeurs"] ?> acteur<?= $role["nbActeurs"] > 1 ? "s" : "" ?> ayant joué ce role</p>
+    </div>
+<?php }
 
 $titre = "Liste des rôles";
 $titre_secondaire = "Liste des rôles";

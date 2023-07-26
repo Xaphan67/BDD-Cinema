@@ -121,8 +121,16 @@ class CinemaController
     {
         // Préparation d'une requête
         $requete = $this->connectToBDD()->query("
-        SELECT *
-        FROM rôle
+        SELECT
+        j.id_rôle,
+        r.nom_rôle,
+        COUNT(*) AS nbActeurs
+        FROM jouer j
+        INNER JOIN acteur a ON j.id_acteur = a.id_acteur
+        INNER JOIN personne p ON a.id_personne = p.id_personne
+        INNER JOIN rôle r ON j.id_rôle= r.id_rôle
+        GROUP BY j.id_rôle
+        ORDER BY r.nom_rôle
         ");
 
         // Appel à la vue
