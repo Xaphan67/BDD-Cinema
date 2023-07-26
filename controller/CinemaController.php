@@ -47,26 +47,52 @@ class CinemaController
         require "view/listFilms.php";
     }
 
-    public function listActeursFilm(int $id_film)
+    // Informations d'un film
+    public function infosFilm(int $idFilm)
     {
-        $acteurs = $this->connectToBDD()->query("
+        // Informations générales
+        $film = $this->connectToBDD()->prepare("
         SELECT
-        GROUP_CONCAT(CONCAT(p.nom_personne, ' ', p.prenom_personne) SEPARATOR ', ')
+        f.id_film,
+        f.titre_film,
+        f.anneeSortie_film,
+        TIME_FORMAT(SEC_TO_TIME(f.duree_film * 60), '%Hh %imin') AS duree,
+        GROUP_CONCAT(gf.libelle_genre_film SEPARATOR ', ') AS genres,
+        affiche_film,
+        f.note_film,
+        f.id_realisateur,
+        CONCAT(p.nom_personne, ' ', p.prenom_personne) AS realisateurFilm,
+        f.synopsis_film
+        FROM film f
+        INNER JOIN realisateur r ON f.id_realisateur = r.id_realisateur
+        INNER JOIN personne p ON p.id_personne = r.id_personne
+        INNER JOIN posseder po ON f.id_film = po.id_film 
+        INNER JOIN genre_film gf ON po.id_genre_film = gf.id_genre_film
+        WHERE f.id_film = :idFilm");
+        $film->execute((["idFilm" => $idFilm]));
+
+        // Casting du film
+        $acteurs = $this->connectToBDD()->prepare("
+        SELECT
+        a.id_acteur,
+        CONCAT(p.nom_personne, ' ', p.prenom_personne) AS acteurFilm
         FROM jouer j
         INNER JOIN acteur a ON j.id_acteur = a.id_acteur
         INNER JOIN personne p ON a.id_personne = p.id_personne
         INNER JOIN film f ON j.id_film = f.id_film
-        WHERE f.id_film =
-        " . $id_film);
+        WHERE f.id_film = :idFilm
+        GROUP BY a.id_acteur"); // <-- GROUP BY pour éviter que si un acteur joue deux rôles dans le même film, il apparaisse deux fois
+        $acteurs->execute((["idFilm" => $idFilm]));
 
-        return $acteurs;
+        // Appel à la vue
+        require "view/infosFilm.php";
     }
 
     // Liste des réalisateurs
     public function listRealisateurs()
     {
         // Préparation d'une requête
-        $requete = $this->connectToBDD()->query("
+        $realisateurs = $this->connectToBDD()->query("
         SELECT
         r.id_realisateur,
         CONCAT(nom_personne, ' ', prenom_personne) AS realisateurFilm,
@@ -85,7 +111,7 @@ class CinemaController
     public function listActeurs()
     {
         // Préparation d'une requête
-        $requete = $this->connectToBDD()->query("
+        $acteurs = $this->connectToBDD()->query("
         SELECT 
         a.id_acteur,
         CONCAT(nom_personne, ' ', prenom_personne) AS acteurFilm,
@@ -104,7 +130,7 @@ class CinemaController
     public function listGenres()
     {
         // Préparation d'une requête
-        $requete = $this->connectToBDD()->query("
+        $genres = $this->connectToBDD()->query("
         SELECT
         gf.id_genre_film,
         gf.libelle_genre_film,
@@ -124,7 +150,7 @@ class CinemaController
     public function listRoles()
     {
         // Préparation d'une requête
-        $requete = $this->connectToBDD()->query("
+        $roles = $this->connectToBDD()->query("
         SELECT
         j.id_rôle,
         r.nom_rôle,

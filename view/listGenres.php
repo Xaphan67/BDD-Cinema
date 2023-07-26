@@ -4,7 +4,7 @@
     <button type="bouton" class=" button button-large button-center"><a href="index.php?action=ajouterGenre">Ajouter un genre</a></button>
 </div>
 
-<?php foreach ($requete->fetchALL() as $genre) {
+<?php foreach ($genres->fetchALL() as $genre) {
 ?>
     <div class="genre-role-box bg">
         <div class="genre-role-main">

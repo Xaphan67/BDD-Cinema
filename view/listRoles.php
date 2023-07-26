@@ -4,7 +4,7 @@
     <button type="bouton" class="button button-large button-center"><a href="index.php?action=ajouterRole">Ajouter un rôle</a></button>
 </div>
 
-<?php foreach ($requete->fetchALL() as $role) {
+<?php foreach ($roles->fetchALL() as $role) {
 ?>
     <div class="genre-role-box bg">
         <div class="genre-role-main">

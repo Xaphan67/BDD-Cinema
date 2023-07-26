@@ -15,6 +15,10 @@ p {
     margin-top: 5px;
 }
 
+hr {
+    margin-bottom: 11px;
+}
+
 .bg {
     background-color: rgb(231, 231, 231);
     box-shadow: 0 5px 5px rgb(194, 194, 194);
@@ -95,6 +99,13 @@ h1 {
     font-weight: normal;
 }
 
+h2 {
+    padding-top: 15px;
+    font-size: 16px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
 /* Film Box */
 
 .film-box {
@@ -150,7 +161,7 @@ h1 {
     margin-left: 5px;
 }
 
-/* Genre et Role BOWX */
+/* Genre et Role Box */
 
 .genre-role-box {
     width: 100%;
@@ -161,6 +172,35 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     gap: 0px;
+}
+
+/* Film-info Box */
+
+.film-info-box {
+    width: 100%;
+    min-height: 100px;
+    margin: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.affiche-large {
+    max-height: 300px;
+    margin: 15px 0px;
+}
+
+.acteur-casting {
+    display: flex;
+    flex-wrap: nowrap;
+    line-height: 35px;
+    vertical-align: middle;
+}
+
+.acteur-casting p {
+    margin-right: 5px;
 }
 
 @media screen and (min-width: 1200px) {
@@ -256,5 +296,24 @@ h1 {
 
     .genre-role-actions {
         align-self: flex-end;
+    }
+
+    /* Film-info Box */
+
+    .film-info-box {
+        margin: 0px;
+        flex-direction: row;
+    }
+
+    .film-info-side {
+        width: 33%;
+    }
+
+    .film-info-main {
+        width: 67%;
+    }
+
+    .affiche-large {
+        margin: auto;
     }
 }

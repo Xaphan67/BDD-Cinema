@@ -4,7 +4,7 @@
     <button type="bouton" class="button button-very-large button-center"><a href="index.php?action=ajouterRealisateur">Ajouter un réalisateur</a></button>
 </div>
 
-<?php foreach ($requete->fetchALL() as $realisateur) {
+<?php foreach ($realisateurs->fetchALL() as $realisateur) {
 ?>
     <div class="personne-box bg">
         <img src="public/img/avatar.png" class="avatar"></img>
