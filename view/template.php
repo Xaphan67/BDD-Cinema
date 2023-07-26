@@ -11,9 +11,7 @@
 <body>
     <!-- Navigation -->
     <header>
-        <div id="banner">
-            <img src="public/img/banner.png" alt="banner"></img>
-        </div>
+        <div id="banner"></div>
         <nav>
             <a href="index.php">Films</a>
             <a href="index.php?action=listRealisateurs">Réalisateurs</a>
