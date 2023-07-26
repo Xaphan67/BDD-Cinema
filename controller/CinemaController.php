@@ -40,6 +40,7 @@ class CinemaController
         INNER JOIN posseder po ON f.id_film = po.id_film 
         INNER JOIN genre_film gf ON po.id_genre_film = gf.id_genre_film
         GROUP BY f.id_film
+        ORDER BY f.titre_film
         ");
 
         // Appel à la vue
@@ -73,6 +74,7 @@ class CinemaController
         dateNaissance_personne
         FROM realisateur r
         INNER JOIN personne p ON r.id_personne = p.id_personne
+        ORDER BY realisateurFilm
         ");
 
         // Appel à la vue
@@ -91,6 +93,7 @@ class CinemaController
         dateNaissance_personne
         FROM acteur a
         INNER JOIN personne p ON a.id_personne = p.id_personne
+        ORDER BY acteurFilm
         ");
 
         // Appel à la vue
@@ -110,6 +113,7 @@ class CinemaController
         INNER JOIN posseder p ON f.id_film = p.id_film
         INNER JOIN genre_film gf ON p.id_genre_film = gf.id_genre_film
         GROUP BY gf.id_genre_film
+        ORDER BY gf.libelle_genre_film
         ");
 
         // Appel à la vue
