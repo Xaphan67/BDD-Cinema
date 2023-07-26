@@ -16,6 +16,24 @@ a:visited {
     box-shadow: 0 5px 5px rgb(194, 194, 194);
 }
 
+button {
+    display: inline-block;
+    background-color: rgb(254, 221, 131);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    color: black;
+    font-size: 14px;
+    padding: 8px;
+}
+
+.button-large {
+    width: 150px;
+}
+
+.button-very-large {
+    width: 200px;
+}
+
 /* Header */
 
 header {
@@ -49,6 +67,11 @@ main {
     margin-inline: auto;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+}
+
+.top {
+    margin: auto;
 }
 
 h1 {
@@ -141,6 +164,15 @@ h1 {
     main {
         max-width: 956px;
         gap: 16px;
+    }
+
+    .top {
+        flex-basis: 100%;
+        display: flex;
+    }
+
+    .button-center {
+        margin: auto;
     }
 
     h1 {

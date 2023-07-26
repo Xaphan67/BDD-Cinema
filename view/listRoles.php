@@ -1,6 +1,10 @@
-<?php ob_start();
+<?php ob_start(); ?>
 
-foreach ($requete->fetchALL() as $role) {
+<div class="top">
+    <button type="bouton" class="button-large button-center"><a href="index.php?action=ajouterRole">Ajouter un rôle</a></button>
+</div>
+
+<?php foreach ($requete->fetchALL() as $role) {
 ?>
     <div class="genre-role-box bg">
         <h1><a href="index.php?action=infoRole&id=<?= $role["id_rôle"] ?>"><?= $role["nom_rôle"] ?></a></h1>

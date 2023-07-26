@@ -1,6 +1,10 @@
-<?php ob_start();
+<?php ob_start(); ?>
 
-foreach ($requete->fetchALL() as $acteur) {
+<div class="top">
+    <button type="bouton" class="button-large button-center"><a href="index.php?action=ajouterActeur">Ajouter un acteur</a></button>
+</div>
+
+<?php foreach ($requete->fetchALL() as $acteur) {
 ?>
     <div class="personne-box bg">
         <img src="public/img/avatar.png" class="avatar"></img>

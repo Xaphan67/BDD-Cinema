@@ -1,6 +1,10 @@
-<?php ob_start();
+<?php ob_start(); ?>
 
-foreach ($requete->fetchALL() as $genre) {
+<div class="top">
+    <button type="bouton" class="button-large button-center"><a href="index.php?action=ajouterGenre">Ajouter un genre</a></button>
+</div>
+
+<?php foreach ($requete->fetchALL() as $genre) {
 ?>
     <div class="genre-role-box bg">
         <h1><a href="index.php?action=infoGenre&id=<?= $genre["id_genre_film"] ?>"><?= $genre["libelle_genre_film"] ?></a></h1>

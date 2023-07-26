@@ -1,6 +1,10 @@
-<?php ob_start();
+<?php ob_start(); ?>
 
-foreach ($films->fetchALL() as $film) {
+<div class="top">
+    <button type="bouton" class="button-large button-center"><a href="index.php?action=ajouterFilm">Ajouter un film</a></button>
+</div>
+
+<?php foreach ($films->fetchALL() as $film) {
 ?>
     <div class="film-box bg">
         <div class="film-side">
