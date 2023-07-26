@@ -1,32 +1,20 @@
-<?php ob_start(); ?>
+<?php ob_start();
 
-<p></p>Il y a <?= $requete->rowCount() ?> acteurs</p>
-
-<table>
-    <thead>
-        <tr>
-            <th>NOM</th>
-            <th>PRENOM</th>
-            <th>SEXE</th>
-            <th>DATE DE NAISSANCE</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-            foreach($requete->fetchALL() as $acteur)
-            {
-                ?>
-                <tr>
-                    <td><?= $acteur["nom_personne"] ?></td>
-                    <td><?= $acteur["prenom_personne"] ?></td>
-                    <td><?= $acteur["sexe_personne"] ?></td>
-                    <td><?= $acteur["dateNaissance_personne"] ?></td>
-                </tr>
-            <?php } ?>
-    </tbody>
-</table>
-
-<?php
+foreach ($requete->fetchALL() as $acteur) {
+?>
+    <div class="personne-box">
+        <img src="public/img/avatar.png" class="avatar"></img>
+        <div class="personne-main">
+            <h1><a href="index.php?action=infoActeur&id=<?= $acteur["id_acteur"] ?>"><?= $acteur["acteurFilm"] ?></a></h1>
+            <p><?= $acteur["sexe_personne"] ?></p>
+            <?php
+            $datetime = new DateTime($acteur["dateNaissance_personne"]);
+            $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::RELATIVE_LONG, IntlDateFormatter::NONE);
+            ?>
+            <p>Né<?= $acteur["sexe_personne"] == "Femme" ? "e" : "" ?> le <?= $formatter->format($datetime) ?></p>
+        </div>
+    </div>
+<?php }
 
 $titre = "Liste des acteurs";
 $titre_secondaire = "Liste des acteurs";

@@ -67,7 +67,7 @@ class CinemaController
         // Préparation d'une requête
         $requete = $this->connectToBDD()->query("
         SELECT
-        p.id_personne,
+        r.id_realisateur,
         CONCAT(nom_personne, ' ', prenom_personne) AS realisateurFilm,
         sexe_personne,
         dateNaissance_personne
@@ -84,8 +84,9 @@ class CinemaController
     {
         // Préparation d'une requête
         $requete = $this->connectToBDD()->query("
-        SELECT nom_personne,
-        prenom_personne,
+        SELECT 
+        a.id_acteur,
+        CONCAT(nom_personne, ' ', prenom_personne) AS acteurFilm,
         sexe_personne,
         dateNaissance_personne
         FROM acteur a
