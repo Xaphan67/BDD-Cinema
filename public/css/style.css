@@ -11,6 +11,10 @@ a:visited {
     text-decoration: none;
 }
 
+p {
+    margin-top: 5px;
+}
+
 .bg {
     background-color: rgb(231, 231, 231);
     box-shadow: 0 5px 5px rgb(194, 194, 194);
@@ -24,6 +28,10 @@ button {
     color: black;
     font-size: 14px;
     padding: 8px;
+}
+
+.bg button {
+    margin-top: 5px;
 }
 
 .button-large {
@@ -215,6 +223,10 @@ h1 {
     .personne-box {
         width: 470px;
         margin: 0px;
+    }
+
+    .personne-box h1 {
+        margin-top: 0px;
     }
 
     /* Genre et Role BOWX */
