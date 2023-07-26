@@ -16,6 +16,7 @@
             $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::RELATIVE_LONG, IntlDateFormatter::NONE);
             ?>
             <p>Né<?= $acteur["sexe_personne"] == "Femme" ? "e" : "" ?> le <?= $formatter->format($datetime) ?></p>
+            <button type="bouton" class="button-very-large button-center"><a href="index.php?action=listFilms&id=<?= $acteur["id_acteur"] ?>">Voir les films</a></button>
         </div>
     </div>
 <?php }
