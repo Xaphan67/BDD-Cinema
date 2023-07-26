@@ -34,6 +34,14 @@ button {
     margin-top: 5px;
 }
 
+.button {
+    height: 35px;
+}
+
+.button-round {
+    width: 35px;
+}
+
 .button-large {
     width: 150px;
 }
@@ -146,11 +154,13 @@ h1 {
 
 .genre-role-box {
     width: 100%;
-    height: 60px;
+    min-height: 60px;
+    height: fit-content;
     margin: 10px;
     padding: 5px;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 0px;
 }
 
 @media screen and (min-width: 1200px) {
@@ -242,5 +252,9 @@ h1 {
 
     .genre-role-box h1 {
         margin-top: 0px;
+    }
+
+    .genre-role-actions {
+        align-self: flex-end;
     }
 }
