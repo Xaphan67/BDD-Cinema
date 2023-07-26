@@ -49,7 +49,8 @@ class CinemaController
     public function listActeursFilm(int $id_film)
     {
         $acteurs = $this->connectToBDD()->query("
-        SELECT GROUP_CONCAT(CONCAT(p.nom_personne, ' ', p.prenom_personne) SEPARATOR ', ')
+        SELECT
+        GROUP_CONCAT(CONCAT(p.nom_personne, ' ', p.prenom_personne) SEPARATOR ', ')
         FROM jouer j
         INNER JOIN acteur a ON j.id_acteur = a.id_acteur
         INNER JOIN personne p ON a.id_personne = p.id_personne
@@ -65,7 +66,11 @@ class CinemaController
     {
         // Préparation d'une requête
         $requete = $this->connectToBDD()->query("
-        SELECT nom_personne, prenom_personne, sexe_personne, dateNaissance_personne
+        SELECT
+        p.id_personne,
+        CONCAT(nom_personne, ' ', prenom_personne) AS realisateurFilm,
+        sexe_personne,
+        dateNaissance_personne
         FROM realisateur r
         INNER JOIN personne p ON r.id_personne = p.id_personne
         ");
@@ -79,7 +84,10 @@ class CinemaController
     {
         // Préparation d'une requête
         $requete = $this->connectToBDD()->query("
-        SELECT nom_personne, prenom_personne, sexe_personne, dateNaissance_personne
+        SELECT nom_personne,
+        prenom_personne,
+        sexe_personne,
+        dateNaissance_personne
         FROM acteur a
         INNER JOIN personne p ON a.id_personne = p.id_personne
         ");

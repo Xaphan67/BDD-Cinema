@@ -46,6 +46,11 @@ main {
     flex-wrap: wrap;
 }
 
+h1 {
+    font-size: 24px;
+    font-weight: normal;
+}
+
 /* Film Box */
 
 .film-box {
@@ -72,11 +77,6 @@ main {
     margin: 10px;
 }
 
-.film-main h1 {
-    font-size: 24px;
-    font-weight: normal;
-}
-
 .film-main p {
     font-size: 12px;
     margin-top: 10px;
@@ -84,6 +84,30 @@ main {
 
 .info {
     color: rgb(180, 180, 180);
+}
+
+/* Personne Box */
+
+.personne-box {
+    width: 100%;
+    height: 125px;
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(231, 231, 231);
+    box-shadow: 0 5px 5px rgb(194, 194, 194);
+}
+
+.personne-main {
+    font-size: 14px;
+    margin: 5px;
+}
+
+.avatar {
+    width: 115px;
+    height: 115px;
+    margin-top: 5px;
+    margin-left: 5px;
 }
 
 @media screen and (min-width: 1200px) {
@@ -104,13 +128,17 @@ main {
 
     main {
         max-width: 956px;
-        gap: 10px;
+        gap: 16px;
+    }
+
+    h1 {
+        margin-top: 20px;
     }
 
     /* Film Box */
 
     .film-box {
-        width: 473px;
+        width: 470px;
         height: 350px;
         margin: 0px;
         display: flex;
@@ -134,11 +162,14 @@ main {
         width: 67%;
     }
 
-    .film-main h1 {
-        margin-top: 30px;
-    }
-
     .film-main p {
         margin-right: 30px;
+    }
+
+    /* Personne Box */
+
+    .personne-box {
+        width: 470px;
+        margin: 0px;
     }
 }
