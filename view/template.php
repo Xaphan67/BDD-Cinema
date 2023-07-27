@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><?= $title ?></title> <!-- Titre de la page généré dans la vue -->
+    <title><?= $titre ?></title> <!-- Titre de la page généré dans la vue -->
     <link rel="stylesheet" href="public/css/style.css">
 </head>
 
