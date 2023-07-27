@@ -1,7 +1,7 @@
 <?php ob_start(); ?>
 
 <div class="top">
-    <button type="bouton" class=" button button-large button-center"><a href="index.php?action=ajouterGenre">Ajouter un genre</a></button>
+    <button type="bouton" class=" button button-large button-center"><a href="index.php?action=addGenre">Ajouter un genre</a></button>
 </div>
 
 <?php foreach ($genres->fetchALL() as $genre) {

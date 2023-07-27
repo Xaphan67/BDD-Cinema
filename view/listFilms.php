@@ -1,7 +1,7 @@
 <?php ob_start(); ?>
 
 <div class="top">
-    <button type="bouton" class="button button-large button-center"><a href="index.php?action=ajouterFilm">Ajouter un film</a></button>
+    <button type="bouton" class="button button-large button-center"><a href="index.php?action=addFilm">Ajouter un film</a></button>
 </div>
 
 <?php foreach ($films->fetchALL() as $film) {

@@ -1,7 +1,7 @@
 <?php ob_start(); ?>
 
 <div class="top">
-    <button type="bouton" class="button button-large button-center"><a href="index.php?action=ajouterRole">Ajouter un rôle</a></button>
+    <button type="bouton" class="button button-large button-center"><a href="index.php?action=aaddRole">Ajouter un rôle</a></button>
 </div>
 
 <?php foreach ($roles->fetchALL() as $role) {
