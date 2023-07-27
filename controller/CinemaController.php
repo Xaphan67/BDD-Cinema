@@ -237,6 +237,57 @@ class CinemaController
         require "view/listGenres.php";
     }
 
+    // Informations d'un genre
+    public function infosGenre($idGenre)
+    {
+        $genre = $this->connectToBDD()->prepare("
+        SELECT
+        *
+        FROM genre_film gf
+        WHERE gf.id_genre_film = :idGenre
+        ");
+        $genre->execute(["idGenre" => $idGenre]);
+
+        $films = $this->connectToBDD()->prepare(("
+        SELECT
+        f.id_film AS IdFilm,
+        f.titre_film,
+        f.anneeSortie_film,
+        TIME_FORMAT(SEC_TO_TIME(f.duree_film * 60), '%Hh %imin') AS duree,
+        (SELECT GROUP_CONCAT(gf.libelle_genre_film SEPARATOR ', ')
+				FROM posseder p
+				INNER JOIN genre_film gf ON p.id_genre_film = gf.id_genre_film
+				WHERE p.id_film = IdFilm) AS genres,
+        f.id_realisateur,
+        (SELECT CONCAT(p.nom_personne, ' ', p.prenom_personne)
+				FROM realisateur r
+				INNER JOIN personne p ON r.id_personne = p.id_personne
+				INNER JOIN film f ON r.id_realisateur = f.id_realisateur
+				WHERE f.id_realisateur = IdFilm) AS realisateurFilm,
+        f.synopsis_film,
+        (SELECT GROUP_CONCAT(CONCAT(p.nom_personne, ' ', p.prenom_personne) SEPARATOR ', ')
+            FROM jouer j
+            INNER JOIN acteur a ON j.id_acteur = a.id_acteur
+            INNER JOIN personne p ON a.id_personne = p.id_personne
+            INNER JOIN film f ON j.id_film = f.id_film
+            WHERE f.id_film = IdFilm) AS acteursFilm,
+        f.note_film,
+        f.affiche_film
+        FROM jouer j
+        INNER JOIN film f ON j.id_film = f.id_film
+        INNER JOIN rôle r ON j.id_rôle = r.id_rôle
+        INNER JOIN acteur a ON j.id_acteur = a.id_acteur
+        INNER JOIN personne p ON a.id_personne = p.id_personne
+        INNER JOIN posseder po ON f.id_film = po.id_film 
+        INNER JOIN genre_film gf ON po.id_genre_film = gf.id_genre_film
+        WHERE po.id_genre_film = :idGenre
+        GROUP BY f.id_film"));
+        $films->execute(["idGenre" => $idGenre]);
+
+        // Appel à la vue
+        require "view/infosGenre.php";
+    }
+
     // Liste des rôles
     public function listRoles()
     {

@@ -115,6 +115,15 @@ h2 {
     flex-direction: column;
 }
 
+.main-box-titre {
+    width: 100%;
+    margin: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 /* Film Box */
 
 .film-box {
@@ -260,6 +269,15 @@ h2 {
         padding-bottom: 30px;
         flex-direction: row;
         align-items: normal;
+    }
+
+    .main-box-titre {
+        margin: 0px;
+        padding: 0px 0px 30px 0px;
+    }
+
+    .main-box-titre h1 {
+        font-size: 40px;
     }
 
     /* Film Box */

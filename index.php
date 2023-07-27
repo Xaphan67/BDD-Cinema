@@ -44,6 +44,10 @@ if (isset($_GET["action"])) // Action spécifiée - Affiche la page correspondan
             $ctrlCinema->listGenres();
             break;
 
+        case "infoGenre": // Informations d'un genre
+            $ctrlCinema->infosGenre($id);
+            break;
+
         case "listRoles": // liste des roles
             $ctrlCinema->listRoles();
             break;
