@@ -308,4 +308,34 @@ class CinemaController
         // Appel à la vue
         require "view/listRoles.php";
     }
+
+    // Informations d'un rôle
+    public function infosRole($idRole)
+    {
+        $role = $this->connectToBDD()->prepare("
+        SELECT
+        *
+        FROM rôle r
+        WHERE r.id_rôle = :idRole
+        ");
+        $role->execute(["idRole" => $idRole]);
+
+        $acteurs = $this->connectToBDD()->prepare("
+        SELECT
+        a.id_acteur,
+        CONCAT(p.nom_personne, ' ', p.prenom_personne) AS acteurFilm,
+        p.sexe_personne,
+        p.dateNaissance_personne
+        FROM jouer j
+        INNER JOIN acteur a ON j.id_acteur = a.id_acteur
+        INNER JOIN personne p ON a.id_personne = p.id_personne
+        INNER JOIN rôle r ON j.id_rôle= r.id_rôle
+        WHERE j.`id_rôle`= :idRole
+        ORDER BY acteurFilm
+        ");
+        $acteurs->execute(["idRole" => $idRole]);
+
+        // Appel à la vue
+        require "view/infosRole.php";
+    }
 }

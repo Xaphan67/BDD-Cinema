@@ -24,7 +24,7 @@ if (isset($_GET["action"])) // Action spécifiée - Affiche la page correspondan
             $ctrlCinema->infosFilm($id);
             break;
 
-        case "listRealisateurs": // liste des réalisateurs
+        case "listRealisateurs": // Liste des réalisateurs
             $ctrlCinema->listRealisateurs();
             break;
 
@@ -32,7 +32,7 @@ if (isset($_GET["action"])) // Action spécifiée - Affiche la page correspondan
             $ctrlCinema->infosRealisateur($id);
             break;
 
-        case "listActeurs": // liste des acteurs
+        case "listActeurs": // Liste des acteurs
             $ctrlCinema->listActeurs();
             break;
 
@@ -40,7 +40,7 @@ if (isset($_GET["action"])) // Action spécifiée - Affiche la page correspondan
             $ctrlCinema->infosActeur($id);
             break;
 
-        case "listGenres": // liste des genres
+        case "listGenres": // Liste des genres
             $ctrlCinema->listGenres();
             break;
 
@@ -48,9 +48,12 @@ if (isset($_GET["action"])) // Action spécifiée - Affiche la page correspondan
             $ctrlCinema->infosGenre($id);
             break;
 
-        case "listRoles": // liste des roles
+        case "listRoles": // Liste des roles
             $ctrlCinema->listRoles();
             break;
+
+        case "infoRole": // Informations d'un rôle
+            $ctrlCinema->infosRole($id);
     }
 } else // Aucune action spécifiée - Affiche la liste des films
 {
