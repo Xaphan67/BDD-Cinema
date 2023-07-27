@@ -183,13 +183,17 @@ h2 {
     padding: 5px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+}
 
+.film-info-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .affiche-large {
     max-height: 300px;
-    margin: 15px 0px;
+    margin: 15px auto;
 }
 
 .acteur-casting {
@@ -302,18 +306,21 @@ h2 {
 
     .film-info-box {
         margin: 0px;
+        padding-bottom: 30px;
         flex-direction: row;
+        align-items: normal;
     }
 
     .film-info-side {
         width: 33%;
+        justify-content: center;
     }
 
     .film-info-main {
         width: 67%;
     }
 
-    .affiche-large {
-        margin: auto;
+    .film-info-box h1 {
+        font-size: 40px;
     }
 }

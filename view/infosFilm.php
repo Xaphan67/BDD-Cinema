@@ -5,6 +5,14 @@ $infosfilm = $film->fetch(); ?>
 <div class="film-info-box bg">
     <div class="film-info-side">
         <img class="affiche-large" src="public/img/posters/<?= $infosfilm["affiche_film"] ?>" alt="affiche"></img>
+        <div class="film-info-actions">
+            <button type="bouton" class="button">
+                <a href="index.php?action=editFilm&id=<?= $infosfilm["id_film"] ?>">Modifier</a>
+            </button>
+            <button type="bouton" class="button">
+                <a href="index.php?action=delteFilm&id=<?= $infosfilm["id_film"] ?>">Supprimer</a>
+            </button>
+        </div>
     </div>
     <div class="film-info-main">
         <h1><?= $infosfilm["titre_film"] ?></h1>
@@ -47,7 +55,7 @@ $infosfilm = $film->fetch(); ?>
                 </button>
             </div>
         <?php } ?>
-        <button type="bouton" class="button">
+        <button type="bouton" class="button button-large">
             <a href="index.php?action=addActeur&id=<?= $infosfilm["id_film"] ?>">Ajouter un acteur</a>
         </button>
         <h2>Synopsis</h2>
