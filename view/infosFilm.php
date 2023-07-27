@@ -66,8 +66,8 @@ $infosfilm = $film->fetch(); ?>
 
 <?php
 
-$titre = "Liste des films";
-$titre_secondaire = "Liste des films";
+$titre = "Film : " . $infosfilm["titre_film"];
+$titre_secondaire = "Films" . $infosfilm["titre_film"];
 $contenu = ob_get_clean();
 
 require "view/template.php";
