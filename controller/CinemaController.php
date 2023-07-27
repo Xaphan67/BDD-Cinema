@@ -69,7 +69,7 @@ class CinemaController
         INNER JOIN posseder po ON f.id_film = po.id_film 
         INNER JOIN genre_film gf ON po.id_genre_film = gf.id_genre_film
         WHERE f.id_film = :idFilm");
-        $film->execute((["idFilm" => $idFilm]));
+        $film->execute(["idFilm" => $idFilm]);
 
         // Casting du film
         $acteurs = $this->connectToBDD()->prepare("
@@ -82,7 +82,7 @@ class CinemaController
         INNER JOIN film f ON j.id_film = f.id_film
         WHERE f.id_film = :idFilm
         GROUP BY a.id_acteur"); // <-- GROUP BY pour éviter que si un acteur joue deux rôles dans le même film, il apparaisse deux fois
-        $acteurs->execute((["idFilm" => $idFilm]));
+        $acteurs->execute(["idFilm" => $idFilm]);
 
         // Appel à la vue
         require "view/infosFilm.php";
@@ -119,7 +119,7 @@ class CinemaController
         FROM personne p
         INNER JOIN realisateur r ON p.id_personne = r.id_personne
         WHERE r.id_realisateur = :idRealisateur");
-        $realisateur->execute((["idRealisateur" => $idRealisateur]));
+        $realisateur->execute(["idRealisateur" => $idRealisateur]);
 
         $films = $this->connectToBDD()->prepare("
         SELECT
@@ -145,7 +145,7 @@ class CinemaController
         WHERE r.id_realisateur = :idRealisateur
         GROUP BY f.id_film
         ORDER BY f.titre_film");
-        $films->execute((["idRealisateur" => $idRealisateur]));
+        $films->execute(["idRealisateur" => $idRealisateur]);
 
         // Appel à la vue
         require "view/infosRealisateur.php";
@@ -168,6 +168,53 @@ class CinemaController
 
         // Appel à la vue
         require "view/listActeurs.php";
+    }
+
+    // informations d'un acteur
+    public function infosActeur($idActeur)
+    {
+        $acteur = $this->connectToBDD()->prepare("
+        SELECT
+        a.id_acteur,
+        CONCAT(p.nom_personne, ' ', p.prenom_personne) AS acteurFilm,
+        p.sexe_personne,
+        p.dateNaissance_personne
+        FROM acteur a
+        INNER JOIN personne p ON a.id_personne = p.id_personne
+        WHERE a.id_acteur = :idActeur");
+        $acteur->execute(["idActeur" => $idActeur]);
+
+        $films = $this->connectToBDD()->prepare("
+        SELECT
+        f.id_film AS IdFilm,
+        f.titre_film,
+        f.anneeSortie_film,
+        TIME_FORMAT(SEC_TO_TIME(f.duree_film * 60), '%Hh %imin') AS duree,
+        GROUP_CONCAT(gf.libelle_genre_film SEPARATOR ', ') AS genres,
+        f.id_realisateur,
+        CONCAT(p.nom_personne, ' ', p.prenom_personne) AS realisateurFilm,
+        f.synopsis_film,
+        (SELECT GROUP_CONCAT(CONCAT(p.nom_personne, ' ', p.prenom_personne) SEPARATOR ', ')
+            FROM jouer j
+            INNER JOIN acteur a ON j.id_acteur = a.id_acteur
+            INNER JOIN personne p ON a.id_personne = p.id_personne
+            INNER JOIN film f ON j.id_film = f.id_film
+            WHERE f.id_film = IdFilm) AS acteursFilm,
+        f.note_film,
+        f.affiche_film
+        FROM jouer j
+        INNER JOIN film f ON j.id_film = f.id_film
+        INNER JOIN rôle r ON j.id_rôle = r.id_rôle
+        INNER JOIN acteur a ON j.id_acteur = a.id_acteur
+        INNER JOIN personne p ON a.id_personne = p.id_personne
+        INNER JOIN posseder po ON f.id_film = po.id_film 
+        INNER JOIN genre_film gf ON po.id_genre_film = gf.id_genre_film
+        WHERE a.id_acteur = :idActeur
+        GROUP BY f.id_film");
+        $films->execute(["idActeur" => $idActeur]);
+
+        // Appel à la vue
+        require "view/infosActeur.php";
     }
 
     // Liste des genres
