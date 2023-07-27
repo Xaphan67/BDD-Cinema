@@ -106,6 +106,15 @@ h2 {
     text-transform: uppercase;
 }
 
+.main-box {
+    width: 100%;
+    min-height: 100px;
+    margin: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
 /* Film Box */
 
 .film-box {
@@ -155,8 +164,8 @@ h2 {
 }
 
 .avatar {
-    width: 115px;
-    height: 115px;
+    max-width: 115px;
+    max-height: 115px;
     margin-top: 5px;
     margin-left: 5px;
 }
@@ -175,15 +184,6 @@ h2 {
 }
 
 /* Film-info Box */
-
-.film-info-box {
-    width: 100%;
-    min-height: 100px;
-    margin: 10px;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-}
 
 .film-info-side {
     display: flex;
@@ -205,6 +205,20 @@ h2 {
 
 .acteur-casting p {
     margin-right: 5px;
+}
+
+/* Personne Info Box */
+
+.personne-info-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatar-large {
+    max-width: 230px;
+    max-height: 230px;
+    margin: 15px auto;
 }
 
 @media screen and (min-width: 1200px) {
@@ -239,6 +253,13 @@ h2 {
 
     h1 {
         margin-top: 20px;
+    }
+
+    .main-box {
+        margin: 0px;
+        padding-bottom: 30px;
+        flex-direction: row;
+        align-items: normal;
     }
 
     /* Film Box */
@@ -304,13 +325,6 @@ h2 {
 
     /* Film-info Box */
 
-    .film-info-box {
-        margin: 0px;
-        padding-bottom: 30px;
-        flex-direction: row;
-        align-items: normal;
-    }
-
     .film-info-side {
         width: 33%;
         justify-content: center;
@@ -320,7 +334,22 @@ h2 {
         width: 67%;
     }
 
-    .film-info-box h1 {
+    .film-info-main h1 {
+        font-size: 40px;
+    }
+
+    /* Personne Info Box */
+
+    .personne-info-side {
+        width: 33%;
+        justify-content: center;
+    }
+
+    .personne-info-main {
+        width: 67%;
+    }
+
+    .personne-info-main h1 {
         font-size: 40px;
     }
 }

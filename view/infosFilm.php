@@ -2,7 +2,7 @@
 
 $infosfilm = $film->fetch(); ?>
 
-<div class="film-info-box bg">
+<div class="main-box bg">
     <div class="film-info-side">
         <img class="affiche-large" src="public/img/posters/<?= $infosfilm["affiche_film"] ?>" alt="affiche"></img>
         <div class="film-info-actions">

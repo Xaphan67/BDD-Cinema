@@ -107,6 +107,50 @@ class CinemaController
         require "view/listRealisateurs.php";
     }
 
+    // Informations d'un réalisateur
+    public function infosRealisateur($idRealisateur)
+    {
+        $realisateur = $this->connectToBDD()->prepare("
+        SELECT
+        r.id_realisateur,
+        CONCAT(p.nom_personne, ' ', p.prenom_personne) AS realisateurFilm,
+        p.sexe_personne,
+        p.dateNaissance_personne
+        FROM personne p
+        INNER JOIN realisateur r ON p.id_personne = r.id_personne
+        WHERE r.id_realisateur = :idRealisateur");
+        $realisateur->execute((["idRealisateur" => $idRealisateur]));
+
+        $films = $this->connectToBDD()->prepare("
+        SELECT
+        f.id_film AS IdFilm,
+        f.titre_film,
+        f.anneeSortie_film,
+        TIME_FORMAT(SEC_TO_TIME(f.duree_film * 60), '%Hh %imin') AS duree,
+        GROUP_CONCAT(gf.libelle_genre_film SEPARATOR ', ') AS genres,
+        f.synopsis_film,
+        (SELECT GROUP_CONCAT(CONCAT(p.nom_personne, ' ', p.prenom_personne) SEPARATOR ', ')
+            FROM jouer j
+            INNER JOIN acteur a ON j.id_acteur = a.id_acteur
+            INNER JOIN personne p ON a.id_personne = p.id_personne
+            INNER JOIN film f ON j.id_film = f.id_film
+            WHERE f.id_film = IdFilm) AS acteursFilm,
+        f.note_film,
+        f.affiche_film
+        FROM film f
+        INNER JOIN realisateur r ON f.id_realisateur = r.id_realisateur
+        INNER JOIN personne p ON r.id_personne = p.id_personne
+        INNER JOIN posseder po ON f.id_film = po.id_film 
+        INNER JOIN genre_film gf ON po.id_genre_film = gf.id_genre_film
+        WHERE r.id_realisateur = :idRealisateur
+        GROUP BY f.id_film
+        ORDER BY f.titre_film");
+        $films->execute((["idRealisateur" => $idRealisateur]));
+
+        // Appel à la vue
+        require "view/infosRealisateur.php";
+    }
+
     // Liste des acteurs
     public function listActeurs()
     {
