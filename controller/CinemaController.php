@@ -294,14 +294,14 @@ class CinemaController
         // Préparation d'une requête
         $roles = $this->connectToBDD()->query("
         SELECT
-        j.id_rôle,
+        r.id_rôle,
         r.nom_rôle,
-        COUNT(*) AS nbActeurs
+        COUNT(j.id_acteur) AS nbActeurs
         FROM jouer j
         INNER JOIN acteur a ON j.id_acteur = a.id_acteur
         INNER JOIN personne p ON a.id_personne = p.id_personne
-        INNER JOIN rôle r ON j.id_rôle= r.id_rôle
-        GROUP BY j.id_rôle
+        RIGHT JOIN rôle r ON j.id_rôle= r.id_rôle
+        GROUP BY r.id_rôle
         ORDER BY r.nom_rôle
         ");
 
@@ -337,5 +337,33 @@ class CinemaController
 
         // Appel à la vue
         require "view/infosRole.php";
+    }
+
+    // Formulaire d'ajout d'un rôle
+    public function formAddRole()
+    {
+        // Appel à la vue
+        require "view/formAddRole.php";
+    }
+
+    // Ajout d'un rôle
+    public function addRole()
+    {
+        if (isset($_POST['submit'])) {
+
+            // Sécurité
+            $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            if ($nom) {
+                $role = $this->connectToBDD()->prepare("
+                INSERT INTO
+                rôle (nom_rôle)
+                VALUES
+                (:nomRole)");
+                $role->execute(["nomRole" => $_POST["nom"]]);
+            }
+        }
+
+        header("Location:index.php?action=listRoles"); // Redirection vers la liste des rôles
     }
 }

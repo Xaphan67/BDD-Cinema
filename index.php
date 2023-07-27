@@ -54,6 +54,15 @@ if (isset($_GET["action"])) // Action spécifiée - Affiche la page correspondan
 
         case "infoRole": // Informations d'un rôle
             $ctrlCinema->infosRole($id);
+            break;
+
+        case "formAddRole": // Formulaire d'ajout d'un rôle
+            $ctrlCinema->formAddRole();
+            break;
+
+        case "addRole": // Ajout d'un rôle
+            $ctrlCinema->addRole();
+            break;
     }
 } else // Aucune action spécifiée - Affiche la liste des films
 {

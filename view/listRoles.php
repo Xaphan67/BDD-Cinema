@@ -1,15 +1,25 @@
 <?php ob_start(); ?>
 
 <div class="top">
-    <button type="bouton" class="button button-large button-center"><a href="index.php?action=aaddRole">Ajouter un rôle</a></button>
+    <button type="bouton" class="button button-large button-center"><a href="index.php?action=formAddRole">Ajouter un rôle</a></button>
 </div>
 
 <?php foreach ($roles->fetchALL() as $role) {
 ?>
     <div class="genre-role-box bg">
         <div class="genre-role-main">
-            <h1><a href="index.php?action=infoRole&id=<?= $role["id_rôle"] ?>"><?= $role["nom_rôle"] ?></a></h1>
-            <p>Il existe <?= $role["nbActeurs"] ?> acteur<?= $role["nbActeurs"] > 1 ? "s" : "" ?> ayant joué ce role</p>
+            <?php
+            if ($role["nbActeurs"] > 0) {
+            ?>
+                <h1><a href="index.php?action=infoRole&id=<?= $role["id_rôle"] ?>"><?= $role["nom_rôle"] ?></a></h1>
+                <p>Il existe <?= $role["nbActeurs"] ?> acteur<?= $role["nbActeurs"] > 1 ? "s" : "" ?> ayant joué ce role</p>
+            <?php
+            } else {
+            ?>
+                <h1><?= $role["nom_rôle"] ?></h1>
+                <p>Aucun acteur ne joue ce rôle</p>
+            <?php
+            } ?>
         </div>
         <div class="genre-role-actions">
             <button type="bouton" class="button button-round">

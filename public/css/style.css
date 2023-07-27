@@ -54,6 +54,38 @@ button {
     width: 200px;
 }
 
+.button-submit {
+    align-self: flex-end;
+}
+
+form {
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding-top: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+    white-space: nowrap;
+    justify-content: space-between;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 5px 20px 6px 20px;
+    margin: 4px 0px 5px 5px;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+
 /* Header */
 
 header {
@@ -231,6 +263,15 @@ h2 {
 }
 
 @media screen and (min-width: 1200px) {
+
+    form {
+        width: 466px;
+    }
+
+    input[type=text] {
+        max-width: 345px;
+    }
+
     /* Header */
 
     header {
