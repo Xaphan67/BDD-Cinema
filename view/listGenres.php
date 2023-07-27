@@ -12,9 +12,6 @@
             <p>Il existe <?= $genre["nbFilms"] ?> film<?= $genre["nbFilms"] > 1 ? "s" : "" ?> de ce genre</p>
         </div>
         <div class="genre-role-actions">
-            <button type="bouton" class="button">
-                <a href="index.php?action=listFilms&id=<?= $genre["id_genre_film"] ?>">Voir les films</a>
-            </button>
             <button type="bouton" class="button button-round">
                 <a href="index.php?action=editGenre&id=<?= $genre["id_genre_film"] ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">

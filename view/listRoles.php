@@ -12,9 +12,6 @@
             <p>Il existe <?= $role["nbActeurs"] ?> acteur<?= $role["nbActeurs"] > 1 ? "s" : "" ?> ayant joué ce role</p>
         </div>
         <div class="genre-role-actions">
-            <button type="bouton" class="button">
-                <a href="index.php?action=listActeurs&id=<?= $role["id_rôle"] ?>">Voir les acteurs</a>
-            </button>
             <button type="bouton" class="button button-round">
                 <a href="index.php?action=editRole&id=<?= $role["id_rôle"] ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
