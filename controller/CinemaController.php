@@ -99,12 +99,14 @@ class CinemaController
         CONCAT(p.nom_personne, ' ', p.prenom_personne) AS acteurFilm
         FROM acteur a
         INNER JOIN personne p ON a.id_personne = p.id_personne
+        ORDER BY acteurFilm
         ");
 
         $roles = $this->connectToBDD()->query("
         SELECT
         *
         FROM rôle
+        ORDER BY nom_rôle
         ");
 
         // Appel à la vue
@@ -133,7 +135,7 @@ class CinemaController
     // Suppression d'un acteur d'un film
     public function deleteCasting($idFilm, $idActeur, $idRole)
     {
-        if (isset($idActeur)) {
+        if (isset($idFilm) && isset($idActeur) && isset($idRole)) {
             $requete = $this->connectToBDD()->prepare("
             DELETE FROM jouer
             WHERE id_film = :idFilm AND id_acteur = :idActeur AND id_rôle = :idRole");
