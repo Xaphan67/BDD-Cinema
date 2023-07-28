@@ -426,22 +426,22 @@ class CinemaController
         header("Location:index.php?action=listActeurs"); // Redirection vers la liste des acteurs si aucune id n'est spécifiée
     }
 
-    // Modification d'un réalisateur
-    public function editActeur($idRealisateur)
+    // Modification d'un acteur
+    public function editActeur($idActeur)
     {
         if (isset($_POST['submit'])) {
             // Sécurité
             $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            if ($nom && $prenom && isset($idRealisateur) && isset($_POST["sexe"]) && isset($_POST["dateNaissance"])) {
-                // Récupère l'id de la personne correspondant à $idRealisateur
+            if ($nom && $prenom && isset($idActeur) && isset($_POST["sexe"]) && isset($_POST["dateNaissance"])) {
+                // Récupère l'id de la personne correspondant à $idActeur
                 $personneID = $this->connectToBDD()->prepare("
                  SELECT
                  r.id_personne
                  FROM realisateur r
-                 WHERE r.id_realisateur = :idRealisateur");
-                $personneID->execute(["idRealisateur" => $idRealisateur]);
+                 WHERE r.id_realisateur = :idActeur");
+                $personneID->execute(["idActeur" => $idActeur]);
                 $personneID = $personneID->fetch();
 
                 // Modifie la personne correspondante
@@ -457,7 +457,7 @@ class CinemaController
             }
         }
 
-        header("Location:index.php?action=listRealisateurs"); // Redirection vers la liste des réalisateurs
+        header("Location:index.php?action=listActeurs"); // Redirection vers la liste des acteurs
     }
 
     // Liste des genres
