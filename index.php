@@ -12,6 +12,8 @@ spl_autoload_register(function ($class_name) {
 $ctrlCinema = new CinemaController();
 
 $id = isset($_GET["id"]) ? $_GET["id"] : null;
+$acteur = isset($_GET["acteur"]) ? $_GET["acteur"] : null;
+$role = isset($_GET["role"]) ? $_GET["role"] : null;
 
 if (isset($_GET["action"])) // Action spécifiée - Affiche la page correspondante
 {
@@ -30,6 +32,10 @@ if (isset($_GET["action"])) // Action spécifiée - Affiche la page correspondan
 
         case "addCasting": // Ajout d'un acteur à un film
             $ctrlCinema->addCasting($id);
+            break;
+
+        case "deleteCasting": // Suppression d'un acteur d'un film
+            $ctrlCinema->deleteCasting($id, $acteur, $role);
             break;
 
         case "listRealisateurs": // Liste des réalisateurs

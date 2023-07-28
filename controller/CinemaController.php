@@ -76,7 +76,8 @@ class CinemaController
         SELECT
         a.id_acteur,
         CONCAT(p.nom_personne, ' ', p.prenom_personne) AS acteurFilm,
-        r.`nom_rôle`
+        r.id_rôle,
+        r.nom_rôle
         FROM jouer j
         INNER JOIN acteur a ON j.id_acteur = a.id_acteur
         INNER JOIN personne p ON a.id_personne = p.id_personne
@@ -124,6 +125,19 @@ class CinemaController
                  (:idFilm, :idActeur, :idRole)");
                 $acteur->execute(["idFilm" => $idFilm, "idActeur" => $_POST["acteur"], "idRole" => $_POST["role"]]);
             }
+        }
+
+        header("Location:index.php?action=infoFilm&id=$idFilm"); // Redirection vers les informations du film correspondant
+    }
+
+    // Suppression d'un acteur d'un film
+    public function deleteCasting($idFilm, $idActeur, $idRole)
+    {
+        if (isset($idActeur)) {
+            $requete = $this->connectToBDD()->prepare("
+            DELETE FROM jouer
+            WHERE id_film = :idFilm AND id_acteur = :idActeur AND id_rôle = :idRole");
+            $requete->execute(["idFilm" => $idFilm, "idActeur" => $idActeur, "idRole" => $idRole]);
         }
 
         header("Location:index.php?action=infoFilm&id=$idFilm"); // Redirection vers les informations du film correspondant
