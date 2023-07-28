@@ -5,7 +5,7 @@ $infosActeur = $acteur->fetch(); ?>
 <div class="main-box-titre bg">
     <h1>Modifier un acteur</h1>
     <p>Merci de remplir tous les champs pour modifier l'acteur.</p>
-    <form action="index.php?action=editRealisateur&id=<?= $infosActeur["id_acteur"] ?>" method="post">
+    <form action="index.php?action=editActeur&id=<?= $infosActeur["id_acteur"] ?>" method="post">
         <div class="form-group">
             <label for="nom">Nom *</label>
             <input type="text" id="nom" name="nom" value="<?= $infosActeur["nom_personne"] ?>">
