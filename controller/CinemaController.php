@@ -367,6 +367,46 @@ class CinemaController
         header("Location:index.php?action=listRoles"); // Redirection vers la liste des rôles
     }
 
+    // Formulaire de modification d'un rôle
+    public function formEditRole($idRole)
+    {
+        if (isset($idRole)) {
+
+            $role = $this->connectToBDD()->prepare("
+            SELECT
+            r.id_rôle,
+            r.nom_rôle
+            FROM rôle r
+            WHERE id_rôle = :idRole");
+            $role->execute(["idRole" => $idRole]);
+
+            // Appel à la vue
+            require "view/formEditRole.php";
+            exit();
+        }
+
+        header("Location:index.php?action=listRoles"); // Redirection vers la liste des rôles si aucune id n'est spécifiée
+    }
+
+    // Modification d'un rôle
+    public function editRole($idRole)
+    {
+        if (isset($_POST['submit'])) {
+            // Sécurité
+            $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            if ($nom && isset($idRole) && isset($_POST["nom"])) {
+                $role = $this->connectToBDD()->prepare("
+                UPDATE rôle
+                SET nom_rôle = :nomRole
+                WHERE id_rôle = :idRole");
+                $role->execute(["nomRole" => $_POST["nom"], "idRole" => $idRole]);
+            }
+        }
+
+        header("Location:index.php?action=listRoles"); // Redirection vers la liste des rôles
+    }
+
     // Suppression d'un rôle
     public function deleteRole($idRole)
     {

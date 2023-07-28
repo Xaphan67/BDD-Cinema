@@ -64,6 +64,14 @@ if (isset($_GET["action"])) // Action spécifiée - Affiche la page correspondan
             $ctrlCinema->addRole();
             break;
 
+        case "formEditRole": // Formulaire de modification d'un rôle
+            $ctrlCinema->formEditRole($id);
+            break;
+
+        case "editRole": // Modification d'un rôle
+            $ctrlCinema->editRole($id);
+            break;
+
         case "deleteRole": // Suppression d'un rôle
             $ctrlCinema->deleteRole($id);
             break;
