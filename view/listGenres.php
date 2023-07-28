@@ -1,15 +1,25 @@
 <?php ob_start(); ?>
 
 <div class="top">
-    <button type="bouton" class=" button button-large button-center"><a href="index.php?action=addGenre">Ajouter un genre</a></button>
+    <button type="bouton" class=" button button-large button-center"><a href="index.php?action=formAddGenre">Ajouter un genre</a></button>
 </div>
 
 <?php foreach ($genres->fetchALL() as $genre) {
 ?>
     <div class="genre-role-box bg">
         <div class="genre-role-main">
-            <h1><a href="index.php?action=infoGenre&id=<?= $genre["id_genre_film"] ?>"><?= $genre["libelle_genre_film"] ?></a></h1>
-            <p>Il existe <?= $genre["nbFilms"] ?> film<?= $genre["nbFilms"] > 1 ? "s" : "" ?> de ce genre</p>
+            <?php
+            if ($genre["nbFilms"] > 0) {
+            ?>
+                <h1><a href="index.php?action=infoGenre&id=<?= $genre["id_genre_film"] ?>"><?= $genre["libelle_genre_film"] ?></a></h1>
+                <p>Il existe <?= $genre["nbFilms"] ?> film<?= $genre["nbFilms"] > 1 ? "s" : "" ?> de ce genre</p>
+            <?php
+            } else {
+            ?>
+                <h1><?= $genre["libelle_genre_film"] ?></h1>
+                <p>Il n'existe aucun film de ce genre</p>
+            <?php
+            } ?>
         </div>
         <div class="genre-role-actions">
             <button type="bouton" class="button button-round">

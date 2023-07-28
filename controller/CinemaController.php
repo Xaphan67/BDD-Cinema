@@ -225,10 +225,10 @@ class CinemaController
         SELECT
         gf.id_genre_film,
         gf.libelle_genre_film,
-        COUNT(*) AS nbFilms
+        COUNT(p.id_film) AS nbFilms
         FROM film f
         INNER JOIN posseder p ON f.id_film = p.id_film
-        INNER JOIN genre_film gf ON p.id_genre_film = gf.id_genre_film
+        RIGHT JOIN genre_film gf ON p.id_genre_film = gf.id_genre_film
         GROUP BY gf.id_genre_film
         ORDER BY gf.libelle_genre_film
         ");
@@ -286,6 +286,34 @@ class CinemaController
 
         // Appel à la vue
         require "view/infosGenre.php";
+    }
+
+    // Formulaire d'ajout d'un genre
+    public function formAddGenre()
+    {
+        // Appel à la vue
+        require "view/formAddGenre.php";
+    }
+
+    // Ajout d'un genre
+    public function addGenre()
+    {
+        if (isset($_POST['submit'])) {
+
+            // Sécurité
+            $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            if ($nom) {
+                $genre = $this->connectToBDD()->prepare("
+                INSERT INTO
+                genre_film (libelle_genre_film)
+                VALUES
+                (:nomGenre)");
+                $genre->execute(["nomGenre" => $_POST["nom"]]);
+            }
+        }
+
+        header("Location:index.php?action=listGenres"); // Redirection vers la liste des genres
     }
 
     // Liste des rôles
