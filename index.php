@@ -40,6 +40,10 @@ if (isset($_GET["action"])) // Action spécifiée - Affiche la page correspondan
             $ctrlCinema->addRealisateur();
             break;
 
+        case "deleteRealisateur": // Suppression d'un réalisateur
+            $ctrlCinema->deleteRealisateur($id);
+            break;
+
         case "listActeurs": // Liste des acteurs
             $ctrlCinema->listActeurs();
             break;

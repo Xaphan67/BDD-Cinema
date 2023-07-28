@@ -198,6 +198,35 @@ class CinemaController
         header("Location:index.php?action=listRealisateurs"); // Redirection vers la liste des réalisateurs
     }
 
+    // Suppression d'un réalisateur
+    public function deleteRealisateur($idRealisateur)
+    {
+        if (isset($idRealisateur)) {
+            // Récupère l'id de la personne correspondant à $idRealisateur
+            $personneID = $this->connectToBDD()->prepare("
+            SELECT
+            r.id_personne
+            FROM realisateur r
+            WHERE r.id_realisateur = :idRealisateur");
+            $personneID->execute(["idRealisateur" => $idRealisateur]);
+            $personneID = $personneID->fetch();
+
+            // Supprime le réalisateur de la table réalisateur
+            $realisateur = $this->connectToBDD()->prepare("
+            DELETE FROM realisateur
+            WHERE id_realisateur = :idRealisateur");
+            $realisateur->execute(["idRealisateur" => $idRealisateur]);
+
+            // Supprime la personne correspondant au réalisateur
+            $personne = $this->connectToBDD()->prepare("
+            DELETE FROM personne
+            WHERE id_personne = :idPersonne");
+            $personne->execute(["idPersonne" => $personneID["id_personne"]]);
+        }
+
+        header("Location:index.php?action=listRealisateurs"); // Redirection vers la liste des réalisateurs
+    }
+
     // Liste des acteurs
     public function listActeurs()
     {
