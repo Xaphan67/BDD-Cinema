@@ -6,7 +6,7 @@ $infosGenre = $genre->fetch(); ?>
     <h1><?= $infosGenre["libelle_genre_film"] ?></h1>
     <div class="genre-role-info-actions">
         <button type="bouton" class="button">
-            <a href="index.php?action=editGenre&id=<?= $infosGenre["id_genre_film"] ?>">Modifier</a>
+            <a href="index.php?action=formEditGenre&id=<?= $infosGenre["id_genre_film"] ?>">Modifier</a>
         </button>
         <button type="bouton" class="button">
             <a href="index.php?action=deleteGenre&id=<?= $infosGenre["id_genre_film"] ?>">Supprimer</a>

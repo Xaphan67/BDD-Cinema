@@ -6,7 +6,7 @@ $infosRole = $role->fetch(); ?>
     <h1><?= $infosRole["nom_rôle"] ?></h1>
     <div class="genre-role-info-actions">
         <button type="bouton" class="button">
-            <a href="index.php?action=editRole&id=<?= $infosRole["id_rôle"] ?>">Modifier</a>
+            <a href="index.php?action=formEditRole&id=<?= $infosRole["id_rôle"] ?>">Modifier</a>
         </button>
         <button type="bouton" class="button">
             <a href="index.php?action=deleteRole&id=<?= $infosRole["id_rôle"] ?>">Supprimer</a>
