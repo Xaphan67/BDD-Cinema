@@ -316,6 +316,46 @@ class CinemaController
         header("Location:index.php?action=listGenres"); // Redirection vers la liste des genres
     }
 
+    // Formulaire de modification d'un genre
+    public function formEditGenre($idGenre)
+    {
+        if (isset($idGenre)) {
+
+            $genre = $this->connectToBDD()->prepare("
+            SELECT
+            gf.id_genre_film,
+            gf.libelle_genre_film
+            FROM genre_film gf
+            WHERE id_genre_film = :idGenre");
+            $genre->execute(["idGenre" => $idGenre]);
+
+            // Appel à la vue
+            require "view/formEditGenre.php";
+            exit();
+        }
+
+        header("Location:index.php?action=listGenres"); // Redirection vers la liste des genres si aucune id n'est spécifiée
+    }
+
+    // Modification d'un genre
+    public function editGenre($idGenre)
+    {
+        if (isset($_POST['submit'])) {
+            // Sécurité
+            $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            if ($nom && isset($idGenre) && isset($_POST["nom"])) {
+                $genre = $this->connectToBDD()->prepare("
+                UPDATE genre_film
+                SET libelle_genre_film = :nomGenre
+                WHERE id_genre_film = :idGenre");
+                $genre->execute(["nomGenre" => $_POST["nom"], "idGenre" => $idGenre]);
+            }
+        }
+
+        header("Location:index.php?action=listGenres"); // Redirection vers la liste des genres
+    }
+
     // Liste des rôles
     public function listRoles()
     {

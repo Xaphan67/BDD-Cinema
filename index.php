@@ -48,8 +48,16 @@ if (isset($_GET["action"])) // Action spécifiée - Affiche la page correspondan
             $ctrlCinema->infosGenre($id);
             break;
 
-        case "formAddGenre": // Ajout d'un genre
+        case "formAddGenre": // Formulaire d'ajout d'un genre
             $ctrlCinema->formAddGenre();
+            break;
+
+        case "formEditGenre": // Formulaire de modification d'un genre
+            $ctrlCinema->formEditGenre($id);
+            break;
+
+        case "editGenre": // Modification d'un genre
+            $ctrlCinema->editGenre($id);
             break;
 
         case "addGenre": // Ajout d'un genre
