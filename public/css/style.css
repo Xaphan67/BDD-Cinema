@@ -258,10 +258,11 @@ h2 {
     flex-wrap: nowrap;
     line-height: 35px;
     vertical-align: middle;
+    justify-content: flex-end;
 }
 
 .acteur-casting p {
-    margin-right: 5px;
+    margin-right: auto;
 }
 
 /* Personne Info Box */

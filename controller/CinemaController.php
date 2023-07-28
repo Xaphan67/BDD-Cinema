@@ -75,13 +75,14 @@ class CinemaController
         $acteurs = $this->connectToBDD()->prepare("
         SELECT
         a.id_acteur,
-        CONCAT(p.nom_personne, ' ', p.prenom_personne) AS acteurFilm
+        CONCAT(p.nom_personne, ' ', p.prenom_personne) AS acteurFilm,
+        r.`nom_rôle`
         FROM jouer j
         INNER JOIN acteur a ON j.id_acteur = a.id_acteur
         INNER JOIN personne p ON a.id_personne = p.id_personne
         INNER JOIN film f ON j.id_film = f.id_film
-        WHERE f.id_film = :idFilm
-        GROUP BY a.id_acteur"); // <-- GROUP BY pour éviter que si un acteur joue deux rôles dans le même film, il apparaisse deux fois
+        INNER JOIN rôle r ON j.id_rôle = r.id_rôle
+        WHERE f.id_film = :idFilm");
         $acteurs->execute(["idFilm" => $idFilm]);
 
         // Appel à la vue

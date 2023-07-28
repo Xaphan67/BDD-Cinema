@@ -40,7 +40,7 @@ $infosfilm = $film->fetch(); ?>
         <p><span class="info">Acteurs et actrices :</span></p>
         <?php foreach ($acteurs->fetchALL() as $acteur) { ?>
             <div class="acteur-casting">
-                <p><?= $acteur["acteurFilm"] ?> - Rôle</p>
+                <p><?= $acteur["acteurFilm"] ?>, en tant que <?= $acteur["nom_rôle"] ?></p>
                 <button type="bouton" class="button button-round">
                     <a href="index.php?action=editActeur&id=<?= $acteur["id_acteur"] ?>">
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
