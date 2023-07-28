@@ -40,6 +40,14 @@ if (isset($_GET["action"])) // Action spécifiée - Affiche la page correspondan
             $ctrlCinema->addRealisateur();
             break;
 
+        case "formEditRealisateur": // Formulaire de modification d'un réalisateur
+            $ctrlCinema->formEditRealisateur($id);
+            break;
+
+        case "editRealisateur": // Modification d'un réalisateur
+            $ctrlCinema->editRealisateur($id);
+            break;
+
         case "deleteRealisateur": // Suppression d'un réalisateur
             $ctrlCinema->deleteRealisateur($id);
             break;
