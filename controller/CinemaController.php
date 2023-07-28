@@ -89,6 +89,46 @@ class CinemaController
         require "view/infosFilm.php";
     }
 
+    // Formulaire d'ajout d'un acteur à un film
+    public function formAddCasting($idFilm)
+    {
+        $acteurs = $this->connectToBDD()->query("
+        SELECT
+        a.id_acteur,
+        CONCAT(p.nom_personne, ' ', p.prenom_personne) AS acteurFilm
+        FROM acteur a
+        INNER JOIN personne p ON a.id_personne = p.id_personne
+        ");
+
+        $roles = $this->connectToBDD()->query("
+        SELECT
+        *
+        FROM rôle
+        ");
+
+        // Appel à la vue
+        require "view/formAddCasting.php";
+    }
+
+    // Ajout d'un acteur à un film
+    public function addCasting($idFilm)
+    {
+        if (isset($_POST['submit'])) {
+
+            if (isset($_POST["acteur"]) && isset($_POST["role"])) {
+                // Ajoute les infos de l'acteur dans la table jouer
+                $acteur = $this->connectToBDD()->prepare("
+                 INSERT INTO
+                 jouer (id_film, id_acteur, id_rôle)
+                 VALUES
+                 (:idFilm, :idActeur, :idRole)");
+                $acteur->execute(["idFilm" => $idFilm, "idActeur" => $_POST["acteur"], "idRole" => $_POST["role"]]);
+            }
+        }
+
+        header("Location:index.php?action=infoFilm&id=$idFilm"); // Redirection vers les informations du film correspondant
+    }
+
     // Liste des réalisateurs
     public function listRealisateurs()
     {

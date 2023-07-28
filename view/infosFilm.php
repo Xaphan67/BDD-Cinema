@@ -58,7 +58,7 @@ $infosfilm = $film->fetch(); ?>
             </div>
         <?php } ?>
         <button type="bouton" class="button button-large">
-            <a href="index.php?action=addActeur&id=<?= $infosfilm["id_film"] ?>">Ajouter un acteur</a>
+            <a href="index.php?action=formAddCasting&id=<?= $infosfilm["id_film"] ?>">Ajouter un acteur</a>
         </button>
         <h2>Synopsis</h2>
         <hr>

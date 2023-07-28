@@ -23,22 +23,6 @@
             <label for="dateNaissance">Date de naissance *</label>
             <input type="date" id="dateNaissance" name="dateNaissance">
         </div>
-        <div class="form-group">
-            <label for="role">Rôle *</label>
-            <select id="role" name="role" class="select-right">
-                <?php
-                foreach ($roles->fetchALL() as $role) {
-                ?>
-                    <option value="<?= $role["id_rôle"] ?>"><?= $role["nom_rôle"] ?></option>
-                <?php }
-                ?>
-            </select>
-            <button type="bouton" class="button-round">
-                <a href="index.php?action=formAddRole">
-                    +
-                </a>
-            </button>
-        </div>
         <button type="submit" class="button-submit" name="submit">Ajouter</button>
     </form>
 </div>
