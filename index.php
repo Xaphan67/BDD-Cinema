@@ -76,6 +76,10 @@ if (isset($_GET["action"])) // Action spécifiée - Affiche la page correspondan
             $ctrlCinema->editActeur($id);
             break;
 
+        case "deleteActeur": // Supression d'un acteur
+            $ctrlCinema->deleteActeur($id);
+            break;
+
         case "listGenres": // Liste des genres
             $ctrlCinema->listGenres();
             break;

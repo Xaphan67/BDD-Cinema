@@ -438,9 +438,9 @@ class CinemaController
                 // Récupère l'id de la personne correspondant à $idActeur
                 $personneID = $this->connectToBDD()->prepare("
                  SELECT
-                 r.id_personne
-                 FROM realisateur r
-                 WHERE r.id_realisateur = :idActeur");
+                 a.id_personne
+                 FROM acteur a
+                 WHERE a.id_acteur = :idActeur");
                 $personneID->execute(["idActeur" => $idActeur]);
                 $personneID = $personneID->fetch();
 
