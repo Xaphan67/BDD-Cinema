@@ -221,7 +221,7 @@ class CinemaController
             exit();
         }
 
-        header("Location:index.php?action=listGenres"); // Redirection vers la liste des genres si aucune id n'est spécifiée
+        header("Location:index.php?action=listRealisateurs"); // Redirection vers la liste des réalisateurs si aucune id n'est spécifiée
     }
 
     // Modification d'un réalisateur
@@ -398,6 +398,66 @@ class CinemaController
         }
 
         header("Location:index.php?action=listActeurs"); // Redirection vers la liste des acteurs
+    }
+
+    // Formulaire de modification d'un acteur
+    public function formEditActeur($idActeur)
+    {
+        if (isset($idActeur)) {
+
+            $acteur = $this->connectToBDD()->prepare("
+             SELECT
+             a.id_acteur,
+             p.id_personne,
+             p.nom_personne,
+             p.prenom_personne,
+             p.sexe_personne,
+             p.dateNaissance_personne
+             FROM acteur a
+             INNER JOIN personne p ON a.id_personne = p.id_personne
+             WHERE a.id_acteur = :idActeur");
+            $acteur->execute(["idActeur" => $idActeur]);
+
+            // Appel à la vue
+            require "view/formEditActeur.php";
+            exit();
+        }
+
+        header("Location:index.php?action=listActeurs"); // Redirection vers la liste des acteurs si aucune id n'est spécifiée
+    }
+
+    // Modification d'un réalisateur
+    public function editActeur($idRealisateur)
+    {
+        if (isset($_POST['submit'])) {
+            // Sécurité
+            $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            if ($nom && $prenom && isset($idRealisateur) && isset($_POST["sexe"]) && isset($_POST["dateNaissance"])) {
+                // Récupère l'id de la personne correspondant à $idRealisateur
+                $personneID = $this->connectToBDD()->prepare("
+                 SELECT
+                 r.id_personne
+                 FROM realisateur r
+                 WHERE r.id_realisateur = :idRealisateur");
+                $personneID->execute(["idRealisateur" => $idRealisateur]);
+                $personneID = $personneID->fetch();
+
+                // Modifie la personne correspondante
+                $personne = $this->connectToBDD()->prepare("
+                 UPDATE personne
+                 SET
+                 nom_personne = :nomPersonne,
+                 prenom_personne = :prenomPersonne,
+                 sexe_personne = :sexePersonne,
+                 dateNaissance_personne = :dateNaissancePersonne
+                 WHERE id_personne = :idPersonne");
+                $personne->execute(["nomPersonne" => $_POST["nom"], "prenomPersonne" => $_POST["prenom"], "sexePersonne" => $_POST["sexe"], "dateNaissancePersonne" => $_POST["dateNaissance"], "idPersonne" => $personneID["id_personne"]]);
+            }
+        }
+
+        header("Location:index.php?action=listRealisateurs"); // Redirection vers la liste des réalisateurs
     }
 
     // Liste des genres

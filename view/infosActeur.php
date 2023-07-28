@@ -18,7 +18,7 @@ $infosActeur = $acteur->fetch(); ?>
         <p><span class="info">Date de naissance :</span> <?= $formatter->format($datetime) ?></p>
         <div class="film-info-actions">
             <button type="bouton" class="button">
-                <a href="index.php?action=editActeur&id=<?= $infosActeur["id_acteur"] ?>">Modifier</a>
+                <a href="index.php?action=formEditActeur&id=<?= $infosActeur["id_acteur"] ?>">Modifier</a>
             </button>
             <button type="bouton" class="button">
                 <a href="index.php?action=deleteActeur&id=<?= $infosActeur["id_acteur"] ?>">Supprimer</a>
