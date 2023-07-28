@@ -460,6 +460,29 @@ class CinemaController
         header("Location:index.php?action=listActeurs"); // Redirection vers la liste des acteurs
     }
 
+    // Suppression d'un acteur
+    public function deleteActeur($idActeur)
+    {
+        if (isset($idActeur)) {
+            // Récupère l'id de la personne correspondant à $idActeur
+            $personneID = $this->connectToBDD()->prepare("
+                 SELECT
+                 a.id_personne
+                 FROM acteur a
+                 WHERE a.id_acteur = :idActeur");
+            $personneID->execute(["idActeur" => $idActeur]);
+            $personneID = $personneID->fetch();
+
+            // Supprime la personne correspondant à l'acteur
+            $personne = $this->connectToBDD()->prepare("
+                 DELETE FROM personne
+                 WHERE id_personne = :idPersonne");
+            $personne->execute(["idPersonne" => $personneID["id_personne"]]);
+        }
+
+        header("Location:index.php?action=listActeurs"); // Redirection vers la liste des acteurs
+    }
+
     // Liste des genres
     public function listGenres()
     {
