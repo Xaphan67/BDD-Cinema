@@ -64,6 +64,10 @@ if (isset($_GET["action"])) // Action spécifiée - Affiche la page correspondan
             $ctrlCinema->addGenre();
             break;
 
+        case "deleteGenre": // Suppression d'un genre
+            $ctrlCinema->deleteGenre($id);
+            break;
+
         case "listRoles": // Liste des roles
             $ctrlCinema->listRoles();
             break;

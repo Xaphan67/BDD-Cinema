@@ -356,6 +356,19 @@ class CinemaController
         header("Location:index.php?action=listGenres"); // Redirection vers la liste des genres
     }
 
+    // Suppression d'un genre
+    public function deleteGenre($idGenre)
+    {
+        if (isset($idGenre)) {
+            $requete = $this->connectToBDD()->prepare("
+            DELETE FROM genre_film
+            WHERE id_genre_film = :idGenre");
+            $requete->execute(["idGenre" => $idGenre]);
+        }
+
+        header("Location:index.php?action=listGenres"); // Redirection vers la liste des genres
+    }
+
     // Liste des rôles
     public function listRoles()
     {
