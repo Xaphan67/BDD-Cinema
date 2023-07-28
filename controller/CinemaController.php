@@ -232,7 +232,7 @@ class CinemaController
             $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            if ($nom && isset($idRealisateur) && isset($_POST["sexe"]) && isset($_POST["dateNaissance"])) {
+            if ($nom && $prenom && isset($idRealisateur) && isset($_POST["sexe"]) && isset($_POST["dateNaissance"])) {
                 // Récupère l'id de la personne correspondant à $idRealisateur
                 $personneID = $this->connectToBDD()->prepare("
                 SELECT
