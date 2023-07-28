@@ -1,7 +1,7 @@
 <?php ob_start(); ?>
 
 <div class="top">
-    <button type="bouton" class="button button-large button-center"><a href="index.php?action=addActeur">Ajouter un acteur</a></button>
+    <button type="bouton" class="button button-large button-center"><a href="index.php?action=formAddActeur">Ajouter un acteur</a></button>
 </div>
 
 <?php foreach ($acteurs->fetchALL() as $acteur) {

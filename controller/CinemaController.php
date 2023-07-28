@@ -271,12 +271,6 @@ class CinemaController
             $personneID->execute(["idRealisateur" => $idRealisateur]);
             $personneID = $personneID->fetch();
 
-            // Supprime le réalisateur de la table réalisateur
-            $realisateur = $this->connectToBDD()->prepare("
-            DELETE FROM realisateur
-            WHERE id_realisateur = :idRealisateur");
-            $realisateur->execute(["idRealisateur" => $idRealisateur]);
-
             // Supprime la personne correspondant au réalisateur
             $personne = $this->connectToBDD()->prepare("
             DELETE FROM personne
@@ -351,6 +345,59 @@ class CinemaController
 
         // Appel à la vue
         require "view/infosActeur.php";
+    }
+
+    // Formulaire d'ajout d'un acteur
+    public function formAddActeur()
+    {
+        $roles = $this->connectToBDD()->query("
+        SELECT
+        *
+        FROM rôle
+        ");
+
+        // Appel à la vue
+        require "view/formAddActeur.php";
+    }
+
+    // Ajout d'un acteur
+    public function addActeur()
+    {
+        if (isset($_POST['submit'])) {
+
+            // Sécurité
+            $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            if ($nom && $prenom && isset($_POST["sexe"]) && isset($_POST["dateNaissance"])) {
+                // Ajoute les infos de l'acteur dans la talbe personne
+                $personne = $this->connectToBDD()->prepare("
+                 INSERT INTO
+                 personne (nom_personne, prenom_personne, sexe_personne, dateNaissance_personne)
+                 VALUES
+                 (:nomPersonne, :prenomPersonne, :sexePersonne, :dateNaissancePersonne)");
+                $personne->execute(["nomPersonne" => $_POST["nom"], "prenomPersonne" => $_POST["prenom"], "sexePersonne" => $_POST["sexe"], "dateNaissancePersonne" => $_POST["dateNaissance"]]);
+
+                // Récupère l'id de la personne ajoutée
+                $personneID = $this->connectToBDD()->prepare("
+                 SELECT
+                 p.id_personne
+                 FROM personne p
+                 WHERE p.nom_personne = :nomPersonne AND p.prenom_personne = :prenomPersonne");
+                $personneID->execute(["nomPersonne" => $_POST["nom"], "prenomPersonne" => $_POST["prenom"]]);
+                $personneID = $personneID->fetch();
+
+                // Ajoute l'id de la personne dans la table acteur
+                $acteur = $this->connectToBDD()->prepare("
+                 INSERT INTO
+                 acteur (id_personne)
+                 VALUES
+                 (:idPersonne)");
+                $acteur->execute(["idPersonne" => $personneID["id_personne"]]);
+            }
+        }
+
+        header("Location:index.php?action=listActeurs"); // Redirection vers la liste des acteurs
     }
 
     // Liste des genres

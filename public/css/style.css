@@ -68,13 +68,22 @@ form {
     padding-top: 15px;
 }
 
+label {
+    margin-right: auto;
+}
+
 .form-group {
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
     width: 100%;
     white-space: nowrap;
-    justify-content: space-between;
+    justify-content: flex-end;
+}
+
+.form-group button {
+    margin-left: 5px;
+    margin-top: 0px;
 }
 
 input[type=text],
@@ -86,6 +95,11 @@ select {
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 5px;
+}
+
+.select-right {
+    width: 110px;
+    align-self: flex-end;
 }
 
 /* Header */
@@ -274,6 +288,10 @@ h2 {
     input[type=date],
     select {
         width: 300px;
+    }
+
+    .select-right {
+        width: 260px;
     }
 
     /* Header */

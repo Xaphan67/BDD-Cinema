@@ -60,6 +60,14 @@ if (isset($_GET["action"])) // Action spécifiée - Affiche la page correspondan
             $ctrlCinema->infosActeur($id);
             break;
 
+        case "formAddActeur": // Formulaire d'ajout d'un acteur
+            $ctrlCinema->formAddActeur();
+            break;
+
+        case "addActeur": // Ajout d'un acteur
+            $ctrlCinema->addActeur();
+            break;
+
         case "listGenres": // Liste des genres
             $ctrlCinema->listGenres();
             break;
