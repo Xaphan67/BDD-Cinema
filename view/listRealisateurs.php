@@ -1,7 +1,7 @@
 <?php ob_start(); ?>
 
 <div class="top">
-    <button type="bouton" class="button button-very-large button-center"><a href="index.php?action=addRealisateur">Ajouter un réalisateur</a></button>
+    <button type="bouton" class="button button-very-large button-center"><a href="index.php?action=formAddRealisateur">Ajouter un réalisateur</a></button>
 </div>
 
 <?php foreach ($realisateurs->fetchALL() as $realisateur) {

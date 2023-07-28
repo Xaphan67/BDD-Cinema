@@ -151,6 +151,53 @@ class CinemaController
         require "view/infosRealisateur.php";
     }
 
+    // Formulaire d'ajout d'un réalisateur
+    public function formAddRealisateur()
+    {
+        // Appel à la vue
+        require "view/formAddRealisateur.php";
+    }
+
+    // Ajout d'un réalisateur
+    public function addRealisateur()
+    {
+        if (isset($_POST['submit'])) {
+
+            // Sécurité
+            $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            if ($nom && $prenom && isset($_POST["sexe"]) && isset($_POST["dateNaissance"])) {
+                // Ajoute les infos du réalisateur dans la talbe personne
+                $personne = $this->connectToBDD()->prepare("
+                INSERT INTO
+                personne (nom_personne, prenom_personne, sexe_personne, dateNaissance_personne)
+                VALUES
+                (:nomPersonne, :prenomPersonne, :sexePersonne, :dateNaissancePersonne)");
+                $personne->execute(["nomPersonne" => $_POST["nom"], "prenomPersonne" => $_POST["prenom"], "sexePersonne" => $_POST["sexe"], "dateNaissancePersonne" => $_POST["dateNaissance"]]);
+
+                // Récupère l'id de la personne ajoutée
+                $personneID = $this->connectToBDD()->prepare("
+                SELECT
+                p.id_personne
+                FROM personne p
+                WHERE p.nom_personne = :nomPersonne AND p.prenom_personne = :prenomPersonne");
+                $personneID->execute(["nomPersonne" => $_POST["nom"], "prenomPersonne" => $_POST["prenom"]]);
+                $personneID = $personneID->fetch();
+
+                // Ajoute l'id de la personne dans la table réalisateur
+                $realisateur = $this->connectToBDD()->prepare("
+                INSERT INTO
+                realisateur (id_personne)
+                VALUES
+                (:idPersonne)");
+                $realisateur->execute(["idPersonne" => $personneID["id_personne"]]);
+            }
+        }
+
+        header("Location:index.php?action=listRealisateurs"); // Redirection vers la liste des réalisateurs
+    }
+
     // Liste des acteurs
     public function listActeurs()
     {
