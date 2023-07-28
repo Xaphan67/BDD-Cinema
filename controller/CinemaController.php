@@ -366,4 +366,17 @@ class CinemaController
 
         header("Location:index.php?action=listRoles"); // Redirection vers la liste des rôles
     }
+
+    // Suppression d'un rôle
+    public function deleteRole($idRole)
+    {
+        if (isset($idRole)) {
+            $requete = $this->connectToBDD()->prepare("
+            DELETE FROM rôle
+            WHERE id_rôle = :idRole");
+            $requete->execute(["idRole" => $idRole]);
+        }
+
+        header("Location:index.php?action=listRoles"); // Redirection vers la liste des rôles
+    }
 }

@@ -63,6 +63,10 @@ if (isset($_GET["action"])) // Action spécifiée - Affiche la page correspondan
         case "addRole": // Ajout d'un rôle
             $ctrlCinema->addRole();
             break;
+
+        case "deleteRole": // Suppression d'un rôle
+            $ctrlCinema->deleteRole($id);
+            break;
     }
 } else // Aucune action spécifiée - Affiche la liste des films
 {
