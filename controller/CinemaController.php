@@ -83,7 +83,8 @@ class CinemaController
         INNER JOIN personne p ON a.id_personne = p.id_personne
         INNER JOIN film f ON j.id_film = f.id_film
         INNER JOIN rôle r ON j.id_rôle = r.id_rôle
-        WHERE f.id_film = :idFilm");
+        WHERE f.id_film = :idFilm
+        ORDER BY acteurFilm");
         $acteurs->execute(["idFilm" => $idFilm]);
 
         // Appel à la vue
