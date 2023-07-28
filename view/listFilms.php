@@ -26,7 +26,7 @@
         <div class="film-main">
             <h1><a href="index.php?action=infoFilm&id=<?= $film["IdFilm"] ?>"><?= $film["titre_film"] ?></a></h1>
             <p><?= $film["anneeSortie_film"] . " / " . $film["duree"] . " / " . $film["genres"] ?></p>
-            <p><span class="info">De :</span><a href="index.php?action=infoRealisateur$id=<?= $film["id_personne"] ?>"> <?= $film["realisateurFilm"] ?></a></p>
+            <p><span class="info">De :</span><a href="index.php?action=infoRealisateur&id=<?= $film["id_realisateur"] ?>"> <?= $film["realisateurFilm"] ?></a></p>
             <p><span class="info">Avec :</span> <?= $film["acteursFilm"] ?></p>
             <p><?= $film["synopsis_film"] ?></p>
             <button type="bouton" class="button button-round">

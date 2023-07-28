@@ -20,7 +20,7 @@ class CinemaController
         SELECT
         f.id_film AS IdFilm,
         f.titre_film,
-        pe.id_personne,
+        f.id_realisateur,
         CONCAT(pe.nom_personne, ' ', pe.prenom_personne) AS realisateurFilm,
         f.anneeSortie_film,
         TIME_FORMAT(SEC_TO_TIME(f.duree_film * 60), '%Hh %imin') AS duree,

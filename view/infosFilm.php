@@ -36,6 +36,8 @@ $infosfilm = $film->fetch(); ?>
         </p>
         <h2>Casting</h2>
         <hr>
+        <p><span class="info">Réalisateur :</span><a href="index.php?action=infoRealisateur&id=<?= $infosfilm["id_realisateur"] ?>"> <?= $infosfilm["realisateurFilm"] ?></a></p>
+        <p><span class="info">Acteurs et actrices :</span></p>
         <?php foreach ($acteurs->fetchALL() as $acteur) { ?>
             <div class="acteur-casting">
                 <p><?= $acteur["acteurFilm"] ?> - Rôle</p>
