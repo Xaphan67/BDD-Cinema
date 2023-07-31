@@ -10,7 +10,7 @@ $infosfilm = $film->fetch(); ?>
                 <a href="index.php?action=editFilm&id=<?= $infosfilm["id_film"] ?>">Modifier</a>
             </button>
             <button type="bouton" class="button">
-                <a href="index.php?action=delteFilm&id=<?= $infosfilm["id_film"] ?>">Supprimer</a>
+                <a href="index.php?action=deleteFilm&id=<?= $infosfilm["id_film"] ?>">Supprimer</a>
             </button>
         </div>
     </div>

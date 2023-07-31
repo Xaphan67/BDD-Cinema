@@ -184,7 +184,7 @@ class CinemaController
             }
         }
 
-        header("Location:index.php?action=listFilms"); // Redirection vers la liste des films
+        header("Location:index.php?action=formAddCasting&id=" . $filmID["id_film"]); // Redirection vers ajout d'un acteur au film
     }
 
     // Suppression d'un film
