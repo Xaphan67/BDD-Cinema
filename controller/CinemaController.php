@@ -91,6 +91,24 @@ class CinemaController
         require "view/infosFilm.php";
     }
 
+    // Suppression d'un film
+    public function deleteFilm($idFilm)
+    {
+        if (isset($idRole)) {
+            $castings = $this->connectToBDD()->prepare("
+            DELETE FROM jouer
+            WHERE id_Film = :idFilm");
+            $castings->execute(["idFilm" => $idFilm]);
+
+            $film = $this->connectToBDD()->prepare("
+            DELETE FROM film
+            WHERE id_film_ :idFilm");
+            $film->execute(["idFilm" => $idFilm]);
+        }
+
+        header("Location:index.php?action=listFilms&"); // Redirection vers la liste des films
+    }
+
     // Formulaire d'ajout d'un acteur à un film
     public function formAddCasting($idFilm)
     {

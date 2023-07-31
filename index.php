@@ -26,6 +26,10 @@ if (isset($_GET["action"])) // Action spécifiée - Affiche la page correspondan
             $ctrlCinema->infosFilm($id);
             break;
 
+        case "deleteFilm": // Suppression d'un film
+            $ctrlCinema->deleteFilm($id);
+            break;
+
         case "formAddCasting": // Formulaire d'ajout d'un acteur à un film
             $ctrlCinema->formAddCasting($id);
             break;
