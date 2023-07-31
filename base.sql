@@ -25,10 +25,10 @@ CREATE TABLE IF NOT EXISTS `acteur` (
   `id_personne` int NOT NULL,
   PRIMARY KEY (`id_acteur`),
   UNIQUE KEY `id_personne` (`id_personne`),
-  CONSTRAINT `acteur_ibfk_1` FOREIGN KEY (`id_personne`) REFERENCES `personne` (`id_personne`)
+  CONSTRAINT `acteur_ibfk_1` FOREIGN KEY (`id_personne`) REFERENCES `personne` (`id_personne`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table cinema.acteur : ~6 rows (environ)
+-- Listage des données de la table cinema.acteur : ~7 rows (environ)
 INSERT INTO `acteur` (`id_acteur`, `id_personne`) VALUES
 	(1, 1),
 	(2, 2),
@@ -91,13 +91,12 @@ CREATE TABLE IF NOT EXISTS `jouer` (
 INSERT INTO `jouer` (`id_film`, `id_rôle`, `id_acteur`) VALUES
 	(1, 1, 1),
 	(1, 2, 2),
-	(1, 3, 3),
+	(3, 3, 6),
 	(2, 4, 2),
 	(2, 5, 4),
 	(2, 6, 5),
 	(3, 7, 1),
-	(3, 8, 4),
-	(3, 9, 6);
+	(3, 8, 4);
 
 -- Listage de la structure de table cinema. personne
 CREATE TABLE IF NOT EXISTS `personne` (
@@ -147,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `realisateur` (
   `id_personne` int NOT NULL,
   PRIMARY KEY (`id_realisateur`),
   UNIQUE KEY `id_personne` (`id_personne`),
-  CONSTRAINT `realisateur_ibfk_1` FOREIGN KEY (`id_personne`) REFERENCES `personne` (`id_personne`)
+  CONSTRAINT `realisateur_ibfk_1` FOREIGN KEY (`id_personne`) REFERENCES `personne` (`id_personne`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table cinema.realisateur : ~3 rows (environ)
