@@ -187,6 +187,111 @@ class CinemaController
         header("Location:index.php?action=formAddCasting&id=" . $filmID["id_film"]); // Redirection vers ajout d'un acteur au film
     }
 
+    // Formulaire de modification d'un film
+    public function formEditFilm($idFilm)
+    {
+        if (isset($idFilm)) {
+            $film = $this->connectToBDD()->prepare("
+            SELECT
+            f.id_film, f.titre_film, f.anneeSortie_film, f.duree_film, f.synopsis_film, f.note_film, f.affiche_film, f.id_realisateur
+            FROM film f
+            WHERE f.id_film = :idFilm");
+            $film->execute(["idFilm" => $idFilm]);
+
+            $realisateurs = $this->connectToBDD()->query("
+            SELECT
+            r.id_realisateur,
+            CONCAT(p.nom_personne, ' ', p.prenom_personne) AS realisateurFilm
+            FROM realisateur r
+            INNER JOIN personne p ON r.id_personne = p.id_personne
+            ORDER BY realisateurFilm
+            ");
+
+            $genres = $this->connectToBDD()->query("
+            SELECT
+            *
+            FROM genre_film
+            ORDER BY libelle_genre_film
+            ");
+
+            $genresSelected = $this->connectToBDD()->prepare("
+            SELECT
+            p.id_genre_film
+            FROm posseder p
+            WHERE p.id_film = :idFilm");
+            $genresSelected->execute(["idFilm" => $idFilm]);
+
+            // Appel à la vue
+            require "view/formEditFilm.php";
+        }
+    }
+
+    // Modification d'un film
+    public function editFilm($idFilm)
+    {
+        // Sécurité
+        $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_STRING);
+        $annee = filter_input(INPUT_POST, "annee", FILTER_VALIDATE_INT);
+        $duree = filter_input(INPUT_POST, "duree", FILTER_VALIDATE_INT);
+        $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $note = filter_input(INPUT_POST, "note", FILTER_VALIDATE_INT);
+
+        // Stocke les information du fichier envoyé
+        $affiche = "";
+        if (isset($_FILES['affiche'])) {
+            $tmpName = $_FILES['affiche']['tmp_name'];
+            $filename = $_FILES['affiche']['name'];
+            $size = $_FILES['affiche']['size'];
+            $error = $_FILES['affiche']['error'];
+
+            $tabExtension = explode('.', $filename); // Sépare le nom du fichier et son extension
+            $extension = strtolower(end($tabExtension)); // Stock l'extension
+
+            //Tableau des extensions acceptées
+            $extensions = ['jpg', 'png', 'jpeg', 'gif'];
+
+            // Taille maximale acceptée (en bytes)
+            $maxSize = 40000000;
+
+            // Vérifie que l'extension et la taille sont accepté
+            if (in_array($extension, $extensions) && $size <= $maxSize && $error == 0) {
+                $uniqueName = uniqid('', true);
+                $affiche = $uniqueName . "." . $extension;
+                move_uploaded_file($tmpName, './public/img/posters/' . $affiche); // Upload le fichier dans le dossier des affiches
+            } else { // Erreur : Renvoie au formulaire
+
+                header("Location:index.php?action=formAddFilm");
+                exit();
+            }
+        }
+
+        if ($titre && $annee && $duree && $note && $affiche) {
+            $film = $this->connectToBDD()->prepare("
+             UPDATE film
+             SET titre_film = :titreFilm, anneeSortie_film = :anneeFilm, duree_film = :dureeFilm, synopsis_film = :synopsisFilm, note_film = :noteFilm, affiche_film = :afficheFilm, id_realisateur = :idRealisateurFilm
+             WHERE id_film = :idFilm");
+            $film->execute(["idFilm" => $idFilm, "titreFilm" => $titre, "anneeFilm" => $annee, "dureeFilm" => $duree, "synopsisFilm" => $synopsis, "noteFilm" => $note, "afficheFilm" => $affiche, "idRealisateurFilm" => $_POST["realisateur"]]);
+
+            // Supprime les genres associés au film
+            $genres = $this->connectToBDD()->prepare("
+             DELETE FROM posseder
+             WHERE id_film = :idFilm");
+            $genres->execute(["idFilm" => $idFilm]);
+
+            // Ajoute chaque nouveau genre au film
+            foreach ($_POST["genres"] as $genre) {
+                $requete = $this->connectToBDD()->prepare("
+                 INSERT INTO
+                 posseder (id_film, id_genre_film)
+                 VALUES
+                 (:idFilm, :idGenre)");
+                $requete->execute(["idFilm" => $idFilm, "idGenre" => $genre]);
+            }
+        }
+
+        header("Location:index.php?action=listFilms"); // Redirection vers la liste des films
+    }
+
     // Suppression d'un film
     public function deleteFilm($idFilm)
     {

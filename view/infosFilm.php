@@ -7,10 +7,10 @@ $infosfilm = $film->fetch(); ?>
         <img class="affiche-large" src="public/img/posters/<?= $infosfilm["affiche_film"] ?>" alt="affiche"></img>
         <div class="film-info-actions">
             <button type="bouton" class="button">
-                <a href="index.php?action=editFilm&id=<?= $infosfilm["id_film"] ?>">Modifier</a>
+                <a href="index.php?action=formEditFilm&id=<?= $infosfilm["id_film"] ?>">Modifier</a>
             </button>
             <button type="bouton" class="button">
-                <a href="index.php?action=deleteFilm&id=<?= $infosfilm["id_film"] ?>">Supprimer</a>
+                <a href="index.php?action=delteFilm&id=<?= $infosfilm["id_film"] ?>">Supprimer</a>
             </button>
         </div>
     </div>
