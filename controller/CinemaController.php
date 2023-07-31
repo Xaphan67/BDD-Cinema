@@ -91,22 +91,138 @@ class CinemaController
         require "view/infosFilm.php";
     }
 
+    // Formulaire d'ajout d'un film
+    public function formAddFilm()
+    {
+        $realisateurs = $this->connectToBDD()->query("
+        SELECT
+        r.id_realisateur,
+        CONCAT(p.nom_personne, ' ', p.prenom_personne) AS realisateurFilm
+        FROM realisateur r
+        INNER JOIN personne p ON r.id_personne = p.id_personne
+        ORDER BY realisateurFilm
+        ");
+
+        $genres = $this->connectToBDD()->query("
+        SELECT
+        *
+        FROM genre_film
+        ORDER BY libelle_genre_film
+        ");
+
+        // Appel à la vue
+        require "view/formAddFilm.php";
+    }
+
+    // Ajout d'un film
+    public function addFilm()
+    {
+        if (isset($_POST['submit'])) {
+
+            // Sécurité
+            $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_STRING);
+            $annee = filter_input(INPUT_POST, "annee", FILTER_VALIDATE_INT);
+            $duree = filter_input(INPUT_POST, "duree", FILTER_VALIDATE_INT);
+            $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $note = filter_input(INPUT_POST, "note", FILTER_VALIDATE_INT);
+
+            // Stocke les information du fichier envoyé
+            $affiche = "";
+            if (isset($_FILES['affiche'])) {
+                $tmpName = $_FILES['affiche']['tmp_name'];
+                $filename = $_FILES['affiche']['name'];
+                $size = $_FILES['affiche']['size'];
+                $error = $_FILES['affiche']['error'];
+
+                $tabExtension = explode('.', $filename); // Sépare le nom du fichier et son extension
+                $extension = strtolower(end($tabExtension)); // Stock l'extension
+
+                //Tableau des extensions acceptées
+                $extensions = ['jpg', 'png', 'jpeg', 'gif'];
+
+                // Taille maximale acceptée (en bytes)
+                $maxSize = 40000000;
+
+                // Vérifie que l'extension et la taille sont accepté
+                if (in_array($extension, $extensions) && $size <= $maxSize && $error == 0) {
+                    $uniqueName = uniqid('', true);
+                    $affiche = $uniqueName . "." . $extension;
+                    move_uploaded_file($tmpName, './public/img/posters/' . $affiche); // Upload le fichier dans le dossier des affiches
+                } else { // Erreur : Renvoie au formulaire
+
+                    header("Location:index.php?action=formAddFilm");
+                    exit();
+                }
+            }
+
+            if ($titre && $annee && $duree && $note && $affiche) {
+                $film = $this->connectToBDD()->prepare("
+                INSERT INTO
+                film (titre_film, anneeSortie_film, duree_film, synopsis_film, note_film, affiche_film, id_realisateur)
+                VALUES
+                (:titreFilm, :anneeFilm, :dureeFilm, :synopsisFilm, :noteFilm, :afficheFilm, :idRealisateurFilm)");
+                $film->execute(["titreFilm" => $titre, "anneeFilm" => $annee, "dureeFilm" => $duree, "synopsisFilm" => $synopsis, "noteFilm" => $note, "afficheFilm" => $affiche, "idRealisateurFilm" => $_POST["realisateur"]]);
+
+                // Récupère l'id du film ajouté
+                $filmID = $this->connectToBDD()->prepare("
+                SELECT
+                f.id_film
+                FROM film f
+                WHERE f.titre_film = :titreFilm");
+                $filmID->execute(["titreFilm" => $_POST["titre"]]);
+                $filmID = $filmID->fetch();
+
+                // Ajoute chaque genre au film
+                foreach ($_POST["genres"] as $genre) {
+                    $requete = $this->connectToBDD()->prepare("
+                    INSERT INTO
+                    posseder (id_film, id_genre_film)
+                    VALUES
+                    (:idFilm, :idGenre)");
+                    $requete->execute(["idFilm" => $filmID["id_film"], "idGenre" => $genre]);
+                }
+            }
+        }
+
+        header("Location:index.php?action=listFilms"); // Redirection vers la liste des films
+    }
+
     // Suppression d'un film
     public function deleteFilm($idFilm)
     {
-        if (isset($idRole)) {
+        if (isset($idFilm)) {
+            // Récupère le nom de l'affiche du film
+            $affiche = $this->connectToBDD()->prepare("
+            SELECT
+            affiche_film
+            FROM film
+            WHERE id_film = :idFilm");
+            $affiche->execute(["idFilm" => $idFilm]);
+            $affiche = $affiche->fetch();
+
+            // Supprime l'affiche du film
+            unlink("./public/img/posters/" . $affiche["affiche_film"]);
+
+            // Supprime l'association aux genres
+            $genres = $this->connectToBDD()->prepare("
+            DELETE FROM posseder
+            WHERE id_Film = :idFilm");
+            $genres->execute(["idFilm" => $idFilm]);
+
+            // Supprime l'association aux rôles
             $castings = $this->connectToBDD()->prepare("
             DELETE FROM jouer
             WHERE id_Film = :idFilm");
             $castings->execute(["idFilm" => $idFilm]);
 
+            // Supprime le film
             $film = $this->connectToBDD()->prepare("
             DELETE FROM film
-            WHERE id_film_ :idFilm");
+            WHERE id_film = :idFilm");
             $film->execute(["idFilm" => $idFilm]);
         }
 
-        header("Location:index.php?action=listFilms&"); // Redirection vers la liste des films
+        header("Location:index.php?action=listFilms"); // Redirection vers la liste des films
     }
 
     // Formulaire d'ajout d'un acteur à un film
