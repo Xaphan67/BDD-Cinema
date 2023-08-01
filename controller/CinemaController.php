@@ -855,7 +855,8 @@ class CinemaController
 				FROM realisateur r
 				INNER JOIN personne p ON r.id_personne = p.id_personne
 				INNER JOIN film f ON r.id_realisateur = f.id_realisateur
-				WHERE f.id_realisateur = IdFilm) AS realisateurFilm,
+				WHERE f.id_realisateur = IdFilm
+                LIMIT 1) AS realisateurFilm,
         f.synopsis_film,
         (SELECT GROUP_CONCAT(CONCAT(p.nom_personne, ' ', p.prenom_personne) SEPARATOR ', ')
             FROM jouer j
