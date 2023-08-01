@@ -1,7 +1,8 @@
 <?php ob_start();
 
 $infosActeur = $acteur->fetch();
-$infosGenres = $genres->fetchALL(); ?>
+$infosGenres = $genres->fetchALL();
+$infosActeurs = $acteurs->fetchAll(); ?>
 
 <div class="main-box bg">
     <div class="personne-info-side">
@@ -66,7 +67,22 @@ $infosGenres = $genres->fetchALL(); ?>
                 echo $liensGenres; ?>
             </p>
             <p><span class="info">De :</span><a href="index.php?action=infoRealisateur$id=<?= $film["id_realisateur"] ?>"> <?= $film["realisateurFilm"] ?></a></p>
-            <p><span class="info">Avec :</span> <?= $film["acteursFilm"] ?></p>
+            <p><span class="info">Avec :</span>
+            <?php 
+                $liensActeurs = "";
+                foreach($infosActeurs as $key => $acteur) {
+                    if ($acteur["id_film"] == $film['IdFilm'])
+                    {
+                        $liensActeurs .= '<a href="index.php?action=infoActeur&id=' . $acteur["id_acteur"] . '">' . $acteur["acteurFilm"] ."</a>, ";
+                    }
+                }
+                
+                // Retire la dernière virgule à la fin de la liste des acteurs
+                $liensActeurs = substr($liensActeurs, 0, -6); // Retire '</a> ,' à la fin de la chaîne (6 caractères)
+                $liensActeurs .= "</a>"; // Rajoute '</a>' à la fin de la chaîne
+                
+                echo $liensActeurs; ?>
+            </p>
             <p><?= $film["synopsis_film"] ?></p>
             <button type="bouton" class="button button-round">
                 <a href="index.php?action=formEditFilm&id=<?= $film["IdFilm"] ?>">

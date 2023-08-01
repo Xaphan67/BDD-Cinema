@@ -26,13 +26,7 @@ class CinemaController
         f.anneeSortie_film,
         TIME_FORMAT(SEC_TO_TIME(f.duree_film * 60), '%Hh %imin') AS duree,
         f.affiche_film,
-        f.synopsis_film, 
-        (SELECT GROUP_CONCAT(CONCAT(p.nom_personne, ' ', p.prenom_personne) SEPARATOR ', ')
-            FROM jouer j
-            INNER JOIN acteur a ON j.id_acteur = a.id_acteur
-            INNER JOIN personne p ON a.id_personne = p.id_personne
-            INNER JOIN film f ON j.id_film = f.id_film
-            WHERE f.id_film = IdFilm) AS acteursFilm,
+        f.synopsis_film,
         f.note_film
         FROM film f
         INNER JOIN realisateur r ON f.id_realisateur = r.id_realisateur
@@ -49,6 +43,14 @@ class CinemaController
         gf.libelle_genre_film
         FROM posseder p
         INNER JOIN genre_film gf ON p.id_genre_film = gf.id_genre_film
+        ");
+
+        $acteurs = $BDD->query("
+        SELECT a.id_acteur, CONCAT(p.nom_personne, ' ', p.prenom_personne) AS acteurFilm, j.id_film
+        FROM jouer j
+        INNER JOIN acteur a ON j.id_acteur = a.id_acteur
+        INNER JOIN personne p ON a.id_personne = p.id_personne
+        ORDER BY acteurFilm
         ");
 
         // Appel à la vue
@@ -507,6 +509,14 @@ class CinemaController
         INNER JOIN genre_film gf ON p.id_genre_film = gf.id_genre_film
         ");
 
+        $acteurs = $BDD->query("
+        SELECT a.id_acteur, CONCAT(p.nom_personne, ' ', p.prenom_personne) AS acteurFilm, j.id_film
+        FROM jouer j
+        INNER JOIN acteur a ON j.id_acteur = a.id_acteur
+        INNER JOIN personne p ON a.id_personne = p.id_personne
+        ORDER BY acteurFilm
+        ");
+
         // Appel à la vue
         require "view/infosRealisateur.php";
     }
@@ -718,6 +728,14 @@ class CinemaController
         gf.libelle_genre_film
         FROM posseder p
         INNER JOIN genre_film gf ON p.id_genre_film = gf.id_genre_film
+        ");
+
+        $acteurs = $BDD->query("
+        SELECT a.id_acteur, CONCAT(p.nom_personne, ' ', p.prenom_personne) AS acteurFilm, j.id_film
+        FROM jouer j
+        INNER JOIN acteur a ON j.id_acteur = a.id_acteur
+        INNER JOIN personne p ON a.id_personne = p.id_personne
+        ORDER BY acteurFilm
         ");
 
         // Appel à la vue
