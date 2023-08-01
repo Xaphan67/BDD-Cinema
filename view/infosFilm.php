@@ -1,6 +1,7 @@
 <?php ob_start();
 
-$infosfilm = $film->fetch(); ?>
+$infosfilm = $film->fetch();
+$infosGenres = $genres->fetchALL(); ?>
 
 <div class="main-box bg">
     <div class="film-info-side">
@@ -20,7 +21,18 @@ $infosfilm = $film->fetch(); ?>
         <hr>
         <p><span class="info">Date de sortie :</span> <?= $infosfilm["anneeSortie_film"] ?></p>
         <p><span class="info">Durée :</span> <?= $infosfilm["duree"] ?></p>
-        <p><span class="info">Genres :</span> <?= $infosfilm["genres"] ?></p>
+        <p><span class="info">Genres :</span> <?php 
+        foreach($infosGenres as $key => $genre) {
+            if ($key != count($infosGenres)- 1)
+            {
+                echo '<a href="index.php?action=infoGenre&id=' . $genre["id_genre_film"] . '">' . $genre["libelle_genre_film"] .", </a>";
+            }
+            else
+            {
+                echo '<a href="index.php?action=infoGenre&id=' . $genre["id_genre_film"] . '">' . $genre["libelle_genre_film"] ."</a>";
+            }
+        }
+        ?></p>
         <p><span class="info">Note :</span>
             <?php
             for ($i = 1; $i <= $infosfilm["note_film"]; $i++) { ?>
@@ -40,7 +52,7 @@ $infosfilm = $film->fetch(); ?>
         <p><span class="info">Acteurs et actrices :</span></p>
         <?php foreach ($acteurs->fetchALL() as $acteur) { ?>
             <div class="acteur-casting">
-                <p><?= $acteur["acteurFilm"] ?>, en tant que <?= $acteur["nom_rôle"] ?></p>
+                <p><a href="index.php?action=infoActeur&id=<?= $acteur["id_acteur"] ?>"><?= $acteur["acteurFilm"] ?></a>, en tant que <?= $acteur["nom_rôle"] ?></p>
                 <button type="bouton" class="button button-round">
                     <a href="index.php?action=deleteCasting&id=<?= $infosfilm["id_film"] ?>&acteur=<?= $acteur["id_acteur"] ?>&role=<?= $acteur["id_rôle"] ?>">
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">

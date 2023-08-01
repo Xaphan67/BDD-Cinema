@@ -57,7 +57,6 @@ class CinemaController
         f.titre_film,
         f.anneeSortie_film,
         TIME_FORMAT(SEC_TO_TIME(f.duree_film * 60), '%Hh %imin') AS duree,
-        GROUP_CONCAT(gf.libelle_genre_film SEPARATOR ', ') AS genres,
         affiche_film,
         f.note_film,
         f.id_realisateur,
@@ -67,9 +66,16 @@ class CinemaController
         INNER JOIN realisateur r ON f.id_realisateur = r.id_realisateur
         INNER JOIN personne p ON p.id_personne = r.id_personne
         INNER JOIN posseder po ON f.id_film = po.id_film 
-        INNER JOIN genre_film gf ON po.id_genre_film = gf.id_genre_film
         WHERE f.id_film = :idFilm");
         $film->execute(["idFilm" => $idFilm]);
+
+        $genres = $this->connectToBDD()->prepare("
+        SELECT
+        p.id_genre_film, gf.libelle_genre_film
+        FROM posseder p
+        INNER JOIN genre_film gf ON p.id_genre_film = gf.id_genre_film
+        WHERE p.id_film = :idFilm");
+        $genres->execute(["idFilm" => $idFilm]);
 
         // Casting du film
         $acteurs = $this->connectToBDD()->prepare("
@@ -90,7 +96,7 @@ class CinemaController
         // Appel à la vue
         require "view/infosFilm.php";
     }
-
+    
     // Formulaire d'ajout d'un film
     public function formAddFilm()
     {
