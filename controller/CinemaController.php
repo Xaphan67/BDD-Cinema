@@ -238,7 +238,7 @@ class CinemaController
 
         // Stocke les information du fichier envoyé
         $affiche = "";
-        if (isset($_FILES['affiche'])) {
+        if (isset($_FILES['affiche']) && $_FILES['affiche']["name"] != "") {
             $tmpName = $_FILES['affiche']['tmp_name'];
             $filename = $_FILES['affiche']['name'];
             $size = $_FILES['affiche']['size'];
@@ -257,6 +257,18 @@ class CinemaController
             if (in_array($extension, $extensions) && $size <= $maxSize && $error == 0) {
                 $uniqueName = uniqid('', true);
                 $affiche = $uniqueName . "." . $extension;
+
+                // Supprime l'affiche actuelle du film
+                $afficheActuelle = $this->connectToBDD()->prepare("
+                SELECT
+                f.affiche_film
+                FROM film f
+                WHERE id_film = :idFilm");
+                $afficheActuelle->execute(["idFilm" => $idFilm]);
+                $afficheActuelle = $afficheActuelle->fetch();
+
+                unlink("./public/img/posters/" . $afficheActuelle["affiche_film"]);
+
                 move_uploaded_file($tmpName, './public/img/posters/' . $affiche); // Upload le fichier dans le dossier des affiches
             } else { // Erreur : Renvoie au formulaire
 
@@ -265,12 +277,23 @@ class CinemaController
             }
         }
 
-        if ($titre && $annee && $duree && $note && $affiche) {
-            $film = $this->connectToBDD()->prepare("
-             UPDATE film
-             SET titre_film = :titreFilm, anneeSortie_film = :anneeFilm, duree_film = :dureeFilm, synopsis_film = :synopsisFilm, note_film = :noteFilm, affiche_film = :afficheFilm, id_realisateur = :idRealisateurFilm
-             WHERE id_film = :idFilm");
-            $film->execute(["idFilm" => $idFilm, "titreFilm" => $titre, "anneeFilm" => $annee, "dureeFilm" => $duree, "synopsisFilm" => $synopsis, "noteFilm" => $note, "afficheFilm" => $affiche, "idRealisateurFilm" => $_POST["realisateur"]]);
+        if ($titre && $annee && $duree && $note) {
+            if ($affiche)
+            {
+                $film = $this->connectToBDD()->prepare("
+                UPDATE film
+                SET titre_film = :titreFilm, anneeSortie_film = :anneeFilm, duree_film = :dureeFilm, synopsis_film = :synopsisFilm, note_film = :noteFilm, affiche_film = :afficheFilm, id_realisateur = :idRealisateurFilm
+                WHERE id_film = :idFilm");
+                $film->execute(["idFilm" => $idFilm, "titreFilm" => $titre, "anneeFilm" => $annee, "dureeFilm" => $duree, "synopsisFilm" => $synopsis, "noteFilm" => $note, "afficheFilm" => $affiche, "idRealisateurFilm" => $_POST["realisateur"]]);
+            }
+           else
+           {
+                $film = $this->connectToBDD()->prepare("
+                UPDATE film
+                SET titre_film = :titreFilm, anneeSortie_film = :anneeFilm, duree_film = :dureeFilm, synopsis_film = :synopsisFilm, note_film = :noteFilm, id_realisateur = :idRealisateurFilm
+                WHERE id_film = :idFilm");
+                $film->execute(["idFilm" => $idFilm, "titreFilm" => $titre, "anneeFilm" => $annee, "dureeFilm" => $duree, "synopsisFilm" => $synopsis, "noteFilm" => $note, "idRealisateurFilm" => $_POST["realisateur"]]);
+           }
 
             // Supprime les genres associés au film
             $genres = $this->connectToBDD()->prepare("

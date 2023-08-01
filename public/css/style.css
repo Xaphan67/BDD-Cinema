@@ -125,6 +125,11 @@ select {
     align-self: flex-end;
 }
 
+.affiche-small {
+    max-height: 75px;
+    margin: 15px auto;
+}
+
 /* Header */
 
 header {

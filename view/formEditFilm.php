@@ -59,10 +59,11 @@ for ($i = 0; $i < count($infosGenresSelected); $i++) {
                 </a>
             </button>
         </div>
+        <img class="affiche-small" src="public/img/posters/<?= $infosFilm["affiche_film"] ?>" alt="affiche"></img>
         <div class="form-group">
-            <label>Affiche *</label>
+            <label>Affiche</label>
             <input type="file" id="affiche" name="affiche">
-            <label for="affiche" class="affiche-upload">Choisir...</label>
+            <label for="affiche" class="affiche-upload">Modifier</label>
         </div>
         <div class="form-group">
             <label for="note">Note *</label>
