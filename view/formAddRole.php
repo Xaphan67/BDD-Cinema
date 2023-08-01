@@ -6,7 +6,7 @@
     <form action="index.php?action=addRole" method="post">
         <div class="form-group">
             <label for="nom">Nom *</label>
-            <input type="text" id="nom" name="nom">
+            <input type="text" id="nom" name="nom" required>
         </div>
         <button type="submit" class="button-submit" name="submit">Ajouter</button>
     </form>

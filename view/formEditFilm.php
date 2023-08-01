@@ -13,15 +13,15 @@ for ($i = 0; $i < count($infosGenresSelected); $i++) {
     <form action="index.php?action=editFilm&id=<?= $infosFilm["id_film"] ?>" method="post" enctype="multipart/form-data">
         <div class=" form-group">
             <label for="titre">Titre *</label>
-            <input type="text" id="titre" name="titre" value="<?= $infosFilm["titre_film"] ?>">
+            <input type="text" id="titre" name="titre" value="<?= $infosFilm["titre_film"] ?>" required>
         </div>
         <div class=" form-group">
             <label for="annee">Année de sortie *</label>
-            <input type="number" id="annee" name="annee" value="<?= $infosFilm["anneeSortie_film"] ?>">
+            <input type="number" id="annee" name="annee" value="<?= $infosFilm["anneeSortie_film"] ?>" required>
         </div>
         <div class="form-group">
             <label for="duree">Durée (minutes) *</label>
-            <input type="number" id="duree" name="duree" value="<?= $infosFilm["duree_film"] ?>">
+            <input type="number" id="duree" name="duree" value="<?= $infosFilm["duree_film"] ?>" required>
         </div>
         <div class="form-group">
             <label for="synopsis">Synopsis</label>
@@ -29,7 +29,7 @@ for ($i = 0; $i < count($infosGenresSelected); $i++) {
         </div>
         <div class="form-group">
             <label for="realisateur">Réalisateur *</label>
-            <select id="realisateur" name="realisateur" class="select-right">
+            <select id="realisateur" name="realisateur" class="select-right" required>
                 <?php
                 foreach ($realisateurs->fetchALL() as $realisateur) {
                 ?>
@@ -45,7 +45,7 @@ for ($i = 0; $i < count($infosGenresSelected); $i++) {
         </div>
         <div class="form-group">
             <label for="genres">Genres *</label>
-            <select id="genres" name="genres[]" class="select-right" multiple="multiple">
+            <select id="genres" name="genres[]" class="select-right" multiple="multiple" required>
                 <?php
                 foreach ($genres->fetchALL() as $genre) {
                 ?>
@@ -67,7 +67,7 @@ for ($i = 0; $i < count($infosGenresSelected); $i++) {
         </div>
         <div class="form-group">
             <label for="note">Note *</label>
-            <input type="number" id="note" name="note" min="0" max="5" value="<?= $infosFilm["note_film"] ?>">
+            <input type="number" id="note" name="note" min="0" max="5" value="<?= $infosFilm["note_film"] ?>" required>
         </div>
         <button type="submit" class="button-submit" name="submit">Modifier</button>
     </form>

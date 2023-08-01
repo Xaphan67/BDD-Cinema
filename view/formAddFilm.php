@@ -6,15 +6,15 @@
     <form action="index.php?action=addFilm" method="post" enctype="multipart/form-data">
         <div class=" form-group">
             <label for="titre">Titre *</label>
-            <input type="text" id="titre" name="titre">
+            <input type="text" id="titre" name="titre" required>
         </div>
         <div class="form-group">
             <label for="annee">Année de sortie *</label>
-            <input type="number" id="annee" name="annee">
+            <input type="number" id="annee" name="annee" required>
         </div>
         <div class="form-group">
             <label for="duree">Durée (minutes) *</label>
-            <input type="number" id="duree" name="duree">
+            <input type="number" id="duree" name="duree" required>
         </div>
         <div class="form-group">
             <label for="synopsis">Synopsis</label>
@@ -22,7 +22,7 @@
         </div>
         <div class="form-group">
             <label for="realisateur">Réalisateur *</label>
-            <select id="realisateur" name="realisateur" class="select-right">
+            <select id="realisateur" name="realisateur" class="select-right" required>
                 <?php
                 foreach ($realisateurs->fetchALL() as $realisateur) {
                 ?>
@@ -38,7 +38,7 @@
         </div>
         <div class="form-group">
             <label for="genres">Genres *</label>
-            <select id="genres" name="genres[]" class="select-right" multiple="multiple">
+            <select id="genres" name="genres[]" class="select-right" multiple="multiple" required>
                 <?php
                 foreach ($genres->fetchALL() as $genre) {
                 ?>
@@ -54,7 +54,7 @@
         </div>
         <div class="form-group">
             <label>Affiche *</label>
-            <input type="file" id="affiche" name="affiche">
+            <input type="file" id="affiche" name="affiche" required>
             <label for="affiche" class="affiche-upload">Choisir...</label>
         </div>
         <div class="form-group">

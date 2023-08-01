@@ -8,7 +8,7 @@ $infosGenre = $genre->fetch(); ?>
     <form action="index.php?action=editGenre&id=<?= $infosGenre["id_genre_film"] ?>" method="post">
         <div class="form-group">
             <label for="nom">Nom *</label>
-            <input type="text" id="nom" name="nom" value="<?= $infosGenre["libelle_genre_film"] ?>">
+            <input type="text" id="nom" name="nom" value="<?= $infosGenre["libelle_genre_film"] ?>" required>
         </div>
         <button type=" submit" class="button-submit" name="submit">Modifier</button>
     </form>

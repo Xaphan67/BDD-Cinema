@@ -8,7 +8,7 @@ $infosRole = $role->fetch(); ?>
     <form action="index.php?action=editRole&id=<?= $infosRole["id_rôle"] ?>" method="post">
         <div class="form-group">
             <label for="nom">Nom *</label>
-            <input type="text" id="nom" name="nom" value="<?= $infosRole["nom_rôle"] ?>">
+            <input type="text" id="nom" name="nom" value="<?= $infosRole["nom_rôle"] ?>" required>
         </div>
         <button type="submit" class="button-submit" name="submit">Modifier</button>
     </form>

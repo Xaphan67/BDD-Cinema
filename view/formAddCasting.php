@@ -6,7 +6,7 @@
     <form action="index.php?action=addCasting&id=<?= $idFilm ?>" method="post">
         <div class="form-group">
             <label for="acteur">Acteur *</label>
-            <select id="acteur" name="acteur">
+            <select id="acteur" name="acteur" required>
                 <?php
                 foreach ($acteurs->fetchALL() as $acteur) {
                 ?>
@@ -17,7 +17,7 @@
         </div>
         <div class="form-group">
             <label for="role">Rôle *</label>
-            <select id="role" name="role">
+            <select id="role" name="role" required>
                 <?php
                 foreach ($roles->fetchALL() as $role) {
                 ?>
