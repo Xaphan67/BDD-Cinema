@@ -15,8 +15,9 @@ class CinemaController
     // Liste les films
     public function listFilms()
     {
-        // Préparation d'une requête
-        $films = $this->connectToBDD()->query("
+        $BDD = $this->connectToBDD();
+
+        $films = $BDD->query("
         SELECT
         f.id_film AS IdFilm,
         f.titre_film,
@@ -41,7 +42,7 @@ class CinemaController
         ORDER BY f.titre_film
         ");
 
-        $genres = $this->connectToBDD()->query("
+        $genres = $BDD->query("
         SELECT
         p.id_film,
         gf.id_genre_film,
@@ -57,8 +58,10 @@ class CinemaController
     // Informations d'un film
     public function infosFilm(int $idFilm)
     {
+        $BDD = $this->connectToBDD();
+
         // Informations générales
-        $film = $this->connectToBDD()->prepare("
+        $film = $BDD->prepare("
         SELECT
         f.id_film,
         f.titre_film,
@@ -76,7 +79,7 @@ class CinemaController
         WHERE f.id_film = :idFilm");
         $film->execute(["idFilm" => $idFilm]);
 
-        $genres = $this->connectToBDD()->prepare("
+        $genres = $BDD->prepare("
         SELECT
         p.id_genre_film, gf.libelle_genre_film
         FROM posseder p
@@ -85,7 +88,7 @@ class CinemaController
         $genres->execute(["idFilm" => $idFilm]);
 
         // Casting du film
-        $acteurs = $this->connectToBDD()->prepare("
+        $acteurs = $BDD->prepare("
         SELECT
         a.id_acteur,
         CONCAT(p.nom_personne, ' ', p.prenom_personne) AS acteurFilm,
@@ -107,7 +110,9 @@ class CinemaController
     // Formulaire d'ajout d'un film
     public function formAddFilm()
     {
-        $realisateurs = $this->connectToBDD()->query("
+        $BDD = $this->connectToBDD();
+
+        $realisateurs = $BDD->query("
         SELECT
         r.id_realisateur,
         CONCAT(p.nom_personne, ' ', p.prenom_personne) AS realisateurFilm
@@ -116,7 +121,7 @@ class CinemaController
         ORDER BY realisateurFilm
         ");
 
-        $genres = $this->connectToBDD()->query("
+        $genres = $BDD->query("
         SELECT
         *
         FROM genre_film
@@ -169,7 +174,9 @@ class CinemaController
             }
 
             if ($titre && $annee && $duree && $note && $affiche) {
-                $film = $this->connectToBDD()->prepare("
+                $BDD = $this->connectToBDD();
+
+                $film = $BDD->prepare("
                 INSERT INTO
                 film (titre_film, anneeSortie_film, duree_film, synopsis_film, note_film, affiche_film, id_realisateur)
                 VALUES
@@ -177,7 +184,7 @@ class CinemaController
                 $film->execute(["titreFilm" => $titre, "anneeFilm" => $annee, "dureeFilm" => $duree, "synopsisFilm" => $synopsis, "noteFilm" => $note, "afficheFilm" => $affiche, "idRealisateurFilm" => $_POST["realisateur"]]);
 
                 // Récupère l'id du film ajouté
-                $filmID = $this->connectToBDD()->prepare("
+                $filmID = $BDD->prepare("
                 SELECT
                 f.id_film
                 FROM film f
@@ -187,7 +194,7 @@ class CinemaController
 
                 // Ajoute chaque genre au film
                 foreach ($_POST["genres"] as $genre) {
-                    $requete = $this->connectToBDD()->prepare("
+                    $requete = $BDD->prepare("
                     INSERT INTO
                     posseder (id_film, id_genre_film)
                     VALUES
@@ -204,14 +211,16 @@ class CinemaController
     public function formEditFilm($idFilm)
     {
         if (isset($idFilm)) {
-            $film = $this->connectToBDD()->prepare("
+            $BDD = $this->connectToBDD();
+
+            $film = $BDD->prepare("
             SELECT
             f.id_film, f.titre_film, f.anneeSortie_film, f.duree_film, f.synopsis_film, f.note_film, f.affiche_film, f.id_realisateur
             FROM film f
             WHERE f.id_film = :idFilm");
             $film->execute(["idFilm" => $idFilm]);
 
-            $realisateurs = $this->connectToBDD()->query("
+            $realisateurs = $BDD->query("
             SELECT
             r.id_realisateur,
             CONCAT(p.nom_personne, ' ', p.prenom_personne) AS realisateurFilm
@@ -220,14 +229,14 @@ class CinemaController
             ORDER BY realisateurFilm
             ");
 
-            $genres = $this->connectToBDD()->query("
+            $genres = $BDD->query("
             SELECT
             *
             FROM genre_film
             ORDER BY libelle_genre_film
             ");
 
-            $genresSelected = $this->connectToBDD()->prepare("
+            $genresSelected = $BDD->prepare("
             SELECT
             p.id_genre_film
             FROm posseder p
@@ -291,9 +300,12 @@ class CinemaController
         }
 
         if ($titre && $annee && $duree && $note) {
+
+            $BDD = $this->connectToBDD();
+
             if ($affiche)
             {
-                $film = $this->connectToBDD()->prepare("
+                $film = $BDD->prepare("
                 UPDATE film
                 SET titre_film = :titreFilm, anneeSortie_film = :anneeFilm, duree_film = :dureeFilm, synopsis_film = :synopsisFilm, note_film = :noteFilm, affiche_film = :afficheFilm, id_realisateur = :idRealisateurFilm
                 WHERE id_film = :idFilm");
@@ -301,7 +313,7 @@ class CinemaController
             }
            else
            {
-                $film = $this->connectToBDD()->prepare("
+                $film = $BDD->prepare("
                 UPDATE film
                 SET titre_film = :titreFilm, anneeSortie_film = :anneeFilm, duree_film = :dureeFilm, synopsis_film = :synopsisFilm, note_film = :noteFilm, id_realisateur = :idRealisateurFilm
                 WHERE id_film = :idFilm");
@@ -309,14 +321,14 @@ class CinemaController
            }
 
             // Supprime les genres associés au film
-            $genres = $this->connectToBDD()->prepare("
+            $genres = $BDD->prepare("
              DELETE FROM posseder
              WHERE id_film = :idFilm");
             $genres->execute(["idFilm" => $idFilm]);
 
             // Ajoute chaque nouveau genre au film
             foreach ($_POST["genres"] as $genre) {
-                $requete = $this->connectToBDD()->prepare("
+                $requete = $BDD->prepare("
                  INSERT INTO
                  posseder (id_film, id_genre_film)
                  VALUES
@@ -332,8 +344,10 @@ class CinemaController
     public function deleteFilm($idFilm)
     {
         if (isset($idFilm)) {
+            $BDD = $this->connectToBDD();
+
             // Récupère le nom de l'affiche du film
-            $affiche = $this->connectToBDD()->prepare("
+            $affiche = $BDD->prepare("
             SELECT
             affiche_film
             FROM film
@@ -345,19 +359,19 @@ class CinemaController
             unlink("./public/img/posters/" . $affiche["affiche_film"]);
 
             // Supprime l'association aux genres
-            $genres = $this->connectToBDD()->prepare("
+            $genres = $BDD->prepare("
             DELETE FROM posseder
             WHERE id_Film = :idFilm");
             $genres->execute(["idFilm" => $idFilm]);
 
             // Supprime l'association aux rôles
-            $castings = $this->connectToBDD()->prepare("
+            $castings = $BDD->prepare("
             DELETE FROM jouer
             WHERE id_Film = :idFilm");
             $castings->execute(["idFilm" => $idFilm]);
 
             // Supprime le film
-            $film = $this->connectToBDD()->prepare("
+            $film = $BDD->prepare("
             DELETE FROM film
             WHERE id_film = :idFilm");
             $film->execute(["idFilm" => $idFilm]);
@@ -369,7 +383,9 @@ class CinemaController
     // Formulaire d'ajout d'un acteur à un film
     public function formAddCasting($idFilm)
     {
-        $acteurs = $this->connectToBDD()->query("
+        $BDD = $this->connectToBDD();
+
+        $acteurs = $BDD->query("
         SELECT
         a.id_acteur,
         CONCAT(p.nom_personne, ' ', p.prenom_personne) AS acteurFilm
@@ -378,7 +394,7 @@ class CinemaController
         ORDER BY acteurFilm
         ");
 
-        $roles = $this->connectToBDD()->query("
+        $roles = $BDD->query("
         SELECT
         *
         FROM rôle
@@ -443,7 +459,9 @@ class CinemaController
     // Informations d'un réalisateur
     public function infosRealisateur($idRealisateur)
     {
-        $realisateur = $this->connectToBDD()->prepare("
+        $BDD = $this->connectToBDD();
+
+        $realisateur = $BDD->prepare("
         SELECT
         r.id_realisateur,
         CONCAT(p.nom_personne, ' ', p.prenom_personne) AS realisateurFilm,
@@ -454,7 +472,7 @@ class CinemaController
         WHERE r.id_realisateur = :idRealisateur");
         $realisateur->execute(["idRealisateur" => $idRealisateur]);
 
-        $films = $this->connectToBDD()->prepare("
+        $films = $BDD->prepare("
         SELECT
         f.id_film AS IdFilm,
         f.titre_film,
@@ -480,7 +498,7 @@ class CinemaController
         ORDER BY f.titre_film");
         $films->execute(["idRealisateur" => $idRealisateur]);
 
-        $genres = $this->connectToBDD()->query("
+        $genres = $BDD->query("
         SELECT
         p.id_film,
         gf.id_genre_film,
@@ -510,8 +528,10 @@ class CinemaController
             $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             if ($nom && $prenom && isset($_POST["sexe"]) && isset($_POST["dateNaissance"])) {
+                $BDD = $this->connectToBDD();
+
                 // Ajoute les infos du réalisateur dans la talbe personne
-                $personne = $this->connectToBDD()->prepare("
+                $personne = $BDD->prepare("
                 INSERT INTO
                 personne (nom_personne, prenom_personne, sexe_personne, dateNaissance_personne)
                 VALUES
@@ -519,7 +539,7 @@ class CinemaController
                 $personne->execute(["nomPersonne" => $_POST["nom"], "prenomPersonne" => $_POST["prenom"], "sexePersonne" => $_POST["sexe"], "dateNaissancePersonne" => $_POST["dateNaissance"]]);
 
                 // Récupère l'id de la personne ajoutée
-                $personneID = $this->connectToBDD()->prepare("
+                $personneID = $BDD->prepare("
                 SELECT
                 p.id_personne
                 FROM personne p
@@ -528,7 +548,7 @@ class CinemaController
                 $personneID = $personneID->fetch();
 
                 // Ajoute l'id de la personne dans la table réalisateur
-                $realisateur = $this->connectToBDD()->prepare("
+                $realisateur = $BDD->prepare("
                 INSERT INTO
                 realisateur (id_personne)
                 VALUES
@@ -575,8 +595,10 @@ class CinemaController
             $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             if ($nom && $prenom && isset($idRealisateur) && isset($_POST["sexe"]) && isset($_POST["dateNaissance"])) {
+                $BDD = $this->connectToBDD();
+
                 // Récupère l'id de la personne correspondant à $idRealisateur
-                $personneID = $this->connectToBDD()->prepare("
+                $personneID = $BDD->prepare("
                 SELECT
                 r.id_personne
                 FROM realisateur r
@@ -585,7 +607,7 @@ class CinemaController
                 $personneID = $personneID->fetch();
 
                 // Modifie la personne correspondante
-                $personne = $this->connectToBDD()->prepare("
+                $personne = $BDD->prepare("
                 UPDATE personne
                 SET
                 nom_personne = :nomPersonne,
@@ -604,8 +626,10 @@ class CinemaController
     public function deleteRealisateur($idRealisateur)
     {
         if (isset($idRealisateur)) {
+            $BDD = $this->connectToBDD();
+
             // Récupère l'id de la personne correspondant à $idRealisateur
-            $personneID = $this->connectToBDD()->prepare("
+            $personneID = $BDD->prepare("
             SELECT
             r.id_personne
             FROM realisateur r
@@ -614,7 +638,7 @@ class CinemaController
             $personneID = $personneID->fetch();
 
             // Supprime la personne correspondant au réalisateur
-            $personne = $this->connectToBDD()->prepare("
+            $personne = $BDD->prepare("
             DELETE FROM personne
             WHERE id_personne = :idPersonne");
             $personne->execute(["idPersonne" => $personneID["id_personne"]]);
@@ -645,7 +669,9 @@ class CinemaController
     // Informations d'un acteur
     public function infosActeur($idActeur)
     {
-        $acteur = $this->connectToBDD()->prepare("
+        $BDD = $this->connectToBDD();
+
+        $acteur = $BDD->prepare("
         SELECT
         a.id_acteur,
         CONCAT(p.nom_personne, ' ', p.prenom_personne) AS acteurFilm,
@@ -656,7 +682,7 @@ class CinemaController
         WHERE a.id_acteur = :idActeur");
         $acteur->execute(["idActeur" => $idActeur]);
 
-        $films = $this->connectToBDD()->prepare("
+        $films = $BDD->prepare("
         SELECT
         f.id_film AS IdFilm,
         f.titre_film,
@@ -685,7 +711,7 @@ class CinemaController
         GROUP BY f.id_film");
         $films->execute(["idActeur" => $idActeur]);
 
-        $genres = $this->connectToBDD()->query("
+        $genres = $BDD->query("
         SELECT
         p.id_film,
         gf.id_genre_film,
@@ -721,8 +747,10 @@ class CinemaController
             $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             if ($nom && $prenom && isset($_POST["sexe"]) && isset($_POST["dateNaissance"])) {
+                $BDD = $this->connectToBDD();
+
                 // Ajoute les infos de l'acteur dans la talbe personne
-                $personne = $this->connectToBDD()->prepare("
+                $personne = $BDD->prepare("
                  INSERT INTO
                  personne (nom_personne, prenom_personne, sexe_personne, dateNaissance_personne)
                  VALUES
@@ -730,7 +758,7 @@ class CinemaController
                 $personne->execute(["nomPersonne" => $_POST["nom"], "prenomPersonne" => $_POST["prenom"], "sexePersonne" => $_POST["sexe"], "dateNaissancePersonne" => $_POST["dateNaissance"]]);
 
                 // Récupère l'id de la personne ajoutée
-                $personneID = $this->connectToBDD()->prepare("
+                $personneID = $BDD->prepare("
                  SELECT
                  p.id_personne
                  FROM personne p
@@ -739,7 +767,7 @@ class CinemaController
                 $personneID = $personneID->fetch();
 
                 // Ajoute l'id de la personne dans la table acteur
-                $acteur = $this->connectToBDD()->prepare("
+                $acteur = $BDD->prepare("
                  INSERT INTO
                  acteur (id_personne)
                  VALUES
@@ -786,8 +814,10 @@ class CinemaController
             $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             if ($nom && $prenom && isset($idActeur) && isset($_POST["sexe"]) && isset($_POST["dateNaissance"])) {
+                $BDD = $this->connectToBDD();
+
                 // Récupère l'id de la personne correspondant à $idActeur
-                $personneID = $this->connectToBDD()->prepare("
+                $personneID = $BDD->prepare("
                  SELECT
                  a.id_personne
                  FROM acteur a
@@ -796,7 +826,7 @@ class CinemaController
                 $personneID = $personneID->fetch();
 
                 // Modifie la personne correspondante
-                $personne = $this->connectToBDD()->prepare("
+                $personne = $BDD->prepare("
                  UPDATE personne
                  SET
                  nom_personne = :nomPersonne,
@@ -815,8 +845,10 @@ class CinemaController
     public function deleteActeur($idActeur)
     {
         if (isset($idActeur)) {
+            $BDD = $this->connectToBDD();
+
             // Récupère l'id de la personne correspondant à $idActeur
-            $personneID = $this->connectToBDD()->prepare("
+            $personneID = $BDD->prepare("
                  SELECT
                  a.id_personne
                  FROM acteur a
@@ -825,7 +857,7 @@ class CinemaController
             $personneID = $personneID->fetch();
 
             // Supprime la personne correspondant à l'acteur
-            $personne = $this->connectToBDD()->prepare("
+            $personne = $BDD->prepare("
                  DELETE FROM personne
                  WHERE id_personne = :idPersonne");
             $personne->execute(["idPersonne" => $personneID["id_personne"]]);
@@ -857,7 +889,9 @@ class CinemaController
     // Informations d'un genre
     public function infosGenre($idGenre)
     {
-        $genre = $this->connectToBDD()->prepare("
+        $BDD = $this->connectToBDD();
+
+        $genre = $BDD->prepare("
         SELECT
         *
         FROM genre_film gf
@@ -865,7 +899,7 @@ class CinemaController
         ");
         $genre->execute(["idGenre" => $idGenre]);
 
-        $films = $this->connectToBDD()->prepare(("
+        $films = $BDD->prepare(("
         SELECT
         f.id_film AS IdFilm,
         f.titre_film,
@@ -1011,7 +1045,9 @@ class CinemaController
     // Informations d'un rôle
     public function infosRole($idRole)
     {
-        $role = $this->connectToBDD()->prepare("
+        $BDD = $this->connectToBDD();
+
+        $role = $BDD->prepare("
         SELECT
         *
         FROM rôle r
@@ -1019,7 +1055,7 @@ class CinemaController
         ");
         $role->execute(["idRole" => $idRole]);
 
-        $acteurs = $this->connectToBDD()->prepare("
+        $acteurs = $BDD->prepare("
         SELECT
         a.id_acteur,
         CONCAT(p.nom_personne, ' ', p.prenom_personne) AS acteurFilm,
