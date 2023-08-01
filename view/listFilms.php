@@ -33,10 +33,14 @@ $infosGenres = $genres->fetchALL(); ?>
                 foreach($infosGenres as $key => $genre) {
                     if ($genre["id_film"] == $film['IdFilm'])
                     {
-                        $liensGenres .= '<a href="index.php?action=infoGenre&id=' . $genre["id_genre_film"] . '">' . $genre["libelle_genre_film"] .", </a>";
+                        $liensGenres .= '<a href="index.php?action=infoGenre&id=' . $genre["id_genre_film"] . '">' . $genre["libelle_genre_film"] ."</a>, ";
                     }
                 }
-                // to do : remove ',' at the end of $liensGenres
+                
+                // Retire la dernière virgule à la fin de la liste des genres
+                $liensGenres = substr($liensGenres, 0, -6); // Retire '</a> ,' à la fin de la chaîne (6 caractères)
+                $liensGenres .= "</a>"; // Rajoute '</a>' à la fin de la chaîne
+                
                 echo $liensGenres; ?>
             </p>
             <p><span class="info">De :</span><a href="index.php?action=infoRealisateur&id=<?= $film["id_realisateur"] ?>"> <?= $film["realisateurFilm"] ?></a></p>
