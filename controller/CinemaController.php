@@ -480,6 +480,15 @@ class CinemaController
         ORDER BY f.titre_film");
         $films->execute(["idRealisateur" => $idRealisateur]);
 
+        $genres = $this->connectToBDD()->query("
+        SELECT
+        p.id_film,
+        gf.id_genre_film,
+        gf.libelle_genre_film
+        FROM posseder p
+        INNER JOIN genre_film gf ON p.id_genre_film = gf.id_genre_film
+        ");
+
         // Appel à la vue
         require "view/infosRealisateur.php";
     }
@@ -633,7 +642,7 @@ class CinemaController
         require "view/listActeurs.php";
     }
 
-    // informations d'un acteur
+    // Informations d'un acteur
     public function infosActeur($idActeur)
     {
         $acteur = $this->connectToBDD()->prepare("
@@ -675,6 +684,15 @@ class CinemaController
         WHERE a.id_acteur = :idActeur
         GROUP BY f.id_film");
         $films->execute(["idActeur" => $idActeur]);
+
+        $genres = $this->connectToBDD()->query("
+        SELECT
+        p.id_film,
+        gf.id_genre_film,
+        gf.libelle_genre_film
+        FROM posseder p
+        INNER JOIN genre_film gf ON p.id_genre_film = gf.id_genre_film
+        ");
 
         // Appel à la vue
         require "view/infosActeur.php";
