@@ -36,23 +36,6 @@ class CinemaController
         ORDER BY f.titre_film
         ");
 
-        $genres = $BDD->query("
-        SELECT
-        p.id_film,
-        gf.id_genre_film,
-        gf.libelle_genre_film
-        FROM posseder p
-        INNER JOIN genre_film gf ON p.id_genre_film = gf.id_genre_film
-        ");
-
-        $acteurs = $BDD->query("
-        SELECT a.id_acteur, CONCAT(p.nom_personne, ' ', p.prenom_personne) AS acteurFilm, j.id_film
-        FROM jouer j
-        INNER JOIN acteur a ON j.id_acteur = a.id_acteur
-        INNER JOIN personne p ON a.id_personne = p.id_personne
-        ORDER BY acteurFilm
-        ");
-
         // Appel à la vue
         require "view/listFilms.php";
     }
@@ -503,23 +486,6 @@ class CinemaController
         ORDER BY f.titre_film");
         $films->execute(["idRealisateur" => $idRealisateur]);
 
-        $genres = $BDD->query("
-        SELECT
-        p.id_film,
-        gf.id_genre_film,
-        gf.libelle_genre_film
-        FROM posseder p
-        INNER JOIN genre_film gf ON p.id_genre_film = gf.id_genre_film
-        ");
-
-        $acteurs = $BDD->query("
-        SELECT a.id_acteur, CONCAT(p.nom_personne, ' ', p.prenom_personne) AS acteurFilm, j.id_film
-        FROM jouer j
-        INNER JOIN acteur a ON j.id_acteur = a.id_acteur
-        INNER JOIN personne p ON a.id_personne = p.id_personne
-        ORDER BY acteurFilm
-        ");
-
         // Appel à la vue
         require "view/infosRealisateur.php";
     }
@@ -727,23 +693,6 @@ class CinemaController
         GROUP BY f.id_film");
         $films->execute(["idActeur" => $idActeur]);
 
-        $genres = $BDD->query("
-        SELECT
-        p.id_film,
-        gf.id_genre_film,
-        gf.libelle_genre_film
-        FROM posseder p
-        INNER JOIN genre_film gf ON p.id_genre_film = gf.id_genre_film
-        ");
-
-        $acteurs = $BDD->query("
-        SELECT a.id_acteur, CONCAT(p.nom_personne, ' ', p.prenom_personne) AS acteurFilm, j.id_film
-        FROM jouer j
-        INNER JOIN acteur a ON j.id_acteur = a.id_acteur
-        INNER JOIN personne p ON a.id_personne = p.id_personne
-        ORDER BY acteurFilm
-        ");
-
         // Appel à la vue
         require "view/infosActeur.php";
     }
@@ -929,10 +878,6 @@ class CinemaController
         f.titre_film,
         f.anneeSortie_film,
         TIME_FORMAT(SEC_TO_TIME(f.duree_film * 60), '%Hh %imin') AS duree,
-        (SELECT GROUP_CONCAT(gf.libelle_genre_film SEPARATOR ', ')
-				FROM posseder p
-				INNER JOIN genre_film gf ON p.id_genre_film = gf.id_genre_film
-				WHERE p.id_film = IdFilm) AS genres,
         f.id_realisateur,
         (SELECT CONCAT(p.nom_personne, ' ', p.prenom_personne)
 				FROM realisateur r
@@ -941,12 +886,6 @@ class CinemaController
 				WHERE f.id_film = IdFilm
                 LIMIT 1) AS realisateurFilm,
         f.synopsis_film,
-        (SELECT GROUP_CONCAT(CONCAT(p.nom_personne, ' ', p.prenom_personne) SEPARATOR ', ')
-            FROM jouer j
-            INNER JOIN acteur a ON j.id_acteur = a.id_acteur
-            INNER JOIN personne p ON a.id_personne = p.id_personne
-            INNER JOIN film f ON j.id_film = f.id_film
-            WHERE f.id_film = IdFilm) AS acteursFilm,
         f.note_film,
         f.affiche_film
         FROM jouer j

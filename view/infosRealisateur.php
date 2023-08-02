@@ -1,9 +1,7 @@
 <?php ob_start();
 
 $infosRealisateur = $realisateur->fetch();
-$infosFilms = $films->fetchALL();
-$infosGenres = $genres->fetchALL();
-$infosActeurs = $acteurs->fetchAll(); ?>
+$infosFilms = $films->fetchALL(); ?>
 
 <div class="main-box bg">
     <div class="personne-info-side">
@@ -61,39 +59,8 @@ $infosActeurs = $acteurs->fetchAll(); ?>
         </div>
         <div class="film-main">
             <h1><a href="index.php?action=infoFilm&id=<?= $film["IdFilm"] ?>"><?= $film["titre_film"] ?></a></h1>
-            <p><?= $film["anneeSortie_film"] . " / " . $film["duree"] . " / " ?>
-            <?php 
-                $liensGenres = "";
-                foreach($infosGenres as $key => $genre) {
-                    if ($genre["id_film"] == $film['IdFilm'])
-                    {
-                        $liensGenres .= '<a href="index.php?action=infoGenre&id=' . $genre["id_genre_film"] . '">' . $genre["libelle_genre_film"] ."</a>, ";
-                    }
-                }
-                
-                // Retire la dernière virgule à la fin de la liste des genres
-                $liensGenres = substr($liensGenres, 0, -6); // Retire '</a> ,' à la fin de la chaîne (6 caractères)
-                $liensGenres .= "</a>"; // Rajoute '</a>' à la fin de la chaîne
-                
-                echo $liensGenres; ?>
-            </p>
+            <p><?= $film["anneeSortie_film"] . " / " . $film["duree"] ?></p>
             <p><span class="info">De :</span><a href="index.php?action=infoRealisateur&id=<?= $infosRealisateur["id_realisateur"] ?>"> <?= $infosRealisateur["realisateurFilm"] ?></a></p>
-            <p><span class="info">Avec :</span>
-            <?php 
-                $liensActeurs = "";
-                foreach($infosActeurs as $key => $acteur) {
-                    if ($acteur["id_film"] == $film['IdFilm'])
-                    {
-                        $liensActeurs .= '<a href="index.php?action=infoActeur&id=' . $acteur["id_acteur"] . '">' . $acteur["acteurFilm"] ."</a>, ";
-                    }
-                }
-                
-                // Retire la dernière virgule à la fin de la liste des acteurs
-                $liensActeurs = substr($liensActeurs, 0, -6); // Retire '</a> ,' à la fin de la chaîne (6 caractères)
-                $liensActeurs .= "</a>"; // Rajoute '</a>' à la fin de la chaîne
-                
-                echo $liensActeurs; ?>
-            </p>
             <p><?= $film["synopsis_film"] ?></p>
             <a href="index.php?action=editFilm&id=<?= $film["IdFilm"] ?>">
                 <button type="bouton" class="button button-round">
