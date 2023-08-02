@@ -1,37 +1,16 @@
 <?php ob_start();  ?>
 
-<div class="top">
-    <a href="index.php?action=formAddFilm" class="button-center">
-        <button type="bouton" class="button button-large">
-            Ajouter un film
-        </button>
-    </a>
-</div>
-
 <?php foreach ($films->fetchALL() as $film) {
 ?>
-    <div class="film-box bg">
-        <div class="film-side">
+    <article>
+        <div class="film-infos">
             <img class="affiche" src="public/img/posters/<?= $film["affiche_film"] ?>" alt="affiche"></img>
-            <div class="note">
-                <?php
-                for ($i = 1; $i <= $film["note_film"]; $i++) { ?>
-                    <img src="public/img/note_b.png" alt="note"></img>
-                <?php }
-                ?>
-                <?php
-                $greyStars = 5 - $film["note_film"];
-                for ($i = 1; $i <= $greyStars; $i++) { ?>
-                    <img src="public/img/note_a.png" alt="note"></img>
-                <?php }
-                ?>
-            </div>
-        </div>
-        <div class="film-main">
             <h1><a href="index.php?action=infoFilm&id=<?= $film["IdFilm"] ?>"><?= $film["titre_film"] ?></a></h1>
-            <p><?= $film["anneeSortie_film"] . " / " . $film["duree"] ?></p>
+            <ul>
+                <li><?= $film["anneeSortie_film"] ?></li>
+                <li><?= $film["duree"] ?></li>
+            <ul>
             <p><span class="info">De :</span><a href="index.php?action=infoRealisateur&id=<?= $film["id_realisateur"] ?>"> <?= $film["realisateurFilm"] ?></a></p>
-            <p><?= $film["synopsis_film"] ?></p>
             <a href="index.php?action=formEditFilm&id=<?= $film["IdFilm"] ?>">
                 <button type="bouton" class="button button-round">
                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
@@ -47,11 +26,12 @@
                 </button>
             </a>
         </div>
-    </div>
+    </article>
 <?php }
 
 $titre = "Liste des films";
-$titre_secondaire = "Liste des films";
+$addAction= "formAddFilm";
+$addTexte= "Ajouter un film";
 $contenu = ob_get_clean();
 
 require "view/template.php";

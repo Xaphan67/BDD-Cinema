@@ -11,15 +11,23 @@
 <body>
     <!-- Navigation -->
     <header>
-        <div id="banner"></div>
+        <h1>Wiki Films</h1>
+        <input class="hamburger" type="checkbox" id="menu" />
+        <label for="menu" aria-label="Menu"><span></span></label>
         <nav>
-            <a href="index.php">Films</a>
-            <a href="index.php?action=listRealisateurs">Réalisateurs</a>
-            <a href="index.php?action=listActeurs">Acteurs</a>
-            <a href="index.php?action=listGenres">Genres</a>
-            <a href="index.php?action=listRoles">Rôles</a>
+            <ul>
+                <li><a href="index.php">Films</a></li>
+                <li><a href="index.php?action=listRealisateurs">Réalisateurs</a></li>
+                <li><a href="index.php?action=listActeurs">Acteurs</a></li>
+                <li><a href="index.php?action=listGenres">Genres</a></li>
+                <li><a href="index.php?action=listRoles">Rôles</a></li>
+            </ul>
         </nav>
     </header>
+    <div class="section-titre">
+        <h1><?= $titre ?></h1>
+        <p><a href="index.php?action=<?= $addAction ?>"><?= $addTexte ?></a></p>
+    </div>
     <main>
         <?= $contenu ?>
     </main>

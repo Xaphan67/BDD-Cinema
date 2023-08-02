@@ -1,477 +1,252 @@
-* {
+*,*::before,*::after {
+    box-sizing: border-box;
     margin: 0px;
     padding: 0px;
-    box-sizing: border-box;
     font-family: sans-serif;
 }
 
-a:link,
-a:visited {
-    color: black;
-    text-decoration: none;
-}
-
-p {
-    margin-top: 5px;
-}
-
-hr {
-    margin-bottom: 11px;
-}
-
-.bg {
-    background-color: rgb(231, 231, 231);
-    box-shadow: 0 5px 5px rgb(194, 194, 194);
-}
-
-button,
-.form-button {
-    display: inline-block;
-    background-color: rgb(254, 221, 131);
-    border-radius: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    color: black;
-    font-size: 14px;
-    padding: 8px;
-    cursor: pointer;
-}
-
-.form-button {
-    text-align: center;
-    margin-left: 5px;
-}
-
-.bg button {
-    margin-top: 5px;
-}
-
-.button {
-    height: 35px;
-}
-
-.button-round {
-    width: 35px;
-}
-
-.button-large {
-    width: 150px;
-}
-
-.button-very-large {
-    width: 200px;
-}
-
-.button-submit {
-    align-self: flex-end;
-}
-
-form {
-    width: 260px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    padding-top: 15px;
-}
-
-label {
-    margin-right: auto;
-}
-
-.form-group {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    width: 100%;
-    white-space: nowrap;
-    justify-content: flex-end;
-}
-
-.form-group button {
-    margin-left: 5px;
-    margin-top: 0px;
-}
-
-input[type=text],
-input[type=number],
-input[type=date],
-textarea,
-select {
-    width: 150px;
-    padding: 5px 5px 6px 5px;
-    margin: 4px 0px 5px 5px;
-    box-sizing: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
-}
-
-::file-selector-button {
-    display: none;
-}
-
-.affiche-upload {
-    display: inline-block;
-    background-color: rgb(254, 221, 131);
-    border-radius: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    color: black;
-    font-size: 14px;
-    padding: 8px;
-    margin-right: 0px;
-    cursor: pointer;
-}
-
-#affiche {
-    width: 75px;
-}
-
-.select-right {
-    width: 110px;
-    align-self: flex-end;
-}
-
-.affiche-small {
-    max-height: 75px;
-    margin: 15px auto;
-}
-
-/* Header */
+/* -- Header -- */
 
 header {
+    background-color: #0a0e17;
     display: flex;
-    flex-wrap: wrap;
-}
-
-#banner {
-    width: 100%;
-    height: 125px;
-    background-image: url("../img/banner.png");
-}
-
-nav {
-    height: 50px;
-    display: flex;
-    margin: auto;
-    justify-content: space-evenly;
     align-items: center;
-    gap: 5%;
+    justify-content: space-between;
+    height: 90px;
+    padding: 0px 20px;
+    font-size: 0.85em;
 }
 
-nav a:link,
-a:visited {
-    font-size: 16px;
-}
-
-/* Main container */
-
-main {
-    margin-inline: auto;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.top {
-    margin: auto;
-}
-
-h1 {
-    font-size: 24px;
-    font-weight: normal;
-}
-
-h2 {
-    padding-top: 15px;
-    font-size: 16px;
-    font-weight: normal;
+header h1 {
+    color : white;
     text-transform: uppercase;
 }
 
-.main-box {
-    width: 100%;
-    min-height: 100px;
-    margin: 10px;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
+/* -- Menu burger -- */
+
+/* Icône */
+header input[type="checkbox"] {
+position: absolute;
+display: none;
 }
 
-.main-box-titre {
-    width: 100%;
-    margin: 10px;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.hamburger+label{
+cursor: pointer;
+width: 52px;
+height: 45px;
+display:flex;
+align-items:center;
+justify-content: center;
+top:1rem;
+left:1rem;
+z-index:1;
+background: #3F9FFF;
+box-shadow:0 0 5px rgba(0, 0, 0, 0.4)
 }
 
-/* Film Box */
+.hamburger+label span {
+    background: white;
+    width: 34px;
+    height: 3px;
+    position: relative;
+}
 
-.film-box {
+.hamburger+label span::before, 
+.hamburger+label span::after {
+    position: absolute;
+    background: white;
+    width: inherit;
+    height: inherit;
+    content: "";
+}
+
+.hamburger+label span::before {
+    top: -8px;
+}
+
+.hamburger+label span::after {
+    top: 8px;
+}
+
+.hamburger:checked+label span {
+    background: transparent;
+}
+
+.hamburger:checked+label span::after,
+.hamburger:checked+label span::before {
+    top: 0;
+}
+	
+.hamburger:checked+label span::before {
+    transform: rotate(45deg);
+}
+	
+.hamburger:checked+label span::after {
+    transform: rotate(-45deg);
+}
+
+/* Menu slide */
+nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: min(50%,300px);
+    background: rgba(0, 0, 0, 0.8);
+    transform: translateX(-100%);
+    will-change: transform;
+}
+
+nav ul{
+    list-style-type: none;
+    padding-left:0;	
+    margin-top: 6rem;
+}
+
+nav ul li{
+    margin:1rem
+}	
+
+nav a {
+    font-size:1.25rem;
+    color:white;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.hamburger:checked+label~ nav{ 
+    transform: unset; /* Revient à l'état initial */
+}
+
+.hamburger:checked+label~ nav a {
+
+visibility: visible;
+opacity: 1;
+}
+
+/* Accessibilité */
+.hamburger:focus-visible~label,
+nav a:focus-visible,
+nav a:focus {
+    outline: 1px solid white;
+    outline-offset: 2px;
+}
+
+.hamburger:not(:focus-visible)~label,nav a:not(:focus):focus-visible{
+    outline: none;
+}	
+	
+.hamburger:not(:focus-visible):focus~label{
+    box-shadow: 0 0 0 2px hsl(0, 0%, 100%)
+}
+
+/* -- Section Titre -- */
+
+.section-titre {
+    background-color: #182031;
+    text-align: center;
+    padding: 60px 0px;
     width: 100%;
-    margin: 10px;
-    display: flex;
+}
+
+.section-titre h1 {
+    color:white;
+    margin-bottom: 15px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+a:hover {
+    color: #007bff;
+}
+
+/* -- Main -- */
+
+main {
+    background-color: #0a0e17;
+    padding: 60px 10px;
+    display:flex;
     flex-wrap: wrap;
-    justify-content: center;
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 30px; 
 }
 
 .affiche {
-    margin-top: 30px;
-    height: 150px;
+    max-width: 100%;
+    height: 200px;
+    margin:auto;
 }
 
-.note {
-    margin-top: 10px;
-}
-
-.film-main {
-    width: 100%;
-    margin: 10px;
-}
-
-.film-main p {
-    font-size: 12px;
-    margin-top: 10px;
-}
-
-.info {
-    color: rgb(180, 180, 180);
-}
-
-/* Personne Box */
-
-.personne-box {
-    width: 100%;
-    height: 125px;
-    margin: 10px;
+.film-infos {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    background-color: #182031;
+    color: white;
+    padding: 10px;
 }
 
-.personne-main {
+.film-infos h1 {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 400;
+}
+
+.film-infos ul {
+    margin: 5px 0 0;
+    padding: 0;
+    display: inline-block;
+    width: 100%;
+}
+
+.film-infos li {
+    list-style: none;
+    margin: 0 15px 0px 0;
+    padding: 0 15px 0px 0;
     font-size: 14px;
-    margin: 5px;
+    line-height: normal;
+    display: inline;
 }
 
-.avatar {
-    max-width: 115px;
-    max-height: 115px;
-    margin-top: 5px;
-    margin-left: 5px;
-}
+@media (prefers-reduced-motion: no-preference) {
 
-/* Genre et Role Box */
-
-.genre-role-box {
-    width: 100%;
-    min-height: 60px;
-    height: fit-content;
-    margin: 10px;
-    padding: 5px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0px;
-}
-
-/* Film-info Box */
-
-.film-info-side {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.affiche-large {
-    max-height: 300px;
-    margin: 15px auto;
-}
-
-.acteur-casting {
-    display: flex;
-    flex-wrap: nowrap;
-    line-height: 35px;
-    vertical-align: middle;
-    justify-content: flex-end;
-}
-
-.acteur-casting p {
-    margin-right: auto;
-}
-
-/* Personne Info Box */
-
-.personne-info-side {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.avatar-large {
-    max-width: 230px;
-    max-height: 230px;
-    margin: 15px auto;
-}
-
-@media screen and (min-width: 1200px) {
-
-    form {
-        width: 466px;
+    /* Menu burger */
+    .hamburger+label span {
+        transition: background 10ms 300ms;
+    
+    }
+    .hamburger+label span::before,
+    .hamburger+label span::after {
+        transition: top 300ms 350ms,
+        transform 300ms 50ms;
     }
 
-    input[type=text],
-    input[type=number],
-    input[type=date],
-    textarea,
-    select {
-        width: 300px;
+    .hamburger:checked+label span::after,
+    .hamburger:checked+label span::before {
+        transition: top 300ms 50ms,
+        transform 300ms 350ms;
     }
 
-    #affiche {
-        width: 225px;
-    }
-
-    .select-right {
-        width: 260px;
-    }
-
-    /* Header */
-
-    header {
-        justify-content: center;
-        max-width: 956px;
-        margin-inline: auto;
+    .hamburger:focus-visible~label,
+    nav a:focus-visible,
+    nav a:focus {
+        transition: outline-offset .25s ease;
     }
 
     nav {
-        justify-content: center;
-        gap: 20%;
+        transition: transform 0.5s;
     }
 
-    /* Main container */
-
-    main {
-        max-width: 956px;
-        gap: 16px;
-    }
-
-    .top {
-        flex-basis: 100%;
-        display: flex;
-    }
-
-    .button-center {
-        margin: auto;
-    }
-
-    h1 {
-        margin-top: 20px;
-    }
-
-    .main-box {
-        margin: 0px;
-        padding-bottom: 30px;
-        flex-direction: row;
-        align-items: normal;
-    }
-
-    .main-box-titre {
-        margin: 0px;
-        padding: 0px 0px 30px 0px;
-    }
-
-    .main-box-titre h1 {
-        font-size: 40px;
-    }
-
-    /* Film Box */
-
-    .film-box {
-        width: 470px;
-        height: 350px;
-        margin: 0px;
-        display: flex;
-        flex-wrap: nowrap;
-    }
-
-    .film-side {
-        width: 33%;
-    }
-
-    .affiche {
-        margin-left: 30px;
-    }
-
-    .note {
-        margin-top: 20px;
-        margin-left: 26px;
-    }
-
-    .film-main {
-        width: 67%;
-    }
-
-    .film-main p {
-        margin-right: 30px;
-    }
-
-    /* Personne Box */
-
-    .personne-box {
-        width: 470px;
-        margin: 0px;
-    }
-
-    .personne-box h1 {
-        margin-top: 0px;
-    }
-
-    /* Genre et Role BOWX */
-
-    .genre-role-box {
-        width: 470px;
-        height: 60px;
-        margin: 0px;
-        padding: 5px;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .genre-role-box h1 {
-        margin-top: 0px;
-    }
-
-    .genre-role-actions {
-        align-self: flex-end;
-    }
-
-    /* Film-info Box */
-
-    .film-info-side {
-        width: 33%;
-        justify-content: center;
-    }
-
-    .film-info-main {
-        width: 67%;
-    }
-
-    .film-info-main h1 {
-        font-size: 40px;
-    }
-
-    /* Personne Info Box */
-
-    .personne-info-side {
-        width: 33%;
-        justify-content: center;
-    }
-
-    .personne-info-main {
-        width: 67%;
-    }
-
-    .personne-info-main h1 {
-        font-size: 40px;
+    nav a {
+        transition: visibility 500ms,opacity 500ms 300ms;
     }
 }
