@@ -7,12 +7,16 @@ $infosGenres = $genres->fetchALL(); ?>
     <div class="film-info-side">
         <img class="affiche-large" src="public/img/posters/<?= $infosfilm["affiche_film"] ?>" alt="affiche"></img>
         <div class="film-info-actions">
-            <button type="bouton" class="button">
-                <a href="index.php?action=formEditFilm&id=<?= $infosfilm["id_film"] ?>">Modifier</a>
-            </button>
-            <button type="bouton" class="button">
-                <a href="index.php?action=delteFilm&id=<?= $infosfilm["id_film"] ?>">Supprimer</a>
-            </button>
+            <a href="index.php?action=formEditFilm&id=<?= $infosfilm["id_film"] ?>">
+                <button type="bouton" class="button">
+                    Modifier
+                </button>
+            </a>
+            <a href="index.php?action=delteFilm&id=<?= $infosfilm["id_film"] ?>">
+                <button type="bouton" class="button">
+                Supprimer
+                </button>
+            </a>
         </div>
     </div>
     <div class="film-info-main">
@@ -53,18 +57,20 @@ $infosGenres = $genres->fetchALL(); ?>
         <?php foreach ($acteurs->fetchALL() as $acteur) { ?>
             <div class="acteur-casting">
                 <p><a href="index.php?action=infoActeur&id=<?= $acteur["id_acteur"] ?>"><?= $acteur["acteurFilm"] ?></a>, en tant que <?= $acteur["nom_rôle"] ?></p>
-                <button type="bouton" class="button button-round">
-                    <a href="index.php?action=deleteCasting&id=<?= $infosfilm["id_film"] ?>&acteur=<?= $acteur["id_acteur"] ?>&role=<?= $acteur["id_rôle"] ?>">
+                <a href="index.php?action=deleteCasting&id=<?= $infosfilm["id_film"] ?>&acteur=<?= $acteur["id_acteur"] ?>&role=<?= $acteur["id_rôle"] ?>">
+                    <button type="bouton" class="button button-round">
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
                             <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
                         </svg>
-                    </a>
-                </button>
+                    </button>
+                </a>
             </div>
         <?php } ?>
-        <button type="bouton" class="button button-large">
-            <a href="index.php?action=formAddCasting&id=<?= $infosfilm["id_film"] ?>">Ajouter un acteur</a>
-        </button>
+        <a href="index.php?action=formAddCasting&id=<?= $infosfilm["id_film"] ?>">
+            <button type="bouton" class="button button-large">
+                Ajouter un acteur
+            </button>
+        </a>
         <h2>Synopsis</h2>
         <hr>
         <?= $infosfilm["synopsis_film"] ?>

@@ -30,11 +30,12 @@
                 <?php }
                 ?>
             </select>
-            <button type="bouton" class="button-round">
-                <a href="index.php?action=formAddRealisateur">
+            <a href="index.php?action=formAddRealisateur">
+                <button type="bouton" class="button-round">
+                
                     +
-                </a>
-            </button>
+                </button>
+            </a>
         </div>
         <div class="form-group">
             <label for="genres">Genres *</label>
@@ -46,11 +47,11 @@
                 <?php }
                 ?>
             </select>
-            <button type="bouton" class="button-round">
                 <a href="index.php?action=formAddGenre">
+                <button type="bouton" class="button-round">
                     +
-                </a>
-            </button>
+                </button>
+            </a>
         </div>
         <div class="form-group">
             <label>Affiche *</label>
