@@ -37,11 +37,7 @@ for ($i = 0; $i < count($infosGenresSelected); $i++) {
                 <?php }
                 ?>
             </select>
-            <a href="index.php?action=formAddRealisateur">
-                <button type="bouton" class="button-round">
-                    +
-                </button>
-            </a>
+            <a href="index.php?action=formAddRealisateur" class="form-button button-round">+</a>
         </div>
         <div class="form-group">
             <label for="genres">Genres *</label>
@@ -53,11 +49,7 @@ for ($i = 0; $i < count($infosGenresSelected); $i++) {
                 <?php }
                 ?>
             </select>
-            <a href="index.php?action=formAddGenre">
-                <button type="bouton" class="button-round">
-                    +
-                </button>
-            </a>
+            <a href="index.php?action=formAddGenre" class="form-button button-round">+</a>
         </div>
         <img class="affiche-small" src="public/img/posters/<?= $infosFilm["affiche_film"] ?>" alt="affiche"></img>
         <div class="form-group">

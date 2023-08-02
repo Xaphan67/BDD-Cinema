@@ -30,12 +30,7 @@
                 <?php }
                 ?>
             </select>
-            <a href="index.php?action=formAddRealisateur">
-                <button type="bouton" class="button-round">
-                
-                    +
-                </button>
-            </a>
+            <a href="index.php?action=formAddRealisateur" class="form-button button-round">+</a>
         </div>
         <div class="form-group">
             <label for="genres">Genres *</label>
@@ -47,10 +42,7 @@
                 <?php }
                 ?>
             </select>
-                <a href="index.php?action=formAddGenre">
-                <button type="bouton" class="button-round">
-                    +
-                </button>
+                <a href="index.php?action=formAddGenre" class="form-button button-round">+</a>
             </a>
         </div>
         <div class="form-group">

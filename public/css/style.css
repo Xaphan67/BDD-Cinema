@@ -24,7 +24,8 @@ hr {
     box-shadow: 0 5px 5px rgb(194, 194, 194);
 }
 
-button {
+button,
+.form-button {
     display: inline-block;
     background-color: rgb(254, 221, 131);
     border-radius: 20px;
@@ -33,6 +34,11 @@ button {
     font-size: 14px;
     padding: 8px;
     cursor: pointer;
+}
+
+.form-button {
+    text-align: center;
+    margin-left: 5px;
 }
 
 .bg button {
