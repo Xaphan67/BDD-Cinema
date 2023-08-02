@@ -10,11 +10,6 @@ $infosRole = $role->fetch(); ?>
                 Modifier
             </button>
         </a>
-        <a href="index.php?action=deleteRole&id=<?= $infosRole["id_rôle"] ?>">
-            <button type="bouton" class="button">
-                Supprimer
-            </button>
-        </a>
     </div>
 </div>
 
@@ -37,6 +32,10 @@ $infosRole = $role->fetch(); ?>
                     </svg>
                 </button>
             </a>
+            <?php
+            if ($acteur["nbFilms"])
+            {
+            ?>
             <a href="index.php?action=deleteActeur&id=<?= $acteur["id_acteur"] ?>">
                 <button type="bouton" class="button button-round">
                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
@@ -44,6 +43,8 @@ $infosRole = $role->fetch(); ?>
                     </svg>
                 </button>
             </a>
+            <?php }
+            ?>
         </div>
     </div>
 <?php }

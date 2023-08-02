@@ -1,6 +1,7 @@
 <?php ob_start();
 
 $infosRealisateur = $realisateur->fetch();
+$infosFilms = $films->fetchALL();
 $infosGenres = $genres->fetchALL();
 $infosActeurs = $acteurs->fetchAll(); ?>
 
@@ -24,16 +25,22 @@ $infosActeurs = $acteurs->fetchAll(); ?>
                     Modifier
                 </button>
             </a>
-            <a href="index.php?action=deleteRealisateur&id=<?= $infosRealisateur["id_realisateur"] ?>">
-                <button type="bouton" class="button">
-                    Supprimer
-                </button>
-            </a>
+            <?php
+            if(count($infosFilms) == 0)
+            {
+            ?>
+                <a href="index.php?action=deleteRealisateur&id=<?= $infosRealisateur["id_realisateur"] ?>">
+                    <button type="bouton" class="button">
+                        Supprimer
+                    </button>
+                </a>
+            <?php
+            } ?>
         </div>
     </div>
 </div>
 
-<?php foreach ($films->fetchALL() as $film) {
+<?php foreach ($infosFilms as $film) {
 ?>
     <div class="film-box bg">
         <div class="film-side">

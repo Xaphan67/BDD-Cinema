@@ -10,11 +10,6 @@ $infosGenre = $genre->fetch(); ?>
                 Modifier
             </button>
         </a>
-        <a href="index.php?action=deleteGenre&id=<?= $infosGenre["id_genre_film"] ?>">
-            <button type="bouton" class="button">
-                Supprimer
-            </button>
-        </a>
     </div>
 </div>
 

@@ -1,8 +1,9 @@
 <?php ob_start();
 
-$infosActeur = $acteur->fetch();
-$infosGenres = $genres->fetchALL();
-$infosActeurs = $acteurs->fetchAll(); ?>
+$infosActeur = $acteur->fetch(); // Infos de l'acteur correspondant à $idActeur
+$infosFilms = $films->fetchALL(); // Infos des films dans lesquels l'acteur à joué
+$infosGenres = $genres->fetchALL(); // Ids des films, ids des genres et libellé des genres - Utilisé pour la liste des genres de chaque film dans lesquels l'acteur à joué
+$infosActeurs = $acteurs->fetchAll(); // Ids des acteurs et nom + prénom des acteurs  - Utilisé pour la liste des acteurs de chaque film dans lesquels l'acteur à joué?>
 
 <div class="main-box bg">
     <div class="personne-info-side">
@@ -24,16 +25,22 @@ $infosActeurs = $acteurs->fetchAll(); ?>
                     Modifier
                 </button>
             </a>
+            <?php
+            if (count($infosFilms) == 0)
+            {
+            ?>
             <a href="index.php?action=deleteActeur&id=<?= $infosActeur["id_acteur"] ?>">
                 <button type="bouton" class="button">
                     Supprimer
                 </button>
             </a>
+            <?php
+            } ?>
         </div>
     </div>
 </div>
 
-<?php foreach ($films->fetchALL() as $film) {
+<?php foreach ($infosFilms as $film) {
 ?>
     <div class="film-box bg">
         <div class="film-side">

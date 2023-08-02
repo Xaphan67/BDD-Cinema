@@ -448,9 +448,12 @@ class CinemaController
         r.id_realisateur,
         CONCAT(nom_personne, ' ', prenom_personne) AS realisateurFilm,
         sexe_personne,
-        dateNaissance_personne
+        dateNaissance_personne,
+        COUNT(f.id_film) AS nbFilms
         FROM realisateur r
         INNER JOIN personne p ON r.id_personne = p.id_personne
+        LEFT JOIN film f ON r.id_realisateur = f.id_realisateur
+        GROUP BY r.id_realisateur
         ORDER BY realisateurFilm
         ");
 
@@ -666,9 +669,12 @@ class CinemaController
         a.id_acteur,
         CONCAT(nom_personne, ' ', prenom_personne) AS acteurFilm,
         sexe_personne,
-        dateNaissance_personne
+        dateNaissance_personne,
+        COUNT(j.id_film) AS nbFilms
         FROM acteur a
-        INNER JOIN personne p ON a.id_personne = p.id_personne
+        INNER JOIN personne p ON p.id_personne = a.id_personne
+        LEFT JOIN jouer j ON j.id_acteur = a.id_acteur
+        GROUP BY a.id_acteur
         ORDER BY acteurFilm
         ");
 
@@ -1078,12 +1084,14 @@ class CinemaController
         a.id_acteur,
         CONCAT(p.nom_personne, ' ', p.prenom_personne) AS acteurFilm,
         p.sexe_personne,
-        p.dateNaissance_personne
+        p.dateNaissance_personne,
+        COUNT(j.id_film) AS nbFilms
         FROM jouer j
         INNER JOIN acteur a ON j.id_acteur = a.id_acteur
         INNER JOIN personne p ON a.id_personne = p.id_personne
         INNER JOIN rôle r ON j.id_rôle= r.id_rôle
-        WHERE j.`id_rôle`= :idRole
+        WHERE j.id_rôle= :idRole
+        GROUP BY a.id_acteur
         ORDER BY acteurFilm
         ");
         $acteurs->execute(["idRole" => $idRole]);
