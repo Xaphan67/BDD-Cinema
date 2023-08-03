@@ -1,11 +1,11 @@
-<?php ob_start();  ?>
+<?php ob_start();
 
-<?php foreach ($films->fetchALL() as $film) {
+foreach ($films->fetchALL() as $film) {
 ?>
     <article>
-        <div class="film">
+        <div class="content">
             <img class="affiche" src="public/img/posters/<?= $film["affiche_film"] ?>" alt="affiche"></img>
-            <div class="film-info">
+            <div class="infos">
                 <h1><a href="index.php?action=infoFilm&id=<?= $film["IdFilm"] ?>"><?= $film["titre_film"] ?></a></h1>
                 <ul>
                     <li><?= $film["anneeSortie_film"] ?></li>
@@ -31,9 +31,9 @@
     </article>
 <?php }
 
-$titre = "Liste des films";
-$addAction= "formAddFilm";
-$addTexte= "Ajouter un film";
+$title = "Liste des films";
+$action= "formAddFilm";
+$label= "Ajouter un film";
 $contenu = ob_get_clean();
 
 require "view/template.php";

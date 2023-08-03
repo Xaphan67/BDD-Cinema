@@ -26,22 +26,21 @@ header h1 {
 
 /* Icône */
 header input[type="checkbox"] {
-position: absolute;
-display: none;
+    position: absolute;
+    display: none;
 }
 
 .hamburger+label{
-cursor: pointer;
-width: 52px;
-height: 45px;
-display:flex;
-align-items: center;
-justify-content: center;
-top:1rem;
-left:1rem;
-z-index:1;
-background: #3F9FFF;
-box-shadow:0 0 5px rgba(0, 0, 0, 0.4)
+    cursor: pointer;
+    width: 52px;
+    height: 45px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    top:1rem;
+    left:1rem;
+    background: #3F9FFF;
+    box-shadow:0 0 5px rgba(0, 0, 0, 0.4)
 }
 
 .hamburger+label span {
@@ -95,6 +94,7 @@ nav {
     background: rgba(0, 0, 0, 0.8);
     transform: translateX(-100%);
     will-change: transform;
+    z-index:1;
 }
 
 nav ul{
@@ -119,9 +119,8 @@ nav a {
 }
 
 .hamburger:checked+label~ nav a {
-
-visibility: visible;
-opacity: 1;
+    visibility: visible;
+    opacity: 1;
 }
 
 /* Accessibilité */
@@ -175,43 +174,26 @@ main {
 
 /* Affichage film */
 
-article {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 30px; 
-}
-
 .affiche {
     max-width: 100%;
     height: 200px;
     margin:auto;
 }
 
-.film {
-    display: flex;
-    flex-direction: column;
-    background-color: #182031;
-    color: white;
-    padding: 10px;
-    position: relative;
-}
-
-.film h1 {
+.infos h1 {
     font-size: 20px;
     line-height: 28px;
     font-weight: 400;
 }
 
-.film ul {
+.infos ul {
     margin: 5px 0 0;
     padding: 0;
     display: inline-block;
     width: 100%;
 }
 
-.film li {
+.infos li {
     list-style: none;
     margin: 0 15px 0px 0;
     padding: 0 15px 0px 0;
@@ -220,7 +202,34 @@ article {
     display: inline;
 }
 
-.film-info {
+/* Affichage Personne */
+
+.avatar {
+    max-width: 100%;
+    height: 150px;
+    margin:auto;
+}
+
+/* -- Commun -- */
+
+article {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 30px; 
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    background-color: #182031;
+    color: white;
+    padding: 10px;
+    position: relative;
+}
+
+.infos {
     padding: 15px 0px 5px 0px;
 }
 

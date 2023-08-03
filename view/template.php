@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><?= $titre ?></title> <!-- Titre de la page généré dans la vue -->
+    <title><?= $title ?></title> <!-- Titre de la page généré dans la vue -->
     <link rel="stylesheet" href="public/css/style.css">
 </head>
 
@@ -25,14 +25,14 @@
         </nav>
     </header>
     <div class="section-titre">
-        <h1><?= $titre ?></h1>
-        <p><a href="index.php?action=<?= $addAction ?>"><?= $addTexte ?></a></p>
+        <h1><?= $title ?></h1>
+        <p><a href="index.php?action=<?= $action ?>"><?= $label ?></a></p>
     </div>
     <main>
         <?= $contenu ?>
     </main>
     <footer>
-        <p> Copyright 2023 Wikifilms</br>Tous droits réservés</p>
+        <p> Copyright 2023 Wiki films</br>Tous droits réservés</p>
         <div id="social">
             <a href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
