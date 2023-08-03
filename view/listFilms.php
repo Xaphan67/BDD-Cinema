@@ -2,7 +2,7 @@
 
 <div class="section">
     <h1>Liste des films</h1>
-    <p><a href="index.php?action=formAddFilm">Ajouter un film</a></p>
+    <a href="index.php?action=formAddFilm">Ajouter un film</a>
 </div>
 
 <?php foreach ($films->fetchALL() as $film) {
@@ -16,9 +16,7 @@
                     <li><?= $film["anneeSortie_film"] ?></li>
                     <li><?= $film["duree"] ?></li>
                 <ul>
-                <p>
-                    <span class="info">De :</span><a href="index.php?action=infoRealisateur&id=<?= $film["id_realisateur"] ?>"> <?= $film["realisateurFilm"] ?></a>
-                </p>
+                <p>De : <a href="index.php?action=infoRealisateur&id=<?= $film["id_realisateur"] ?>"> <?= $film["realisateurFilm"] ?></a><p>
             </div>
             <div class="actions">
                 <a href="index.php?action=formEditFilm&id=<?= $film["IdFilm"] ?>">

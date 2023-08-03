@@ -5,6 +5,155 @@
     font-family: sans-serif;
 }
 
+/* -- Commun -- */
+
+a {
+    color: #3F9FFF;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 30px; 
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    background-color: #182031;
+    color: white;
+    padding: 10px;
+    position: relative;
+}
+
+.content-no-bg {
+    background-color: transparent;
+}
+
+.infos {
+    padding-bottom: 5px;
+}
+
+.infos h1 {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 400;
+}
+
+.infos h1 a {
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.infos h2 {
+    text-transform: uppercase;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 200;
+    border-bottom: 3px solid #007bff;
+    padding-top: 20px;
+    margin-bottom: 15px;
+}
+
+.infos ul {
+    margin: 5px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.infos li {
+    list-style: none;
+    margin: 0 15px 0px 0;
+    padding: 0 15px 0px 0;
+    font-size: 14px;
+}
+
+.infos p {
+    font-size: 18px;
+}
+
+.list {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
+.list li {
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.list-casting {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
+.list-casting li {
+    font-size: 18px;
+    line-height: 20px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.casting {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+}
+
+.actions {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    right: 15px;
+    top: 15px;
+}
+
+.actions-row {
+    flex-direction: row;
+    vertical-align: middle;
+}
+
+.actions a,
+.casting-actions {
+    background-color: #3F9FFF;
+    display: inline-block;
+    text-align: center;
+    height: 50px;
+    width: 50px;
+    font-size: 20px;
+    line-height: 55px;
+    cursor: pointer;
+}
+
+.casting-actions {
+    width: 50px;
+}
+
+.button {
+    background-color: #3F9FFF;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    height: 50px;
+    font-size: 20px;
+    line-height: 50px;
+    cursor: pointer;
+    padding-inline: 15px;
+}
+
+svg{
+    fill:white;
+}
+
 /* -- Header -- */
 
 header {
@@ -154,13 +303,14 @@ nav a:focus {
     margin-bottom: 15px;
 }
 
-a {
+.section a {
     color: white;
     text-decoration: none;
     transition: all 0.3s ease-in-out;
 }
 
-a:hover {
+.section a:hover,
+.infos h1 a:hover {
     color: #007bff;
 }
 
@@ -182,26 +332,9 @@ main {
     padding-bottom: 15px;
 }
 
-.infos h1 {
-    font-size: 20px;
-    line-height: 28px;
-    font-weight: 400;
-}
-
-.infos ul {
-    margin: 5px 0 0;
-    padding: 0;
-    display: inline-block;
-    width: 100%;
-}
-
-.infos li {
-    list-style: none;
-    margin: 0 15px 0px 0;
-    padding: 0 15px 0px 0;
-    font-size: 14px;
-    line-height: normal;
-    display: inline;
+.affiche-large {
+    height: auto;
+    max-height: 400px;
 }
 
 /* Affichage Personne */
@@ -221,57 +354,6 @@ main {
 
 .infos-min-size {
     padding-right: 115px;;
-}
-
-/* -- Commun -- */
-
-article {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 30px; 
-}
-
-.content {
-    display: flex;
-    flex-direction: column;
-    background-color: #182031;
-    color: white;
-    padding: 10px;
-    position: relative;
-}
-
-.infos {
-    padding-bottom: 5px;
-}
-
-.actions {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    right: 15px;
-    top: 15px;
-}
-
-.actions-row {
-    flex-direction: row;
-}
-
-.actions a {
-    background-color: #3F9FFF;
-    display: inline-block;
-    text-align: center;
-    height: 50px;
-    width: 50px;
-    font-size: 20px;
-    line-height: 55px;
-    cursor: pointer;
-}
-
-svg{
-    fill:white;
 }
 
 /* -- Footer -- */
