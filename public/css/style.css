@@ -35,7 +35,7 @@ cursor: pointer;
 width: 52px;
 height: 45px;
 display:flex;
-align-items:center;
+align-items: center;
 justify-content: center;
 top:1rem;
 left:1rem;
@@ -168,10 +168,12 @@ a:hover {
 
 main {
     background-color: #0a0e17;
-    padding: 60px 10px;
+    padding: 60px 10px 20px 10px;
     display:flex;
     flex-wrap: wrap;
 }
+
+/* Affichage film */
 
 article {
     display: flex;
@@ -187,34 +189,84 @@ article {
     margin:auto;
 }
 
-.film-infos {
+.film {
     display: flex;
     flex-direction: column;
     background-color: #182031;
     color: white;
     padding: 10px;
+    position: relative;
 }
 
-.film-infos h1 {
+.film h1 {
     font-size: 20px;
     line-height: 28px;
     font-weight: 400;
 }
 
-.film-infos ul {
+.film ul {
     margin: 5px 0 0;
     padding: 0;
     display: inline-block;
     width: 100%;
 }
 
-.film-infos li {
+.film li {
     list-style: none;
     margin: 0 15px 0px 0;
     padding: 0 15px 0px 0;
     font-size: 14px;
     line-height: normal;
     display: inline;
+}
+
+.film-info {
+    padding: 15px 0px 5px 0px;
+}
+
+.actions {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    right: 15px;
+    top: 15px;
+}
+
+.actions a {
+    background-color: #3F9FFF;
+    display: inline-block;
+    text-align: center;
+    height: 50px;
+    width: 50px;
+    font-size: 20px;
+    line-height: 55px;
+    cursor: pointer;
+}
+
+svg{
+    fill:white;
+}
+
+/* -- Footer -- */
+
+footer {
+    background-color: #3F9FFF;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 90px;
+}
+
+#social {
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+}
+
+footer svg {
+    font-size: 2em;
 }
 
 @media (prefers-reduced-motion: no-preference) {
