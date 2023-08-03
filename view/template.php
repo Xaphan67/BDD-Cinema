@@ -24,10 +24,6 @@
             </ul>
         </nav>
     </header>
-    <div class="section-titre">
-        <h1><?= $title ?></h1>
-        <p><a href="index.php?action=<?= $action ?>"><?= $label ?></a></p>
-    </div>
     <main>
         <?= $contenu ?>
     </main>

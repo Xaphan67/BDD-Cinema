@@ -1,6 +1,11 @@
-<?php ob_start();
+<?php ob_start(); ?>
 
-foreach ($genres->fetchALL() as $genre) {
+<div class="section">
+    <h1>Liste des genres</h1>
+    <p><a href="index.php?action=formAddGenre">Ajouter un genre</a></p>
+</div>
+
+<?php foreach ($genres->fetchALL() as $genre) {
 ?>
     <article>
         <div class="content content-min-size">

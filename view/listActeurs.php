@@ -1,6 +1,11 @@
-<?php ob_start();
+<?php ob_start(); ?>
 
-foreach ($acteurs->fetchALL() as $acteur) {
+<div class="section">
+    <h1>Liste des acteurs</h1>
+    <p><a href="index.php?action=formAddActeur">Ajouter un acteur</a></p>
+</div>
+
+<?php foreach ($acteurs->fetchALL() as $acteur) {
 ?>
     <article>
         <div class="content">
@@ -37,8 +42,6 @@ foreach ($acteurs->fetchALL() as $acteur) {
 <?php }
 
 $title = "Liste des acteurs";
-$action= "formAddActeur";
-$label= "Ajouter un acteur";
 $contenu = ob_get_clean();
 
 require "view/template.php";

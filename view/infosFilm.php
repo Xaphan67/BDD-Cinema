@@ -79,8 +79,9 @@ $infosGenres = $genres->fetchALL(); ?>
 
 <?php
 
-$titre = "Film : " . $infosfilm["titre_film"];
-$titre_secondaire = "Films" . $infosfilm["titre_film"];
+$title = "Film : " . $infosfilm["titre_film"];
+$action= "formAddFilm";
+$label= "Ajouter un film";
 $contenu = ob_get_clean();
 
 require "view/template.php";

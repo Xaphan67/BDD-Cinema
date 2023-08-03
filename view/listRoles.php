@@ -1,6 +1,11 @@
-<?php ob_start();
+<?php ob_start(); ?>
 
-foreach ($roles->fetchALL() as $role) {
+<div class="section">
+    <h1>Liste des rôles</h1>
+    <p><a href="index.php?action=formAddRole">Ajouter un rôle</a></p>
+</div>
+
+<?php foreach ($roles->fetchALL() as $role) {
 ?>
     <article>
         <div class="content content-min-size">
@@ -40,8 +45,6 @@ foreach ($roles->fetchALL() as $role) {
 <?php }
 
 $title = "Liste des rôles";
-$action= "formAddRole";
-$label= "Ajouter un rôle";
 $contenu = ob_get_clean();
 
 require "view/template.php";

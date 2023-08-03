@@ -139,16 +139,17 @@ nav a:focus {
     box-shadow: 0 0 0 2px hsl(0, 0%, 100%)
 }
 
-/* -- Section Titre -- */
+/* -- Section -- */
 
-.section-titre {
+.section {
     background-color: #182031;
     text-align: center;
     padding: 60px 0px;
+    margin-bottom: 60px;
     width: 100%;
 }
 
-.section-titre h1 {
+.section h1 {
     color:white;
     margin-bottom: 15px;
 }
@@ -167,7 +168,7 @@ a:hover {
 
 main {
     background-color: #0a0e17;
-    padding: 60px 10px 20px 10px;
+    padding: 0px 10px 20px 10px;
     display:flex;
     flex-wrap: wrap;
 }
