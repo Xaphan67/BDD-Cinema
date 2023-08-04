@@ -1,16 +1,21 @@
 <?php ob_start(); ?>
 
-<div class="main-box-titre bg">
+<div class="section">
     <h1>Ajouter un rôle</h1>
-    <p>Merci de remplir tous les champs pour ajouter un rôle.</p>
-    <form action="index.php?action=addRole" method="post">
-        <div class="form-group">
-            <label for="nom">Nom *</label>
-            <input type="text" id="nom" name="nom" required>
-        </div>
-        <button type="submit" class="button-submit" name="submit">Ajouter</button>
-    </form>
+    <p>Merci de remplir tous les champs pour ajouter un rôle</p>
 </div>
+
+<article>
+    <div class="content">
+        <form action="index.php?action=addRole" method="post">
+            <div class="form-group">
+                <label for="nom">Nom *</label>
+                <input type="text" id="nom" name="nom" required>
+            </div>
+            <button type="submit" name="submit">Ajouter</button>
+        </form>
+    </div>
+</article>
 
 <?php
 

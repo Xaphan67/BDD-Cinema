@@ -129,9 +129,11 @@ article {
     width: 50px;
 }
 
+form button,
 .button {
     background-color: #3F9FFF;
     display: inline-block;
+    border: none;
     text-align: center;
     height: 50px;
     font-size: 20px;
@@ -142,6 +144,32 @@ article {
 
 svg {
     fill: white;
+}
+
+/* -- Formulaires -- */
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 18px;
+}
+
+input[type="text"] {
+    height: 40px;
+    margin-left: 10px;
+}
+
+.form-group {
+    margin-inline: 15%;
+}
+
+form button {
+    float: right;
+    margin-top: 15px;
+    margin-inline: 15%;
 }
 
 /* -- Header -- */
