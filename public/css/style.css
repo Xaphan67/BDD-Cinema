@@ -131,6 +131,7 @@ article {
 
 form button,
 .button {
+    color: white;
     background-color: #3F9FFF;
     display: inline-block;
     border: none;
