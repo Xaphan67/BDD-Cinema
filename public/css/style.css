@@ -5,6 +5,7 @@
     margin: 0px;
     padding: 0px;
     font-family: sans-serif;
+    color: white;
 }
 
 /* -- Commun -- */
@@ -27,7 +28,6 @@ article {
     display: flex;
     flex-direction: column;
     background-color: #182031;
-    color: white;
     padding: 10px;
     position: relative;
 }
@@ -95,25 +95,6 @@ article {
     line-height: 20px;
 }
 
-.list-casting {
-    flex-direction: column;
-    flex-wrap: nowrap;
-    gap: 10px;
-}
-
-.list-casting li {
-    font-size: 18px;
-    line-height: 20px;
-    margin: 0px;
-    padding: 0px;
-}
-
-.casting {
-    display: flex;
-    justify-content: space-between;
-    height: 50px;
-}
-
 .actions {
     position: absolute;
     display: flex;
@@ -146,7 +127,6 @@ article {
 
 .button {
     background-color: #3F9FFF;
-    color: white;
     display: inline-block;
     text-align: center;
     height: 50px;
@@ -173,7 +153,6 @@ header {
 }
 
 header h1 {
-    color: white;
     text-transform: uppercase;
 }
 
@@ -263,8 +242,8 @@ nav ul li {
 }
 
 nav a {
-    font-size: 1.25rem;
     color: white;
+    font-size: 1.25rem;
     opacity: 0;
     visibility: hidden;
 }
@@ -299,7 +278,6 @@ nav a:not(:focus):focus-visible {
 /* -- Section -- */
 
 .section {
-    color: white;
     background-color: #182031;
     text-align: center;
     padding: 60px 0px;
@@ -347,6 +325,25 @@ main {
     max-height: 400px;
 }
 
+.list-casting {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
+.list-casting li {
+    font-size: 18px;
+    line-height: 20px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.casting {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+}
+
 /* Affichage Personne */
 
 .avatar {
@@ -354,6 +351,35 @@ main {
     height: 150px;
     margin: auto;
     padding-bottom: 15px;
+}
+
+.affiche-small {
+    max-height: 65px;
+}
+
+.list-films {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
+.list-films li {
+    font-size: 18px;
+    line-height: 20px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.films {
+    display: flex;
+    position: relative;
+    height: 66px;
+    vertical-align: middle;
+    gap: 20px;
+}
+
+.infos-films li {
+    padding-right: 10px;
 }
 
 /* Affichage Genres + Rôles */
@@ -371,7 +397,6 @@ main {
 
 footer {
     background-color: #3F9FFF;
-    color: white;
     display: flex;
     align-items: center;
     justify-content: space-evenly;

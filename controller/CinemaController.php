@@ -91,7 +91,7 @@ class CinemaController
         // Appel à la vue
         require "view/infosFilm.php";
     }
-    
+
     // Formulaire d'ajout d'un film
     public function formAddFilm()
     {
@@ -288,22 +288,19 @@ class CinemaController
 
             $BDD = $this->connectToBDD();
 
-            if ($affiche)
-            {
+            if ($affiche) {
                 $film = $BDD->prepare("
                 UPDATE film
                 SET titre_film = :titreFilm, anneeSortie_film = :anneeFilm, duree_film = :dureeFilm, synopsis_film = :synopsisFilm, note_film = :noteFilm, affiche_film = :afficheFilm, id_realisateur = :idRealisateurFilm
                 WHERE id_film = :idFilm");
                 $film->execute(["idFilm" => $idFilm, "titreFilm" => $titre, "anneeFilm" => $annee, "dureeFilm" => $duree, "synopsisFilm" => $synopsis, "noteFilm" => $note, "afficheFilm" => $affiche, "idRealisateurFilm" => $_POST["realisateur"]]);
-            }
-           else
-           {
+            } else {
                 $film = $BDD->prepare("
                 UPDATE film
                 SET titre_film = :titreFilm, anneeSortie_film = :anneeFilm, duree_film = :dureeFilm, synopsis_film = :synopsisFilm, note_film = :noteFilm, id_realisateur = :idRealisateurFilm
                 WHERE id_film = :idFilm");
                 $film->execute(["idFilm" => $idFilm, "titreFilm" => $titre, "anneeFilm" => $annee, "dureeFilm" => $duree, "synopsisFilm" => $synopsis, "noteFilm" => $note, "idRealisateurFilm" => $_POST["realisateur"]]);
-           }
+            }
 
             // Supprime les genres associés au film
             $genres = $BDD->prepare("
@@ -466,21 +463,10 @@ class CinemaController
         f.titre_film,
         f.anneeSortie_film,
         TIME_FORMAT(SEC_TO_TIME(f.duree_film * 60), '%Hh %imin') AS duree,
-        GROUP_CONCAT(gf.libelle_genre_film SEPARATOR ', ') AS genres,
-        f.synopsis_film,
-        (SELECT GROUP_CONCAT(CONCAT(p.nom_personne, ' ', p.prenom_personne) SEPARATOR ', ')
-            FROM jouer j
-            INNER JOIN acteur a ON j.id_acteur = a.id_acteur
-            INNER JOIN personne p ON a.id_personne = p.id_personne
-            INNER JOIN film f ON j.id_film = f.id_film
-            WHERE f.id_film = IdFilm) AS acteursFilm,
-        f.note_film,
         f.affiche_film
         FROM film f
         INNER JOIN realisateur r ON f.id_realisateur = r.id_realisateur
         INNER JOIN personne p ON r.id_personne = p.id_personne
-        INNER JOIN posseder po ON f.id_film = po.id_film 
-        INNER JOIN genre_film gf ON po.id_genre_film = gf.id_genre_film
         WHERE r.id_realisateur = :idRealisateur
         GROUP BY f.id_film
         ORDER BY f.titre_film");
