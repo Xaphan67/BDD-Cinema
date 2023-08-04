@@ -1,4 +1,6 @@
-*,*::before,*::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
@@ -18,7 +20,7 @@ article {
     flex-direction: column;
     width: 100%;
     padding: 10px;
-    margin-bottom: 30px; 
+    margin-bottom: 30px;
 }
 
 .content {
@@ -32,6 +34,10 @@ article {
 
 .content-no-bg {
     background-color: transparent;
+}
+
+.content-no-padding {
+    padding-bottom: 0px;
 }
 
 .infos {
@@ -150,8 +156,8 @@ article {
     padding-inline: 15px;
 }
 
-svg{
-    fill:white;
+svg {
+    fill: white;
 }
 
 /* -- Header -- */
@@ -167,7 +173,7 @@ header {
 }
 
 header h1 {
-    color : white;
+    color: white;
     text-transform: uppercase;
 }
 
@@ -179,17 +185,17 @@ header input[type="checkbox"] {
     display: none;
 }
 
-.hamburger+label{
+.hamburger+label {
     cursor: pointer;
     width: 52px;
     height: 45px;
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    top:1rem;
-    left:1rem;
+    top: 1rem;
+    left: 1rem;
     background: #3F9FFF;
-    box-shadow:0 0 5px rgba(0, 0, 0, 0.4)
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4)
 }
 
 .hamburger+label span {
@@ -199,7 +205,7 @@ header input[type="checkbox"] {
     position: relative;
 }
 
-.hamburger+label span::before, 
+.hamburger+label span::before,
 .hamburger+label span::after {
     position: absolute;
     background: white;
@@ -224,11 +230,11 @@ header input[type="checkbox"] {
 .hamburger:checked+label span::before {
     top: 0;
 }
-	
+
 .hamburger:checked+label span::before {
     transform: rotate(45deg);
 }
-	
+
 .hamburger:checked+label span::after {
     transform: rotate(-45deg);
 }
@@ -239,35 +245,36 @@ nav {
     left: 0;
     top: 0;
     height: 100%;
-    width: min(50%,300px);
+    width: min(50%, 300px);
     background: rgba(0, 0, 0, 0.8);
     transform: translateX(-100%);
     will-change: transform;
-    z-index:1;
+    z-index: 1;
 }
 
-nav ul{
+nav ul {
     list-style-type: none;
-    padding-left:0;	
+    padding-left: 0;
     margin-top: 6rem;
 }
 
-nav ul li{
-    margin:1rem
-}	
+nav ul li {
+    margin: 1rem
+}
 
 nav a {
-    font-size:1.25rem;
-    color:white;
+    font-size: 1.25rem;
+    color: white;
     opacity: 0;
     visibility: hidden;
 }
 
-.hamburger:checked+label~ nav{ 
-    transform: unset; /* Revient à l'état initial */
+.hamburger:checked+label~nav {
+    transform: unset;
+    /* Revient à l'état initial */
 }
 
-.hamburger:checked+label~ nav a {
+.hamburger:checked+label~nav a {
     visibility: visible;
     opacity: 1;
 }
@@ -280,11 +287,12 @@ nav a:focus {
     outline-offset: 2px;
 }
 
-.hamburger:not(:focus-visible)~label,nav a:not(:focus):focus-visible{
+.hamburger:not(:focus-visible)~label,
+nav a:not(:focus):focus-visible {
     outline: none;
-}	
-	
-.hamburger:not(:focus-visible):focus~label{
+}
+
+.hamburger:not(:focus-visible):focus~label {
     box-shadow: 0 0 0 2px hsl(0, 0%, 100%)
 }
 
@@ -299,7 +307,7 @@ nav a:focus {
 }
 
 .section h1 {
-    color:white;
+    color: white;
     margin-bottom: 15px;
 }
 
@@ -319,7 +327,7 @@ nav a:focus {
 main {
     background-color: #0a0e17;
     padding: 0px 10px 20px 10px;
-    display:flex;
+    display: flex;
     flex-wrap: wrap;
 }
 
@@ -328,7 +336,7 @@ main {
 .affiche {
     max-width: 100%;
     height: 200px;
-    margin:auto;
+    margin: auto;
     padding-bottom: 15px;
 }
 
@@ -342,7 +350,7 @@ main {
 .avatar {
     max-width: 100%;
     height: 150px;
-    margin:auto;
+    margin: auto;
     padding-bottom: 15px;
 }
 
@@ -353,7 +361,8 @@ main {
 }
 
 .infos-min-size {
-    padding-right: 115px;;
+    padding-right: 115px;
+    ;
 }
 
 /* -- Footer -- */
@@ -382,18 +391,19 @@ footer svg {
     /* Menu burger */
     .hamburger+label span {
         transition: background 10ms 300ms;
-    
+
     }
+
     .hamburger+label span::before,
     .hamburger+label span::after {
         transition: top 300ms 350ms,
-        transform 300ms 50ms;
+            transform 300ms 50ms;
     }
 
     .hamburger:checked+label span::after,
     .hamburger:checked+label span::before {
         transition: top 300ms 50ms,
-        transform 300ms 350ms;
+            transform 300ms 350ms;
     }
 
     .hamburger:focus-visible~label,
@@ -407,6 +417,6 @@ footer svg {
     }
 
     nav a {
-        transition: visibility 500ms,opacity 500ms 300ms;
+        transition: visibility 500ms, opacity 500ms 300ms;
     }
 }

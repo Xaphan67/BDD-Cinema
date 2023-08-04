@@ -13,30 +13,27 @@ $infosGenres = $genres->fetchALL(); ?>
             <ul class="list">
                 <li>Année de sortie : <?= $infosfilm["anneeSortie_film"] ?></li>
                 <li>Durée : <?= $infosfilm["duree"] ?></li>
-                <li>Genres : <?php 
-                foreach($infosGenres as $key => $genre) {
-                    if ($key != count($infosGenres)- 1)
-                    {
-                        echo '<a href="index.php?action=infoGenre&id=' . $genre["id_genre_film"] . '">' . $genre["libelle_genre_film"] .", </a>";
-                    }
-                    else
-                    {
-                        echo '<a href="index.php?action=infoGenre&id=' . $genre["id_genre_film"] . '">' . $genre["libelle_genre_film"] ."</a>";
-                    }
-                }
-                ?></li>
-                <li>Note : 
-                <?php
-                for ($i = 1; $i <= $infosfilm["note_film"]; $i++) { ?>
-                    <img src="public/img/note_b.png" alt="note"></img>
-                <?php }
-                ?>
-                <?php
-                $greyStars = 5 - $infosfilm["note_film"];
-                for ($i = 1; $i <= $greyStars; $i++) { ?>
-                    <img src="public/img/note_a.png" alt="note"></img>
-                <?php }
-                ?>
+                <li>Genres : <?php
+                                foreach ($infosGenres as $key => $genre) {
+                                    if ($key != count($infosGenres) - 1) {
+                                        echo '<a href="index.php?action=infoGenre&id=' . $genre["id_genre_film"] . '">' . $genre["libelle_genre_film"] . ", </a>";
+                                    } else {
+                                        echo '<a href="index.php?action=infoGenre&id=' . $genre["id_genre_film"] . '">' . $genre["libelle_genre_film"] . "</a>";
+                                    }
+                                }
+                                ?></li>
+                <li>Note :
+                    <?php
+                    for ($i = 1; $i <= $infosfilm["note_film"]; $i++) { ?>
+                        <img src="public/img/note_b.png" alt="note"></img>
+                    <?php }
+                    ?>
+                    <?php
+                    $greyStars = 5 - $infosfilm["note_film"];
+                    for ($i = 1; $i <= $greyStars; $i++) { ?>
+                        <img src="public/img/note_a.png" alt="note"></img>
+                    <?php }
+                    ?>
                 </li>
             </ul>
             <h2>Casting</h2>
@@ -76,10 +73,7 @@ $infosGenres = $genres->fetchALL(); ?>
 </article>
 
 <?php
-
 $title = "Film : " . $infosfilm["titre_film"];
-$action= "formAddFilm";
-$label= "Ajouter un film";
 $contenu = ob_get_clean();
 
 require "view/template.php";
