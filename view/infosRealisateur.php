@@ -27,7 +27,7 @@ $infosFilms = $films->fetchALL(); ?>
                         <ul>
                             <li><?= $film["anneeSortie_film"] ?></li>
                             <li><?= $film["duree"] ?></li>
-                            <ul>
+                        </ul>
                     </div>
                     <div class="actions">
                         <a href="index.php?action=formEditFilm&id=<?= $film["IdFilm"] ?>">
