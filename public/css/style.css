@@ -104,6 +104,10 @@ article {
     top: 15px;
 }
 
+.actions-list {
+    top: 8px;
+}
+
 .actions-row {
     flex-direction: row;
     vertical-align: middle;
