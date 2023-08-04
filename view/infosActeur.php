@@ -66,7 +66,7 @@ $infosFilms = $films->fetchALL(); ?>
 </article>
 
 <?php
-$titre = "Acteur : " . $infosActeur["acteurFilm"];
+$title = "Acteur : " . $infosActeur["acteurFilm"];
 $contenu = ob_get_clean();
 
 require "view/template.php";
