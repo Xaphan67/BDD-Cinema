@@ -6,7 +6,7 @@
 </div>
 
 <article>
-    <div class="content">
+    <div class="content content-no-bg">
         <form action="index.php?action=addRole" method="post">
             <div class="form-group">
                 <label for="nom">Nom *</label>
@@ -19,8 +19,7 @@
 
 <?php
 
-$titre = "Ajouter un rôle";
-$titre_secondaire = "Ajouter un rôle";
+$title = "Ajouter un rôle";
 $contenu = ob_get_clean();
 
 require "view/template.php";
