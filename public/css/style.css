@@ -153,6 +153,13 @@ form {
     flex-direction: column;
 }
 
+.form-group {
+    margin-inline: 8%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
 label {
     font-size: 18px;
     font-weight: 400;
@@ -160,12 +167,12 @@ label {
     padding-bottom: 5px;
 }
 
-input[type="text"] {
+input,
+select {
     border: 1px solid #182031;
     background: #182031;
     height: 54px;
     line-height: 54px;
-    padding: 5px;
     font-size: 18px;
     padding: 0 15px;
     width: 100%;
@@ -173,22 +180,38 @@ input[type="text"] {
     transition: all 0.3s ease-in-out;
 }
 
-input[type="text"]:hover,
-input[type="text"]:focus {
-    border-color: #60B0FF;
+input[type="date"] {
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 24 24"><path fill="%23ffffff" d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 18px top 18px;
 }
 
-.form-group {
-    margin-inline: 8%;
-    display: flex;
-    flex-direction: column;
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0%;
+    -webkit-appearance: none;
+}
+
+select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path fill="%23ffffff" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 18px top 18px;
+}
+
+input:hover,
+input:focus,
+select:hover,
+select:focus {
+    border-color: #60B0FF;
 }
 
 form button {
     align-self: flex-end;
-    margin-top: 35px;
-    margin-inline: 8%;
+    margin-right: 8%;
     width: 200px;
+    margin-top: 15px;
 }
 
 /* -- Header -- */
