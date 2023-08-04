@@ -3,8 +3,8 @@
 $infosActeur = $acteur->fetch(); ?>
 
 <div class="section">
-    <h1>Ajouter un acteur</h1>
-    <p>Merci de remplir tous les champs pour ajouter l'acteur</p>
+    <h1>Modifier un acteur</h1>
+    <p>Merci de remplir tous les champs pour modifier l'acteur</p>
 </div>
 
 <article>
