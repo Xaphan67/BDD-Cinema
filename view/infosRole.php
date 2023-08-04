@@ -1,9 +1,11 @@
 <?php ob_start();
 
-$infosRole = $role->fetch(); ?>
+$infosRole = $role->fetch();
+$infosActeurs = $acteurs->fetchALL() ?>
 
 <div class="section">
     <h1><?= $infosRole["nom_rôle"] ?></h1>
+    <p>Il existe <?= count($infosActeurs) ?> acteur<?= count($infosActeurs) > 1 ? "s" : "" ?> ayant joué ce rôle</p>
     <div class="actions">
         <a href="index.php?action=formEditRole&id=<?= $infosRole["id_rôle"] ?>">
             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
@@ -13,7 +15,7 @@ $infosRole = $role->fetch(); ?>
     </div>
 </div>
 
-<?php foreach ($acteurs->fetchALL() as $acteur) {
+<?php foreach ($infosActeurs as $acteur) {
 ?>
     <article>
         <div class="content">

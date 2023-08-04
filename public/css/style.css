@@ -299,21 +299,22 @@ nav a:not(:focus):focus-visible {
 /* -- Section -- */
 
 .section {
+    color: white;
     background-color: #182031;
     text-align: center;
     padding: 60px 0px;
     margin-bottom: 60px;
     width: 100%;
+    font-size: 18px;
     position: relative;
 }
 
 .section h1 {
-    color: white;
     margin-bottom: 15px;
+    font-size: 32px;
 }
 
 .section a {
-    color: white;
     text-decoration: none;
     transition: all 0.3s ease-in-out;
 }

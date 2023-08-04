@@ -1,9 +1,11 @@
 <?php ob_start();
 
-$infosGenre = $genre->fetch(); ?>
+$infosGenre = $genre->fetch();
+$infosFilms = $films->fetchALL() ?>
 
 <div class="section">
     <h1><?= $infosGenre["libelle_genre_film"] ?></h1>
+    <p>Il existe <?= count($infosFilms) ?> film<?= count($infosFilms) > 1 ? "s" : "" ?> de ce genre</p>
     <div class="actions">
         <a href="index.php?action=formEditGenre&id=<?= $infosGenre["id_genre_film"] ?>">
             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
@@ -13,7 +15,7 @@ $infosGenre = $genre->fetch(); ?>
     </div>
 </div>
 
-<?php foreach ($films->fetchALL() as $film) {
+<?php foreach ($infosFilms as $film) {
 ?>
     <article>
         <div class="content">
