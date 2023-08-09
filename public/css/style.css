@@ -24,6 +24,10 @@ article {
     margin-bottom: 30px;
 }
 
+.list-articles {
+    width: 100%;
+}
+
 .content {
     display: flex;
     flex-direction: column;
@@ -496,7 +500,6 @@ main {
 
 .infos-min-size {
     padding-right: 115px;
-    ;
 }
 
 /* -- Footer -- */
@@ -517,6 +520,35 @@ footer {
 
 footer svg {
     font-size: 2em;
+}
+
+/* tablettes et ordinateurs */
+@media only screen and (min-width: 768px) {
+
+    /* -- Common -- */
+
+    article {
+        width: 365px;
+        align-content: flex-start;
+    }
+
+    .list-articles {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding-inline: auto;
+    }
+
+    .infos h1 {
+        vertical-align: middle;
+        font-size: 22px;
+    }
+
+    /* Affichage Genres + Rôles */
+
+    .article-col {
+        width: 365px;
+    }
 }
 
 @media (prefers-reduced-motion: no-preference) {

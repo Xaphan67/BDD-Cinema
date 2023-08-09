@@ -5,19 +5,21 @@
     <p><a href="index.php?action=formAddRealisateur">Ajouter un réalisateur</a></p>
 </div>
 
-<?php foreach ($realisateurs->fetchALL() as $realisateur) {
-?>
-    <article>
-        <div class="content">
-            <img class="avatar" src="public/img/avatar.png" alt="avatar"></img>
-            <div class="infos">
-                <h1><a href="index.php?action=infoRealisateur&id=<?= $realisateur["id_realisateur"] ?>"><?= $realisateur["realisateurFilm"] ?></a></h1>
-                <p><?= $realisateur["sexe_personne"] ?></p>
-                <?php
-                $datetime = new DateTime($realisateur["dateNaissance_personne"]);
-                $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::RELATIVE_LONG, IntlDateFormatter::NONE);
-                ?>
-                <p>Né<?= $realisateur["sexe_personne"] == "Femme" ? "e" : "" ?> le <?= $formatter->format($datetime) ?></p>
+<div class="list-articles">
+    <?php foreach ($realisateurs->fetchALL() as $realisateur) {
+    ?>
+        <article>
+            <div class="content">
+                <img class="avatar" src="public/img/avatar.png" alt="avatar"></img>
+                <div class="infos">
+                    <h1><a href="index.php?action=infoRealisateur&id=<?= $realisateur["id_realisateur"] ?>"><?= $realisateur["realisateurFilm"] ?></a></h1>
+                    <p><?= $realisateur["sexe_personne"] ?></p>
+                    <?php
+                    $datetime = new DateTime($realisateur["dateNaissance_personne"]);
+                    $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::RELATIVE_LONG, IntlDateFormatter::NONE);
+                    ?>
+                    <p>Né<?= $realisateur["sexe_personne"] == "Femme" ? "e" : "" ?> le <?= $formatter->format($datetime) ?></p>
+                </div>
                 <div class="actions">
                     <a href="index.php?action=formEditRealisateur&id=<?= $realisateur["id_realisateur"] ?>">
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
@@ -25,8 +27,7 @@
                         </svg>
                     </a>
                     <?php
-                    if ($realisateur["nbFilms"] == 0)
-                    {
+                    if ($realisateur["nbFilms"] == 0) {
                     ?>
                         <a href="index.php?action=deleteRealisateur&id=<?= $realisateur["id_realisateur"] ?>">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
@@ -37,11 +38,11 @@
                     } ?>
                 </div>
             </div>
-        </div>
-    </article>
-<?php }
+        </article>
+    <?php } ?>
+</div>
 
-$title = "Liste des réalisateurs";
+<?php $title = "Liste des réalisateurs";
 $contenu = ob_get_clean();
 
 require "view/template.php";
