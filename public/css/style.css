@@ -10,6 +10,10 @@
 
 /* -- Commun -- */
 
+.body-container {
+    background-color: #0a0e17;
+}
+
 a {
     color: #3F9FFF;
     text-decoration: none;
@@ -216,7 +220,9 @@ select[multiple] {
 input:hover,
 input:focus,
 select:hover,
-select:focus {
+select:focus,
+textarea:hover,
+textarea:focus {
     border-color: #60B0FF;
 }
 
@@ -276,8 +282,8 @@ header input[type="checkbox"] {
 
 .hamburger+label {
     cursor: pointer;
-    width: 52px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -292,6 +298,7 @@ header input[type="checkbox"] {
     width: 34px;
     height: 3px;
     position: relative;
+    top: 2px;
 }
 
 .hamburger+label span::before,
@@ -326,36 +333,6 @@ header input[type="checkbox"] {
 
 .hamburger:checked+label span::after {
     transform: rotate(-45deg);
-}
-
-/* Menu slide */
-nav {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: min(50%, 300px);
-    background: rgba(0, 0, 0, 0.8);
-    transform: translateX(-100%);
-    will-change: transform;
-    z-index: 1;
-}
-
-nav ul {
-    list-style-type: none;
-    padding-left: 0;
-    margin-top: 6rem;
-}
-
-nav ul li {
-    margin: 1rem
-}
-
-nav a {
-    color: white;
-    font-size: 1.25rem;
-    opacity: 0;
-    visibility: hidden;
 }
 
 .hamburger:checked+label~nav {
@@ -403,6 +380,7 @@ nav a:not(:focus):focus-visible {
 }
 
 .section a {
+    color: white;
     text-decoration: none;
     transition: all 0.3s ease-in-out;
 }
@@ -419,6 +397,12 @@ main {
     padding: 0px 10px 20px 10px;
     display: flex;
     flex-wrap: wrap;
+}
+
+.main-container {
+    width: 100%;
+    min-height: calc(100vh - 200px);
+    /* 100vh = hauteur du navigateur - 90px (header) - 90px (footer) - 20px (padding-bottom de main) */
 }
 
 /* Affichage film */
@@ -522,6 +506,39 @@ footer svg {
     font-size: 2em;
 }
 
+/* Menu slide  mobile */
+@media screen and (max-width: 1023px) {
+
+    nav {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: min(50%, 300px);
+        background: rgba(0, 0, 0, 0.8);
+        transform: translateX(-100%);
+        will-change: transform;
+        z-index: 1;
+    }
+
+    nav ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-top: 6rem;
+    }
+
+    nav ul li {
+        margin: 1rem
+    }
+
+    nav a {
+        color: white;
+        font-size: 1.25rem;
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
 /* tablettes et ordinateurs */
 @media only screen and (min-width: 768px) {
 
@@ -555,12 +572,121 @@ footer svg {
     }
 }
 
+/* ordinateurs */
+@media only screen and (min-width: 1024px) {
+
+    .main-container {
+        min-width: 1024px;
+        max-width: 1620px;
+        margin-inline: auto;
+    }
+
+    article {
+        width: 300px;
+    }
+
+    header {
+        min-width: 1024px;
+        max-width: 1620px;
+        margin-inline: auto;
+        justify-content: space-between;
+    }
+
+    nav ul {
+        list-style-type: none;
+        line-height: 90px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    nav ul li {
+        margin: 1rem
+    }
+
+    nav a {
+        color: white;
+        font-size: 1.25rem;
+        transition: all 0.3s ease-in-out;
+    }
+
+    nav a:hover {
+        color: #007bff;
+    }
+
+
+    /* Affichage Genres + Rôles */
+
+    .article-col {
+        width: 330px;
+    }
+
+    /* Formulaires */
+
+    .form-col {
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .form-group-col {
+        flex-basis: 49%;
+        margin-inline: 0px;
+    }
+
+    .form-titre {
+        order: 1;
+    }
+
+    .form-annee {
+        order: 2;
+    }
+
+    .form-duree {
+        order: 3;
+    }
+
+    .form-note {
+        order: 4;
+    }
+
+    .form-affiche {
+        order: 5;
+    }
+
+    .form-real {
+        order: 6;
+    }
+
+    .form-genres {
+        order: 7;
+    }
+
+    .form-synopsis {
+        order: 8;
+        flex-basis: 100%;
+    }
+
+    .form-submit {
+        align-self: flex-end;
+        right: 0px;
+    }
+
+    .form-submit-order {
+        order: 9;
+    }
+
+    .hamburger,
+    .hamburger+label {
+        display: none;
+    }
+}
+
 @media (prefers-reduced-motion: no-preference) {
 
     /* Menu burger */
     .hamburger+label span {
         transition: background 10ms 300ms;
-
     }
 
     .hamburger+label span::before,
@@ -583,9 +709,5 @@ footer svg {
 
     nav {
         transition: transform 0.5s;
-    }
-
-    nav a {
-        transition: visibility 500ms, opacity 500ms 300ms;
     }
 }

@@ -20,7 +20,7 @@
                     } else {
                     ?>
                         <h1><?= $genre["libelle_genre_film"] ?></h1>
-                        <p>Aucun film de ce genre</p>
+                        <p>Aucun film</p>
                     <?php
                     } ?>
                 </div>

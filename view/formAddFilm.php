@@ -7,20 +7,20 @@
 
 <article class="article-main">
     <div class="content content-no-bg">
-        <form action="index.php?action=addFilm" method="post" enctype="multipart/form-data">
-            <div class=" form-group">
+        <form class="form-col" action="index.php?action=addFilm" method="post" enctype="multipart/form-data">
+            <div class=" form-group form-group-col form-titre">
                 <label for="titre">Titre *</label>
                 <input type="text" id="titre" name="titre" required>
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-col form-annee">
                 <label for="annee">Année de sortie *</label>
                 <input type="number" id="annee" name="annee" required>
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-col form-duree">
                 <label for="duree">Durée (minutes) *</label>
                 <input type="number" id="duree" name="duree" required>
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-col form-real">
                 <label for="realisateur">Réalisateur *</label>
                 <div class="select-button">
                     <select id="realisateur" name="realisateur" class="select-right" required>
@@ -34,7 +34,7 @@
                     <a class="button casting-actions" href="index.php?action=formAddRealisateur" class="form-button button-round">+</a>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-col form-genres">
                 <label for="genres">Genres *</label>
                 <div class="select-button">
                     <select id="genres" name="genres[]" class="select-right" multiple="multiple" required>
@@ -49,7 +49,7 @@
                     </a>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-col form-affiche">
                 <label>Affiche *</label>
                 <div class="select-button">
                     <input type="file" id="affiche" name="affiche" required>
@@ -60,15 +60,15 @@
                     </label>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-col form-note">
                 <label for="note">Note *</label>
                 <input type="number" id="note" name="note" min="0" max="5" value="3">
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-col form-synopsis">
                 <label for="synopsis">Synopsis</label>
                 <textarea id="synopsis" name="synopsis" rows="5"></textarea>
             </div>
-            <button type="submit" class="button-submit" name="submit">Ajouter</button>
+            <button type="submit" class="button-submit form-submit form-submit-order" name="submit">Ajouter</button>
         </form>
     </div>
 </article>

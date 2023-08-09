@@ -7,8 +7,8 @@
 
 <article class="article-main">
     <div class="content content-no-bg">
-        <form action="index.php?action=addCasting&id=<?= $idFilm ?>" method="post">
-            <div class="form-group">
+        <form class="form-col" action="index.php?action=addCasting&id=<?= $idFilm ?>" method="post">
+            <div class="form-group form-group-col">
                 <label for="acteur">Acteur *</label>
                 <select id="acteur" name="acteur" required>
                     <?php
@@ -19,7 +19,7 @@
                     ?>
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group form-group-col">
                 <label for="role">Rôle *</label>
                 <select id="role" name="role" required>
                     <?php
@@ -30,7 +30,7 @@
                     ?>
                 </select>
             </div>
-            <button type="submit" name="submit">Ajouter</button>
+            <button type="submit" class="button-submit form-submit" name="submit">Ajouter</button>
         </form>
     </div>
 </article>

@@ -20,7 +20,7 @@
                     } else {
                     ?>
                         <h1><?= $role["nom_rôle"] ?></h1>
-                        <p>Aucun acteur joue ce rôle</p>
+                        <p>Aucun acteur</p>
                     <?php
                     } ?>
                 </div>
