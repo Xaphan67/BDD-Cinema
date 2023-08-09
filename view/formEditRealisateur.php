@@ -7,7 +7,7 @@ $infosRealisateur = $realisateur->fetch(); ?>
     <p>Merci de remplir tous les champs pour modifier le réalisateur</p>
 </div>
 
-<article>
+<article class="article-main">
     <div class="content content-no-bg">
         <form action="index.php?action=editActeur&id=<?= $infosRealisateur["id_realisateur"] ?>" method="post">
             <div class="form-group">

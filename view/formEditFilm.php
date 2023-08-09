@@ -12,7 +12,7 @@ for ($i = 0; $i < count($infosGenresSelected); $i++) {
     <p>Merci de remplir tous les champs pour modifier le film.</p>
 </div>
 
-<article>
+<article class="article-main">
     <div class="content content-no-bg">
         <form action="index.php?action=editFilm&id=<?= $infosFilm["id_film"] ?>" method="post" enctype="multipart/form-data">
             <div class=" form-group">

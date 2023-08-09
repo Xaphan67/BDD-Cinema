@@ -7,7 +7,7 @@ $infosActeur = $acteur->fetch(); ?>
     <p>Merci de remplir tous les champs pour modifier l'acteur</p>
 </div>
 
-<article>
+<article class="article-main">
     <div class="content content-no-bg">
         <form action="index.php?action=editActeur&id=<?= $infosActeur["id_acteur"] ?>" method="post">
             <div class="form-group">

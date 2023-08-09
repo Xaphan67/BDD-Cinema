@@ -7,7 +7,7 @@ $infosRole = $role->fetch(); ?>
     <p>Merci de remplir tous les champs pour modifier le rôle</p>
 </div>
 
-<article>
+<article class="article-main">
     <div class="content content-no-bg">
         <form action="index.php?action=editRole&id=<?= $infosRole["id_rôle"] ?>" method="post">
             <div class="form-group">

@@ -5,7 +5,7 @@
     <p>Merci de remplir tous les champs pour ajouter un rélisateur</p>
 </div>
 
-<article>
+<article class="article-main">
     <div class="content content-no-bg">
         <form action="index.php?action=addRealisateur" method="post">
             <div class="form-group">

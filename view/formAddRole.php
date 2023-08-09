@@ -5,7 +5,7 @@
     <p>Merci de remplir tous les champs pour ajouter un rôle</p>
 </div>
 
-<article>
+<article class="article-main">
     <div class="content content-no-bg">
         <form action="index.php?action=addRole" method="post">
             <div class="form-group">

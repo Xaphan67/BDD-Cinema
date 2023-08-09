@@ -5,7 +5,7 @@
     <p>Merci de remplir tous les champs pour ajouter un film</p>
 </div>
 
-<article>
+<article class="article-main">
     <div class="content content-no-bg">
         <form action="index.php?action=addFilm" method="post" enctype="multipart/form-data">
             <div class=" form-group">
