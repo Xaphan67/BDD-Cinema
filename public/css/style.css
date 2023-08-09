@@ -528,8 +528,12 @@ footer svg {
     /* -- Common -- */
 
     article {
-        width: 365px;
         align-content: flex-start;
+        width: 365px;
+    }
+
+    .article-main {
+        width: 100%;
     }
 
     .list-articles {

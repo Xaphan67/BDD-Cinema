@@ -14,10 +14,9 @@ $infosFilms = $films->fetchALL() ?>
         </a>
     </div>
 </div>
-<article>
+<article class="article-main">
     <div class="infos">
         <ul class="list-films">
-
             <?php foreach ($infosFilms as $film) { ?>
                 <li>
                     <div class="films">

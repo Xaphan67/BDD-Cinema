@@ -3,7 +3,7 @@
 $infosActeur = $acteur->fetch();
 $infosFilms = $films->fetchALL(); ?>
 
-<article>
+<article class="article-main">
     <div class="content content-no-bg">
         <img class="avatar" src="public/img/avatar.png" alt="avatar"></img>
         <div class="infos">

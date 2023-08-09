@@ -4,7 +4,7 @@ $infosfilm = $film->fetch();
 $infosGenres = $genres->fetchALL(); ?>
 
 
-<article>
+<article class="article-main">
     <div class="content content-no-bg">
         <img class="affiche affiche-large" src="public/img/posters/<?= $infosfilm["affiche_film"] ?>" alt="affiche"></img>
         <div class="infos">
