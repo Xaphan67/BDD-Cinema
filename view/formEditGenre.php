@@ -7,7 +7,7 @@ $infosGenre = $genre->fetch(); ?>
     <p>Merci de remplir tous les champs pour modifier le genre</p>
 </div>
 
-<article class="article-main">
+<div class="article-main">
     <div class="content content-no-bg">
         <form action="index.php?action=editGenre&id=<?= $infosGenre["id_genre_film"] ?>" method="post">
             <div class="form-group">
@@ -17,7 +17,7 @@ $infosGenre = $genre->fetch(); ?>
             <button type="submit" name="submit">Modifier</button>
         </form>
     </div>
-</article>
+</div>
 
 <?php
 

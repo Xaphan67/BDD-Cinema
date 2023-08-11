@@ -5,7 +5,7 @@
     <p>Merci de remplir tous les champs pour ajouter un rélisateur</p>
 </div>
 
-<article class="article-main">
+<div class="article-main">
     <div class="content content-no-bg">
         <form class="form-col" action="index.php?action=addRealisateur" method="post">
             <div class="form-group form-group-col">
@@ -19,6 +19,7 @@
             <div class="form-group form-group-col">
                 <label for="sexe">Sexe *</label>
                 <select id="sexe" name="sexe" required>
+                    <option value="">Veuillez sélectionner le sexe</option>
                     <option value="Homme">Homme</option>
                     <option value="Femme">Femme</option>
                 </select>
@@ -30,7 +31,7 @@
             <button type="submit" class="button-submit form-submit" name="submit">Ajouter</button>
         </form>
     </div>
-</article>
+</div>
 
 <?php
 

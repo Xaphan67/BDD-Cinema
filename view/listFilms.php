@@ -10,15 +10,14 @@
     ?>
         <article>
             <div class="content">
-                <img class="affiche" src="public/img/posters/<?= $film["affiche_film"] ?>" alt="affiche"></img>
+                <img class="affiche" src="public/img/posters/<?= $film["affiche_film"] ?>" alt="affiche">
                 <div class="infos">
-                    <h1><a href="index.php?action=infoFilm&id=<?= $film["IdFilm"] ?>"><?= $film["titre_film"] ?></a></h1>
+                    <h2><a href="index.php?action=infoFilm&id=<?= $film["IdFilm"] ?>"><?= $film["titre_film"] ?></a></h2>
                     <ul>
                         <li><?= $film["anneeSortie_film"] ?></li>
                         <li><?= $film["duree"] ?></li>
-                        <ul>
-                            <p>De : <a href="index.php?action=infoRealisateur&id=<?= $film["id_realisateur"] ?>"> <?= $film["realisateurFilm"] ?></a>
-                            <p>
+                    </ul>
+                    <p>De : <a href="index.php?action=infoRealisateur&id=<?= $film["id_realisateur"] ?>"> <?= $film["realisateurFilm"] ?></a></p>
                 </div>
                 <div class="actions">
                     <a href="index.php?action=formEditFilm&id=<?= $film["IdFilm"] ?>">

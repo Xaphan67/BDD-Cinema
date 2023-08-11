@@ -20,9 +20,9 @@ $infosActeurs = $acteurs->fetchALL() ?>
     ?>
         <article>
             <div class="content">
-                <img class="avatar" src="public/img/avatar.png" alt="avatar"></img>
+                <img class="avatar" src="public/img/avatar.png" alt="avatar">
                 <div class="infos">
-                    <h1><a href="index.php?action=infoActeur&id=<?= $acteur["id_acteur"] ?>"><?= $acteur["acteurFilm"] ?></a></h1>
+                    <h2><a href="index.php?action=infoActeur&id=<?= $acteur["id_acteur"] ?>"><?= $acteur["acteurFilm"] ?></a></h2>
                     <p><?= $acteur["sexe_personne"] ?></p>
                     <?php
                     $datetime = new DateTime($acteur["dateNaissance_personne"]);

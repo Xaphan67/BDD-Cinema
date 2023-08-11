@@ -12,7 +12,7 @@ for ($i = 0; $i < count($infosGenresSelected); $i++) {
     <p>Merci de remplir tous les champs pour modifier le film.</p>
 </div>
 
-<article class="article-main">
+<div class="article-main">
     <div class="content content-no-bg">
         <form class="form-col" action="index.php?action=editFilm&id=<?= $infosFilm["id_film"] ?>" method="post" enctype="multipart/form-data">
             <div class=" form-group form-group-col form-titre">
@@ -31,6 +31,7 @@ for ($i = 0; $i < count($infosGenresSelected); $i++) {
                 <label for="realisateur">Réalisateur *</label>
                 <div class="select-button">
                     <select id="realisateur" name="realisateur" class="select-right" required>
+                        <option value="">Veuillez sélectionner un réalisateur</option>
                         <?php
                         foreach ($realisateurs->fetchALL() as $realisateur) {
                         ?>
@@ -38,7 +39,7 @@ for ($i = 0; $i < count($infosGenresSelected); $i++) {
                         <?php }
                         ?>
                     </select>
-                    <a class="button casting-actions" href="index.php?action=formAddRealisateur" class="form-button button-round">+</a>
+                    <a class="button casting-actions form-button button-round" href="index.php?action=formAddRealisateur">+</a>
                 </div>
             </div>
             <div class="form-group form-group-col form-genres">
@@ -52,14 +53,13 @@ for ($i = 0; $i < count($infosGenresSelected); $i++) {
                         <?php }
                         ?>
                     </select>
-                    <a class="button casting-actions" href="index.php?action=formAddGenre" class="form-button button-round">+</a>
-                    </a>
+                    <a class="button casting-actions form-button button-round" href="index.php?action=formAddGenre">+</a>
                 </div>
             </div>
             <div class="form-group form-group-col form-affiche">
                 <label>Affiche *</label>
                 <div class="select-button">
-                    <img class="affiche-small" src="public/img/posters/<?= $infosFilm["affiche_film"] ?>" alt="affiche"></img>
+                    <img class="affiche-small" src="public/img/posters/<?= $infosFilm["affiche_film"] ?>" alt="affiche">
                     <input type="file" id="affiche" name="affiche">
                     <label for="affiche" class="button casting-actions">
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
@@ -79,7 +79,7 @@ for ($i = 0; $i < count($infosGenresSelected); $i++) {
             <button type="submit" class="button-submit form-submit form-submit-order" name="submit">Modifier</button>
         </form>
     </div>
-</article>
+</div>
 
 <?php
 

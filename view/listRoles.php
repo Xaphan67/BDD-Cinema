@@ -14,7 +14,7 @@
                     <?php
                     if ($role["nbActeurs"] > 0) {
                     ?>
-                        <h1><a href="index.php?action=infoRole&id=<?= $role["id_rôle"] ?>"><?= $role["nom_rôle"] ?></a></h1>
+                        <h2><a href="index.php?action=infoRole&id=<?= $role["id_rôle"] ?>"><?= $role["nom_rôle"] ?></a></h2>
                         <p><?= $role["nbActeurs"] ?> acteur<?= $role["nbActeurs"] > 1 ? "s jouent" : " joue" ?> ce role</p>
                     <?php
                     } else {

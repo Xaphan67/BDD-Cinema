@@ -7,7 +7,7 @@ $infosActeur = $acteur->fetch(); ?>
     <p>Merci de remplir tous les champs pour modifier l'acteur</p>
 </div>
 
-<article class="article-main">
+<div class="article-main">
     <div class="content content-no-bg">
         <form class="form-col" action="index.php?action=editActeur&id=<?= $infosActeur["id_acteur"] ?>" method="post">
             <div class="form-group form-group-col">
@@ -21,6 +21,7 @@ $infosActeur = $acteur->fetch(); ?>
             <div class="form-group form-group-col">
                 <label for="sexe">Sexe *</label>
                 <select id="sexe" name="sexe" required>
+                    <option value="">Veuillez sélectionner le sexe</option>
                     <option value="Homme" <?= $infosActeur["sexe_personne"] == "Homme" ? "selected" : "" ?>>Homme</option>
                     <option value="Femme" <?= $infosActeur["sexe_personne"] == "Femme" ? "selected" : "" ?>>Femme</option>
                 </select>
@@ -32,7 +33,7 @@ $infosActeur = $acteur->fetch(); ?>
             <button type="submit" class="button-submit form-submit" name="submit">Modifier</button>
         </form>
     </div>
-</article>
+</div>
 
 <?php
 

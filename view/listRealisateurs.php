@@ -10,9 +10,9 @@
     ?>
         <article>
             <div class="content">
-                <img class="avatar" src="public/img/avatar.png" alt="avatar"></img>
+                <img class="avatar" src="public/img/avatar.png" alt="avatar">
                 <div class="infos">
-                    <h1><a href="index.php?action=infoRealisateur&id=<?= $realisateur["id_realisateur"] ?>"><?= $realisateur["realisateurFilm"] ?></a></h1>
+                    <h2><a href="index.php?action=infoRealisateur&id=<?= $realisateur["id_realisateur"] ?>"><?= $realisateur["realisateurFilm"] ?></a></h2>
                     <p><?= $realisateur["sexe_personne"] ?></p>
                     <?php
                     $datetime = new DateTime($realisateur["dateNaissance_personne"]);

@@ -52,18 +52,23 @@ article {
     padding-bottom: 5px;
 }
 
-.infos h1 {
+h2,
+h3 {
     font-size: 24px;
     line-height: 32px;
     font-weight: 400;
 }
 
-.infos h1 a {
+h2 a,
+h3 a {
     color: white;
+}
+
+.infos a {
     transition: all 0.3s ease-in-out;
 }
 
-.infos h2 {
+.content-no-bg .infos h2 {
     text-transform: uppercase;
     font-size: 20px;
     line-height: 28px;
@@ -281,8 +286,10 @@ header {
     font-size: 0.85em;
 }
 
-header h1 {
+header .siteName {
     text-transform: uppercase;
+    font-size: 42px;
+    font-weight: bold;
 }
 
 /* -- Menu burger -- */
@@ -404,7 +411,8 @@ nav a:not(:focus):focus-visible {
 }
 
 .section a:hover,
-.infos h1 a:hover {
+h2 a:hover,
+h3 a:hover {
     color: #007bff;
 }
 

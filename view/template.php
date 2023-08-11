@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title ?></title>
-    <meta name="description" content="<?= $description ?>" />
+    <meta name="description" content="<?= $description ?>">
     <link rel="stylesheet" href="public/css/style.css">
 </head>
 
@@ -13,8 +13,8 @@
     <div class="body-container">
         <!-- Navigation -->
         <header>
-            <h1>Wiki Films</h1>
-            <input class="hamburger" type="checkbox" id="menu" />
+            <p class="siteName">Wiki Films</p>
+            <input class="hamburger" type="checkbox" id="menu">
             <label for="menu" aria-label="Menu"><span></span></label>
             <nav>
                 <ul>
@@ -34,7 +34,7 @@
         </main>
         <!-- Pied de page -->
         <footer>
-            <p> Copyright 2023 Wiki films</br>Tous droits réservés</p>
+            <p> Copyright 2023 Wiki films<br>Tous droits réservés</p>
             <div id="social">
                 <a href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">

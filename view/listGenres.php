@@ -14,7 +14,7 @@
                     <?php
                     if ($genre["nbFilms"] > 0) {
                     ?>
-                        <h1><a href="index.php?action=infoGenre&id=<?= $genre["id_genre_film"] ?>"><?= $genre["libelle_genre_film"] ?></a></h1>
+                        <h2><a href="index.php?action=infoGenre&id=<?= $genre["id_genre_film"] ?>"><?= $genre["libelle_genre_film"] ?></a></h2>
                         <p>Il existe <?= $genre["nbFilms"] ?> film<?= $genre["nbFilms"] > 1 ? "s" : "" ?> de ce genre</p>
                     <?php
                     } else {
