@@ -54,8 +54,12 @@ $infosGenres = $genres->fetchALL(); ?>
                 <?php } ?>
             </ul>
             <a class="button" href="index.php?action=formAddCasting&id=<?= $infosfilm["id_film"] ?>">Ajouter un acteur</a>
-            <h2>Synopsis</h2>
-            <p><?= $infosfilm["synopsis_film"] ?></p>
+            <?php
+            if ($infosfilm["synopsis_film"] != "") {
+            ?>
+                <h2>Synopsis</h2>
+                <p><?= $infosfilm["synopsis_film"] ?></p>
+            <?php } ?>
         </div>
         <div class="actions">
             <a href="index.php?action=formEditFilm&id=<?= $infosfilm["id_film"] ?>">
