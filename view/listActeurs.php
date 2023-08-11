@@ -42,7 +42,8 @@
     <?php } ?>
 </div>
 
-<?php $title = "Liste des acteurs";
+<?php $title = "Wiki Films : Liste des acteurs";
+$description = "Découvrez tous les acteurs et actrices référencées sur Wiki Films !";
 $contenu = ob_get_clean();
 
 require "view/template.php";

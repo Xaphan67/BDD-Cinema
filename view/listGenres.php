@@ -46,7 +46,8 @@
     <?php } ?>
 </div>
 
-<?php $title = "Liste des genres";
+<?php $title = "Wiki Films : Liste des genres";
+$description = "Découvrez tous les genres référencés sur Wiki Films !";
 $contenu = ob_get_clean();
 
 require "view/template.php";

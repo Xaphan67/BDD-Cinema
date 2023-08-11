@@ -49,7 +49,8 @@ $infosFilms = $films->fetchALL() ?>
 </article>
 
 <?php
-$title = "Genre : " . $infosGenre["libelle_genre_film"];
+$title = "Wiki Films : Informations sur le genre " . $infosGenre["libelle_genre_film"];
+$description = "Découvrez toutes les informations sur le genre " . $infosGenre["libelle_genre_film"];
 $contenu = ob_get_clean();
 
 require "view/template.php";

@@ -42,7 +42,8 @@
     <?php } ?>
 </div>
 
-<?php $title = "Liste des réalisateurs";
+<?php $title = "Wiki Films : Liste des réalisateurs";
+$description = "Découvrez tous les réalisateurs et realisatrices référencées sur Wiki Films !";
 $contenu = ob_get_clean();
 
 require "view/template.php";

@@ -37,7 +37,8 @@
     <?php } ?>
 </div>
 
-<?php $title = "Liste des films";
+<?php $title = "Wiki Films : Liste des films";
+$description = "Découvrez tous les films référencés sur Wiki Films !";
 $contenu = ob_get_clean();
 
 require "view/template.php";

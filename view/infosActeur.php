@@ -76,7 +76,8 @@ $infosFilms = $films->fetchALL(); ?>
 </article>
 
 <?php
-$title = "Acteur : " . $infosActeur["acteurFilm"];
+$title = "Wiki Films : Informations sur l'acteur " . $infosActeur["acteurFilm"];
+$description = "Découvrez toutes les informations sur l'acteur " . $infosActeur["acteurFilm"];
 $contenu = ob_get_clean();
 
 require "view/template.php";

@@ -34,7 +34,8 @@
 
 <?php
 
-$title = "Ajouter un rélisateur";
+$title = "Wiki Films : Ajouter un rélisateur";
+$description = "Formulaire d'ajout d'un réalisateur";
 $contenu = ob_get_clean();
 
 require "view/template.php";

@@ -21,7 +21,8 @@ $infosGenre = $genre->fetch(); ?>
 
 <?php
 
-$title = "Modifier le genre";
+$title = "Wiki Films : Modifier un genre";
+$description = "Formulaire d'édition d'un genre";
 $contenu = ob_get_clean();
 
 require "view/template.php";

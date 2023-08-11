@@ -52,7 +52,8 @@ $infosActeurs = $acteurs->fetchALL() ?>
     <?php } ?>
 </div>
 
-<?php $title = "Rôle : " . $infosRole["nom_rôle"];
+<?php $title = "Wiki Films : Informations sur le rôle " . $infosRole["nom_rôle"];
+$description = "Découvrez toutes les informations sur le rôle " . $infosRole["nom_rôle"];
 $contenu = ob_get_clean();
 
 require "view/template.php";

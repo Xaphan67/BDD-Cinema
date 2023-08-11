@@ -37,7 +37,8 @@
 
 <?php
 
-$title = "Ajouter un acteur au film";
+$title = "Wiki Films : Ajouter un acteur à un film";
+$description = "Formulaire d'ajout d'un acteur au casting d'un film";
 $contenu = ob_get_clean();
 
 require "view/template.php";

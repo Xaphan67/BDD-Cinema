@@ -36,7 +36,8 @@ $infosRealisateur = $realisateur->fetch(); ?>
 
 <?php
 
-$title = "Modifier le rélisateur";
+$title = "Modifier un rélisateur";
+$description = "Formulaire d'édition d'un réalisateur";
 $contenu = ob_get_clean();
 
 require "view/template.php";

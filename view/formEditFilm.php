@@ -83,7 +83,8 @@ for ($i = 0; $i < count($infosGenresSelected); $i++) {
 
 <?php
 
-$title = "Modifier un film";
+$title = "Wiki Films : Modifier un film";
+$description = "Formulaire d'édition d'un film";
 $contenu = ob_get_clean();
 
 require "view/template.php";

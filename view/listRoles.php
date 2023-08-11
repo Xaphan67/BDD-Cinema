@@ -45,7 +45,8 @@
         </article>
     <?php } ?>
 </div>
-<?php $title = "Liste des rôles";
+<?php $title = "Wiki Films : Liste des rôles";
+$description = "Découvrez tous les rôles référencés sur Wiki Films !";
 $contenu = ob_get_clean();
 
 require "view/template.php";

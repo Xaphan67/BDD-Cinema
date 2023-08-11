@@ -75,7 +75,8 @@
 
 <?php
 
-$title = "Ajouter un film";
+$title = "Wiki Films : Ajouter un film";
+$description = "Formulaire d'ajout d'un film";
 $contenu = ob_get_clean();
 
 require "view/template.php";

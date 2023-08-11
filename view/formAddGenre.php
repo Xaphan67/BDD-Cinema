@@ -19,7 +19,8 @@
 
 <?php
 
-$title = "Ajouter un genre";
+$title = "Wiki Films : Ajouter un genre";
+$description = "Formulaire d'ajout d'un genre";
 $contenu = ob_get_clean();
 
 require "view/template.php";

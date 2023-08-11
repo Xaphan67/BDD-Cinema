@@ -19,7 +19,8 @@
 
 <?php
 
-$title = "Ajouter un rôle";
+$title = "Wiki Films : Ajouter un rôle";
+$description = "Formulaire d'ajout d'un rôle";
 $contenu = ob_get_clean();
 
 require "view/template.php";

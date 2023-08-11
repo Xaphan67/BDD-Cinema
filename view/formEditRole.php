@@ -21,7 +21,8 @@ $infosRole = $role->fetch(); ?>
 
 <?php
 
-$title = "Modifier le rôle";
+$title = "Wiki Films : Modifier un rôle";
+$description = "Formulaire d'édition d'un rôle";
 $contenu = ob_get_clean();
 
 require "view/template.php";

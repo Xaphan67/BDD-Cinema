@@ -36,7 +36,8 @@ $infosActeur = $acteur->fetch(); ?>
 
 <?php
 
-$title = "Modifier l'acteur";
+$title = "Wiki Films : Modifier un acteur";
+$description = "Formulaire d'édition d'un acteur";
 $contenu = ob_get_clean();
 
 require "view/template.php";
