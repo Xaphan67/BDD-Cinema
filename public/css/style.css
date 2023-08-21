@@ -74,8 +74,12 @@ h3 {
     line-height: 28px;
     font-weight: 200;
     border-bottom: 3px solid #007bff;
-    padding-top: 20px;
     margin-bottom: 15px;
+    padding-top: 20px;
+}
+
+.content-no-bg .infos h2:first-child {
+    padding-top: 0px !important;
 }
 
 .infos ul {
@@ -379,23 +383,6 @@ header input[type="checkbox"] {
     opacity: 1;
 }
 
-/* Accessibilité */
-.hamburger:focus-visible~label,
-nav a:focus-visible,
-nav a:focus {
-    outline: 1px solid white;
-    outline-offset: 2px;
-}
-
-.hamburger:not(:focus-visible)~label,
-nav a:not(:focus):focus-visible {
-    outline: none;
-}
-
-.hamburger:not(:focus-visible):focus~label {
-    box-shadow: 0 0 0 2px hsl(0, 0%, 100%)
-}
-
 /* -- Section -- */
 
 .section {
@@ -406,7 +393,7 @@ nav a:not(:focus):focus-visible {
     box-shadow: inset 0 0 0 150px rgba(24, 32, 49, 0.8);
     text-align: center;
     padding: 60px 0px;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     width: 100%;
     font-size: 18px;
     position: relative;
@@ -457,12 +444,13 @@ main {
 .affiche {
     max-width: 100%;
     height: 200px;
-    margin: auto;
+    margin-left: auto;
     padding-bottom: 15px;
 }
 
 .affiche-large {
     height: auto;
+    margin: auto;
     max-height: 400px;
 }
 
@@ -476,7 +464,6 @@ main {
 /* Affichage Personne */
 
 .avatar {
-    max-width: 100%;
     height: 150px;
     margin: auto;
     padding-bottom: 15px;
@@ -620,6 +607,20 @@ footer svg {
 
     .casting-actions {
         margin-left:  100px;
+    }
+
+    .avatar-side {
+        max-width: 20%;
+    }
+
+    .affiche-large {
+        width: 30%;
+        margin: auto;
+        max-height: 400px;
+    }
+
+    .infos {
+        width: 70%;
     }
 }
 
