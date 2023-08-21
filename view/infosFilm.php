@@ -6,7 +6,7 @@ $infosActeurs = $acteurs->fetchALL(); ?>
 
 
 <article class="article-main">
-    <div class="content content-no-bg">
+    <div class="content content-no-bg content-no-bg-info ">
         <img class="affiche affiche-large" src="public/img/posters/<?= $infosfilm["affiche_film"] ?>" alt="affiche">
         <div class="infos">
             <h1><?= $infosfilm["titre_film"] ?></h1>

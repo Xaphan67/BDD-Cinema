@@ -591,9 +591,18 @@ footer svg {
         /* 100 vw = Largeur du navigateur - 730px (2 colonnes dansla grille) - 20 px(padding de chaque coté de la classe main) */
     }
 
+    .content-no-bg .actions {
+        flex-direction: row;
+    }
+
     .infos h1 {
         vertical-align: middle;
         font-size: 22px;
+    }
+
+    .content-no-bg-info {
+        flex-direction: row;
+        gap: 20px;
     }
 
     .content-no-bg .infos h1 {
