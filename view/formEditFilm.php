@@ -82,7 +82,7 @@ for ($i = 0; $i < count($infosGenresSelected); $i++) {
             </div>
             <div class="form-group form-group-col form-synopsis">
                 <label for="synopsis">Synopsis</label>
-                <textarea id="synopsis" name="synopsis" rows="5"></textarea>
+                <textarea id="synopsis" name="synopsis" rows="5"><?= $infosFilm["synopsis_film"] ?></textarea>
             </div>
             <button type="submit" class="button-submit form-submit form-submit-order" name="submit">Modifier</button>
         </form>
