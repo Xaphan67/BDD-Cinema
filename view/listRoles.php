@@ -8,7 +8,7 @@
 <div class="list-articles">
     <?php foreach ($roles->fetchALL() as $role) {
     ?>
-        <article class="article-col">
+        <article class="article">
             <div class="content content-min-size">
                 <div class="infos <?= $role["nbActeurs"] > 0 ? "" : "infos-min-size" ?>">
                     <?php

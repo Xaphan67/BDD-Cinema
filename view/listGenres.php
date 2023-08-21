@@ -8,7 +8,7 @@
 <div class="list-articles">
     <?php foreach ($genres->fetchALL() as $genre) {
     ?>
-        <article class="article-col">
+        <article class="article">
             <div class="content content-min-size">
                 <div class="infos <?= $genre["nbFilms"] > 0 ? "" : "infos-min-size" ?>">
                     <?php

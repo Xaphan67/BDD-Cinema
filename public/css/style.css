@@ -601,12 +601,6 @@ footer svg {
     .content-no-bg .infos h1 {
         font-size: 48px;
     }
-
-    /* Affichage Genres + Rôles */
-
-    .article-col {
-        width: 365px;
-    }
 }
 
 /* ordinateurs */
@@ -627,7 +621,7 @@ footer svg {
     }
 
     article {
-        width: 300px;
+        width: 330px;
     }
 
     header {
@@ -660,12 +654,6 @@ footer svg {
 
     .section h1 {
         font-size: 56px;
-    }
-
-    /* Affichage Genres + Rôles */
-
-    .article-col {
-        width: 330px;
     }
 
     /* Formulaires */
