@@ -2,7 +2,7 @@
 
 <div class="section">
     <h1>Liste des réalisateurs</h1>
-    <p><a href="index.php?action=formAddRealisateur">Ajouter un réalisateur</a></p>
+    <p><a href="index.php?action=formAddRealisateur" class="add">Ajouter un réalisateur</a></p>
 </div>
 
 <div class="list-articles">

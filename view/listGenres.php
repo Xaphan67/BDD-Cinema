@@ -2,7 +2,7 @@
 
 <div class="section">
     <h1>Liste des genres</h1>
-    <p><a href="index.php?action=formAddGenre">Ajouter un genre</a></p>
+    <p><a href="index.php?action=formAddGenre" class="add">Ajouter un genre</a></p>
 </div>
 
 <div class="list-articles">

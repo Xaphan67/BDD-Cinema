@@ -2,7 +2,7 @@
 
 <div class="section">
     <h1>Liste des films</h1>
-    <a href="index.php?action=formAddFilm">Ajouter un film</a>
+    <a href="index.php?action=formAddFilm" class="add">Ajouter un film</a>
 </div>
 
 <div class="list-articles">

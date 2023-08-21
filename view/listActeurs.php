@@ -2,7 +2,7 @@
 
 <div class="section">
     <h1>Liste des acteurs</h1>
-    <p><a href="index.php?action=formAddActeur">Ajouter un acteur</a></p>
+    <p><a href="index.php?action=formAddActeur" class="add">Ajouter un acteur</a></p>
 </div>
 
 <div class="list-articles">

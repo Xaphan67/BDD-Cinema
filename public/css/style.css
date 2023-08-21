@@ -15,7 +15,7 @@
 }
 
 a {
-    color: #3F9FFF;
+    color: #60B0FF;
     text-decoration: none;
     transition: all 0.3s ease-in-out;
 }
@@ -57,11 +57,6 @@ h3 {
     font-size: 24px;
     line-height: 32px;
     font-weight: 400;
-}
-
-h2 a,
-h3 a {
-    color: white;
 }
 
 .infos a {
@@ -162,6 +157,7 @@ form button,
     padding-inline: 15px;
     border-radius: 5px;
     transition: 0.3s ease-in-out;
+    flex-shrink: 0;
 }
 
 form button:hover,
@@ -260,6 +256,8 @@ form button {
 .select-button a,
 .select-button label {
     margin-left: 15px;
+    width: 50px;
+    line-height: 55px;
 }
 
 ::file-selector-button {
@@ -405,14 +403,22 @@ nav a:not(:focus):focus-visible {
 }
 
 .section a {
-    color: white;
+    color: #60B0FF;
     text-decoration: none;
     transition: all 0.3s ease-in-out;
 }
 
-.section a:hover,
-h2 a:hover,
-h3 a:hover {
+.add {
+    border: 1px solid #60B0FF;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+.section a:hover {
+    border: 1px solid #007bff;
+}
+
+a:hover {
     color: #007bff;
 }
 
@@ -580,10 +586,11 @@ footer svg {
     }
 
     .list-articles {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        padding-inline: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 365px);
+        grid-gap: 0px;
+        margin-left: calc((100vw - 730px - 20px) /2);
+        /* 100 vw = Largeur du navigateur - 730px (2 colonnes dansla grille) - 20 px(padding de chaque coté de la classe main) */
     }
 
     .infos h1 {
@@ -611,13 +618,21 @@ footer svg {
         margin-inline: auto;
     }
 
+    .list-articles {
+        display: grid;
+        grid-template-columns: repeat(3, 330px);
+        grid-gap: 0px;
+        margin-left: calc((100vw - 990px - 20px) /2);
+        /* 100 vw = Largeur du navigateur - 990px (3 colonnes dansla grille) - 20 px(padding de chaque coté de la classe main) */    
+    }
+
     article {
         width: 300px;
     }
 
     header {
         min-width: 1024px;
-        max-width: 1620px;
+        max-width: 1340px;
         margin-inline: auto;
         justify-content: space-between;
     }
@@ -712,6 +727,18 @@ footer svg {
     .hamburger,
     .hamburger+label {
         display: none;
+    }
+}
+
+/* Ordinateur écran large */
+@media only screen and (min-width: 1320px) {
+
+    .list-articles {
+        display: grid;
+        grid-template-columns: repeat(4, 330px);
+        grid-gap: 0px;
+        margin-left: calc((100vw - 1320px - 20px) /2);
+        /* 100 vw = Largeur du navigateur - 1320px (4 colonnes dansla grille) - 20 px(padding de chaque coté de la classe main) */    
     }
 }
 

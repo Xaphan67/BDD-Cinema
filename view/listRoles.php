@@ -2,7 +2,7 @@
 
 <div class="section">
     <h1>Liste des rôles</h1>
-    <p><a href="index.php?action=formAddRole">Ajouter un rôle</a></p>
+    <p><a href="index.php?action=formAddRole" class="add">Ajouter un rôle</a></p>
 </div>
 
 <div class="list-articles">
