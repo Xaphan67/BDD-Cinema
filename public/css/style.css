@@ -592,8 +592,8 @@ footer svg {
         display: grid;
         grid-template-columns: repeat(2, 365px);
         grid-gap: 0px;
-        margin-left: calc((100vw - 730px - 20px) /2);
-        /* 100 vw = Largeur du navigateur - 730px (2 colonnes dansla grille) - 20 px(padding de chaque coté de la classe main) */
+        width: 730px;
+        margin: auto;
     }
 
     .content-no-bg .actions {
@@ -636,8 +636,7 @@ footer svg {
         display: grid;
         grid-template-columns: repeat(3, 330px);
         grid-gap: 0px;
-        margin-left: calc((100vw - 990px - 20px) /2);
-        /* 100 vw = Largeur du navigateur - 990px (3 colonnes dansla grille) - 20 px(padding de chaque coté de la classe main) */    
+        width: 990px;
     }
 
     article {
@@ -745,8 +744,7 @@ footer svg {
         display: grid;
         grid-template-columns: repeat(4, 330px);
         grid-gap: 0px;
-        margin-left: calc((100vw - 1320px - 20px) /2);
-        /* 100 vw = Largeur du navigateur - 1320px (4 colonnes dansla grille) - 20 px(padding de chaque coté de la classe main) */    
+        width: 1320px;
     }
 }
 
