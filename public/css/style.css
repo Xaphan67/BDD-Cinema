@@ -20,6 +20,11 @@ a {
     transition: all 0.3s ease-in-out;
 }
 
+nav ul li a svg {
+    fill: #60B0FF;
+    padding-top: 5px;
+}
+
 article {
     display: flex;
     flex-direction: column;
