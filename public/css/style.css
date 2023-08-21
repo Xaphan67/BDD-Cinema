@@ -388,7 +388,7 @@ nav a:not(:focus):focus-visible {
     background-repeat: no-repeat;
     background-position: 0% 5%;
     background-size: cover;
-    box-shadow: inset 0 0 0 111px rgba(24, 32, 49, 0.8);
+    box-shadow: inset 0 0 0 150px rgba(24, 32, 49, 0.8);
     text-align: center;
     padding: 60px 0px;
     margin-bottom: 60px;
