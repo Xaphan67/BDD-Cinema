@@ -83,8 +83,6 @@ h3 {
 
 .infos li {
     list-style: none;
-    margin: 0 15px 0px 0;
-    padding: 0 15px 0px 0;
     font-size: 18px;
 }
 
@@ -121,6 +119,11 @@ h3 {
     vertical-align: middle;
 }
 
+.casting {
+    display: flex;
+    justify-content: space-between;
+}
+
 .actions a,
 .casting-actions {
     background-color: #3F9FFF;
@@ -139,8 +142,15 @@ h3 {
     background-color: #007bff;
 }
 
-.casting-actions {
-    width: 50px;
+.casting-acteurs p {
+    height: 50px;
+    line-height: 25px;
+}
+
+.casting-section {
+    display:flex;
+    flex-direction: column;
+    row-gap: 10px;
 }
 
 form button,
@@ -451,23 +461,11 @@ main {
     max-height: 400px;
 }
 
-.list-casting {
-    flex-direction: column;
-    flex-wrap: nowrap;
-    gap: 10px;
-}
-
 .list-casting li {
     font-size: 18px;
     line-height: 20px;
     margin: 0px;
     padding: 0px;
-}
-
-.casting {
-    display: flex;
-    justify-content: space-between;
-    height: 50px;
 }
 
 /* Affichage Personne */
@@ -601,13 +599,21 @@ footer svg {
     .content-no-bg .infos h1 {
         font-size: 48px;
     }
+
+    .casting {
+        justify-content:left;
+    }
+
+    .casting-actions {
+        margin-left:  100px;
+    }
 }
 
 /* ordinateurs */
 @media only screen and (min-width: 1024px) {
 
     .main-container {
-        min-width: 1024px;
+        min-width: 1004px;
         max-width: 1620px;
         margin-inline: auto;
     }
