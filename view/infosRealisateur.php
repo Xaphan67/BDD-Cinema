@@ -29,7 +29,7 @@ $infosFilms = $films->fetchALL(); ?>
         <div class="picture">
             <img class="avatar-side" src="public/img/avatar.png" alt="avatar">
         </div>
-        <div class="infos">
+        <div class="infos infos-right">
             <h2>Biographie</h2>
             <ul class="list">
                 <li>Sexe : <?= $infosRealisateur["sexe_personne"] ?></li>
@@ -39,6 +39,8 @@ $infosFilms = $films->fetchALL(); ?>
                 ?>
                 <li>Date de naissance : <?= $formatter->format($datetime) ?></li>
             </ul>
+        </div>
+        <div class="infos infos-full">
             <h2>Filmographie</h2>
             <?php
             if (count($infosFilms) > 0) {

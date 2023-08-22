@@ -25,7 +25,7 @@ $infosActeurs = $acteurs->fetchALL(); ?>
         <div class="picture">
             <img class="affiche-large" src="public/img/posters/<?= $infosfilm["affiche_film"] ?>" alt="affiche">
         </div>
-        <div class="infos">
+        <div class="infos infos-right">
             <h2>Informations générales</h2>
             <ul class="list">
                 <li>Année de sortie : <?= $infosfilm["anneeSortie_film"] ?></li>
@@ -80,6 +80,8 @@ $infosActeurs = $acteurs->fetchALL(); ?>
                     <a class="button" href="index.php?action=formAddCasting&id=<?= $infosfilm["id_film"] ?>">Ajouter un acteur</a>
                 </li>
             </ul>
+        </div>
+        <div class="infos infos-full">
             <?php
             if ($infosfilm["synopsis_film"] != "") {
             ?>
