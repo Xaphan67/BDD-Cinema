@@ -20,6 +20,10 @@ a {
     transition: all 0.3s ease-in-out;
 }
 
+figure {
+    margin: auto;
+}
+
 nav ul li a svg {
     fill: #60B0FF;
     padding-top: 5px;

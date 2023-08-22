@@ -20,7 +20,9 @@ $infosActeurs = $acteurs->fetchALL() ?>
     ?>
         <article>
             <div class="content">
-                <img class="avatar" src="public/img/avatar.png" alt="avatar">
+                <figure>
+                    <img class="avatar" src="public/img/avatar.png" alt="avatar">
+                </figure>
                 <div class="infos">
                     <h2><a href="index.php?action=infoActeur&id=<?= $acteur["id_acteur"] ?>"><?= $acteur["acteurFilm"] ?></a></h2>
                     <p><?= $acteur["sexe_personne"] ?></p>

@@ -10,7 +10,9 @@
     ?>
         <article>
             <div class="content">
-                <img class="affiche" src="public/img/posters/<?= $film["affiche_film"] ?>" alt="affiche">
+                <figure>
+                    <img class="affiche" src="public/img/posters/<?= $film["affiche_film"] ?>" alt="affiche">
+                </figure>
                 <div class="infos">
                     <h2><a href="index.php?action=infoFilm&id=<?= $film["IdFilm"] ?>"><?= $film["titre_film"] ?></a></h2>
                     <ul>

@@ -67,7 +67,9 @@ for ($i = 0; $i < count($infosGenresSelected); $i++) {
             <div class="form-group form-group-col form-affiche">
                 <label>Affiche *</label>
                 <div class="select-button">
-                    <img class="affiche-small" src="public/img/posters/<?= $infosFilm["affiche_film"] ?>" alt="affiche">
+                    <figure>
+                        <img class="affiche-small" src="public/img/posters/<?= $infosFilm["affiche_film"] ?>" alt="affiche">
+                    </figure>
                     <input type="file" id="affiche" name="affiche">
                     <label for="affiche" class="button casting-actions" title="Choisir une affiche">
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">

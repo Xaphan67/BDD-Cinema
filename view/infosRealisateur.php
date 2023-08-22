@@ -48,7 +48,9 @@ $infosFilms = $films->fetchALL(); ?>
                 ?>
                     <?php foreach ($infosFilms as $film) { ?>
                         <div class="films">
-                            <img class="affiche-small" src="public/img/posters/<?= $film["affiche_film"] ?>" alt="affiche">
+                            <figure>
+                                <img class="affiche-small" src="public/img/posters/<?= $film["affiche_film"] ?>" alt="affiche">
+                            </figure>
                             <div class="infos-films">
                                 <h3><a href="index.php?action=infoFilm&id=<?= $film["IdFilm"] ?>"><?= $film["titre_film"] ?></a></h3>
                                 <ul>

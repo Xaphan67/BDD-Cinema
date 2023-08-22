@@ -23,7 +23,9 @@ $infosActeurs = $acteurs->fetchALL(); ?>
 <article class="article-main">
     <div class="content content-infos">
         <div class="picture">
-            <img class="affiche-large" src="public/img/posters/<?= $infosfilm["affiche_film"] ?>" alt="affiche">
+            <figure>
+                <img class="affiche-large" src="public/img/posters/<?= $infosfilm["affiche_film"] ?>" alt="affiche">
+            </figure>
         </div>
         <div class="infos infos-right">
             <h2>Informations générales</h2>
@@ -41,6 +43,7 @@ $infosActeurs = $acteurs->fetchALL(); ?>
                                 ?>
                 </li>
                 <li>Note :
+                    <figure>
                     <?php
                     for ($i = 1; $i <= $infosfilm["note_film"]; $i++) { ?>
                         <img src="public/img/note_b.png" alt="note">
@@ -52,6 +55,7 @@ $infosActeurs = $acteurs->fetchALL(); ?>
                         <img src="public/img/note_a.png" alt="note">
                     <?php }
                     ?>
+                    </figure>
                 </li>
             </ul>
             <h2>Casting</h2>

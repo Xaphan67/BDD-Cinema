@@ -27,7 +27,9 @@ $infosFilms = $films->fetchALL(); ?>
 <article class="article-main">
     <div class="content content-infos">
         <div class="picture">
-            <img class="avatar-side" src="public/img/avatar.png" alt="avatar">
+            <figure>
+                <img class="avatar-side" src="public/img/avatar.png" alt="avatar">
+            </figure>
         </div>
         <div class="infos infos-right">
             <h2>Biographie</h2>
@@ -48,7 +50,9 @@ $infosFilms = $films->fetchALL(); ?>
                 ?>
                     <?php foreach ($infosFilms as $film) { ?>
                         <div class="films">
-                            <img class="affiche-small" src="public/img/posters/<?= $film["affiche_film"] ?>" alt="affiche">
+                            <figure>
+                                <img class="affiche-small" src="public/img/posters/<?= $film["affiche_film"] ?>" alt="affiche">
+                            </figure>
                             <div class="infos-films">
                                 <h3><a href="index.php?action=infoFilm&id=<?= $film["IdFilm"] ?>"><?= $film["titre_film"] ?></a></h3>
                                 <ul>

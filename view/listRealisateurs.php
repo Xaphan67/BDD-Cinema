@@ -10,7 +10,9 @@
     ?>
         <article>
             <div class="content">
-                <img class="avatar" src="public/img/avatar.png" alt="avatar">
+                <figure>
+                    <img class="avatar" src="public/img/avatar.png" alt="avatar">
+                </figure>
                 <div class="infos">
                     <h2><a href="index.php?action=infoRealisateur&id=<?= $realisateur["id_realisateur"] ?>"><?= $realisateur["realisateurFilm"] ?></a></h2>
                     <p><?= $realisateur["sexe_personne"] ?></p>
