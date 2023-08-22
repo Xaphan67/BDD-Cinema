@@ -73,7 +73,7 @@ h3 {
     transition: all 0.3s ease-in-out;
 }
 
-.content-infos .infos h2 {
+.content-infos .infos h2  {
     text-transform: uppercase;
     font-size: 20px;
     line-height: 28px;
@@ -499,6 +499,7 @@ main {
     position: relative;
     height: 66px;
     vertical-align: middle;
+    margin-top: 5px;
 }
 
 .infos-films li {
@@ -590,6 +591,14 @@ footer svg {
         margin: auto;
     }
 
+    .list-films-mini {
+        display: grid;
+        grid-template-columns: repeat(4, 177px);
+        grid-gap: 0px;
+        width: 708px;
+        margin: auto;
+    }
+
     .content-infos .actions {
         flex-direction: row;
     }
@@ -611,6 +620,7 @@ footer svg {
 
     .infos-right {
         width: calc(100vw - 380px);
+        max-width: 1260px;
     }
 
     .casting {
@@ -638,6 +648,43 @@ footer svg {
     .infos {
         min-width: 388px;
     }
+
+    .films {
+        flex-direction: column;
+        background-color: #182031;
+        padding: 10px;
+    }
+
+    .affiche-small {
+        max-height: 200px;
+        padding-right: 0px;
+        max-width: 100%;
+        height: 200px;
+        margin-inline: auto;
+        padding-bottom: 15px;
+    }
+
+    .films {
+        height: initial;
+        text-align: center;
+    }
+
+    .infos-films {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .infos-films h3 {
+        height: 59px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .infos-films ul {
+        display: block;
+    }
 }
 
 /* ordinateurs */
@@ -654,6 +701,14 @@ footer svg {
         grid-template-columns: repeat(3, 330px);
         grid-gap: 0px;
         width: 990px;
+    }
+
+    .list-films-mini {
+        display: grid;
+        grid-template-columns: repeat(5, 177px);
+        grid-gap: 0px;
+        width: 885px;
+        margin: auto;
     }
 
     article {
@@ -768,6 +823,14 @@ footer svg {
         grid-template-columns: repeat(4, 330px);
         grid-gap: 0px;
         width: 1320px;
+    }
+
+    .list-films-mini {
+        display: grid;
+        grid-template-columns: repeat(7, 177px);
+        grid-gap: 0px;
+        width: 1239px;
+        margin: auto;
     }
 }
 

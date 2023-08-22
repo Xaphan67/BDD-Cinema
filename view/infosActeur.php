@@ -42,30 +42,28 @@ $infosFilms = $films->fetchALL(); ?>
         </div>
         <div class="infos infos-full">
             <h2>Filmographie</h2>
+            <div class="list-films-mini">
             <?php
-            if (count($infosFilms) > 0) {
-            ?>
-                <ul class="list-films">
+                if (count($infosFilms) > 0) {
+                ?>
                     <?php foreach ($infosFilms as $film) { ?>
-                        <li>
-                            <div class="films">
-                                <img class="affiche-small" src="public/img/posters/<?= $film["affiche_film"] ?>" alt="affiche">
-                                <div class="infos-films">
-                                    <h3><a href="index.php?action=infoFilm&id=<?= $film["IdFilm"] ?>"><?= $film["titre_film"] ?></a></h3>
-                                    <ul>
-                                        <li><?= $film["anneeSortie_film"] ?></li>
-                                        <li><?= $film["duree"] ?></li>
-                                    </ul>
-                                </div>
+                        <div class="films">
+                            <img class="affiche-small" src="public/img/posters/<?= $film["affiche_film"] ?>" alt="affiche">
+                            <div class="infos-films">
+                                <h3><a href="index.php?action=infoFilm&id=<?= $film["IdFilm"] ?>"><?= $film["titre_film"] ?></a></h3>
+                                <ul>
+                                    <li><?= $film["anneeSortie_film"] ?></li>
+                                    <li><?= $film["duree"] ?></li>
+                                </ul>
                             </div>
-                        </li>
+                        </div>
                     <?php
                     } ?>
-                </ul>
-            <?php } else {
-            ?>
-                <p><?= $infosActeur["sexe_personne"] == "Homme" ? "Cet acteur" : "Cette actrice" ?> n'a joué dans aucun film</p>
-            <?php } ?>
+                <?php } else {
+                ?>
+                    <p><?= $infosActeur["sexe_personne"] == "Homme" ? "Ce réalisateur" : "Cette réalisatrice" ?> n'a réalisé aucun film</p>
+                <?php } ?>
+            </div>
         </div>
     </div>
 </article>
