@@ -697,8 +697,14 @@ footer svg {
     .form-col {
         flex-direction: row;
         flex-wrap: wrap;
-        width: 100%;
-        justify-content: space-between;
+        width: 84%;
+        justify-content: flex-end;
+        column-gap: 2%;
+        margin-inline: auto;
+    }
+
+    .form-col button {
+        margin-right: 0px;
     }
 
     .form-group-col {
