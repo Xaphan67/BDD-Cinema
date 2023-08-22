@@ -22,7 +22,9 @@ $infosActeurs = $acteurs->fetchALL(); ?>
 
 <article class="article-main">
     <div class="content content-no-bg content-no-bg-info">
-        <img class="affiche-large" src="public/img/posters/<?= $infosfilm["affiche_film"] ?>" alt="affiche">
+        <div class="picture">
+            <img class="affiche-large" src="public/img/posters/<?= $infosfilm["affiche_film"] ?>" alt="affiche">
+        </div>
         <div class="infos">
             <h2>Informations générales</h2>
             <ul class="list">
@@ -36,7 +38,8 @@ $infosActeurs = $acteurs->fetchALL(); ?>
                                         echo '<a href="index.php?action=infoGenre&id=' . $genre["id_genre_film"] . '">' . $genre["libelle_genre_film"] . "</a>";
                                     }
                                 }
-                                ?></li>
+                                ?>
+                </li>
                 <li>Note :
                     <?php
                     for ($i = 1; $i <= $infosfilm["note_film"]; $i++) { ?>

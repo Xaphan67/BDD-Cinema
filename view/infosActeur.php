@@ -26,7 +26,9 @@ $infosFilms = $films->fetchALL(); ?>
 
 <article class="article-main">
     <div class="content content-no-bg content-no-bg-info">
-    <img class="avatar avatar-side" src="public/img/avatar.png" alt="avatar">
+        <div class="picture">
+            <img class="avatar-side" src="public/img/avatar.png" alt="avatar">
+        </div>
         <div class="infos">
             <h2>Biographie</h2>
             <ul class="list">
