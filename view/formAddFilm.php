@@ -41,7 +41,7 @@
             </div>
             <div class="form-group form-group-col form-genres">
                 <label for="genres">Genres *</label>
-                <div class="select-button">
+                <div class="select-button-multiplle">
                     <select id="genres" name="genres[]" class="select-right" multiple="multiple" required>
                         <?php
                         foreach ($genres->fetchALL() as $genre) {

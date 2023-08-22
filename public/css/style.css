@@ -275,10 +275,19 @@ form button {
     display: flex;
     align-items: center;
     width: 100%;
+    height: 54px;
+}
+
+.select-button-multiplle {
+    display: flex;
+    align-items: center;
+    width: 100%;
 }
 
 .select-button a,
-.select-button label {
+.select-button-multiplle a,
+.select-button label,
+.select-button-multiplle label {
     margin-left: 15px;
     width: 50px;
     line-height: 55px;
@@ -480,9 +489,14 @@ main {
     margin: auto;
 }
 
-.affiche-small {
+.affiche-small,
+.affiche-small-form {
     max-height: 65px;
     padding-right: 15px;
+}
+
+.affiche-small-form {
+    max-height: 54px;
 }
 
 .list-films {

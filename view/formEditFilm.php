@@ -48,7 +48,7 @@ for ($i = 0; $i < count($infosGenresSelected); $i++) {
             </div>
             <div class="form-group form-group-col form-genres">
                 <label for="genres">Genres *</label>
-                <div class="select-button">
+                <div class="select-button-multiplle">
                     <select id="genres" name="genres[]" class="select-right" multiple="multiple" required>
                         <?php
                         foreach ($genres->fetchALL() as $genre) {
@@ -68,7 +68,7 @@ for ($i = 0; $i < count($infosGenresSelected); $i++) {
                 <label>Affiche *</label>
                 <div class="select-button">
                     <figure>
-                        <img class="affiche-small" src="public/img/posters/<?= $infosFilm["affiche_film"] ?>" alt="affiche">
+                        <img class="affiche-small-form" src="public/img/posters/<?= $infosFilm["affiche_film"] ?>" alt="affiche">
                     </figure>
                     <input type="file" id="affiche" name="affiche">
                     <label for="affiche" class="button casting-actions" title="Choisir une affiche">
