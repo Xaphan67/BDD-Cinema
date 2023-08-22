@@ -30,7 +30,7 @@ article {
     flex-direction: column;
     width: 100%;
     padding: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .list-articles {
@@ -59,7 +59,6 @@ article {
 }
 
 .infos {
-    padding-bottom: 5px;
     width: 100%;
 }
 
@@ -74,7 +73,7 @@ h3 {
     transition: all 0.3s ease-in-out;
 }
 
-.content-no-bg .infos h2 {
+.content-infos .infos h2 {
     text-transform: uppercase;
     font-size: 20px;
     line-height: 28px;
@@ -430,7 +429,7 @@ a:hover {
 
 main {
     background-color: #0a0e17;
-    padding: 0px 10px 20px 10px;
+    padding: 0px 10px 10px 10px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -591,11 +590,11 @@ footer svg {
         margin: auto;
     }
 
-    .content-no-bg .actions {
+    .content-infos .actions {
         flex-direction: row;
     }
 
-    .content-no-bg .infos h2:first-child {
+    .content-infos .infos h2:first-child {
         padding-top: 0px !important;
     }
 
@@ -604,13 +603,9 @@ footer svg {
         font-size: 22px;
     }
 
-    .content-no-bg-info {
+    .content-infos {
         flex-direction: row;
         gap: 20px;
-    }
-
-    .content-no-bg .infos h1 {
-        font-size: 48px;
     }
 
     .casting {

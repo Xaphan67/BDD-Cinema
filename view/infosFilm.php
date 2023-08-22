@@ -21,7 +21,7 @@ $infosActeurs = $acteurs->fetchALL(); ?>
 </div>
 
 <article class="article-main">
-    <div class="content content-no-bg content-no-bg-info">
+    <div class="content content-infos">
         <div class="picture">
             <img class="affiche-large" src="public/img/posters/<?= $infosfilm["affiche_film"] ?>" alt="affiche">
         </div>
