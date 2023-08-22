@@ -55,6 +55,7 @@ article {
 
 .picture {
     max-width: 300px;
+    margin-inline: auto;
 }
 
 .infos {
