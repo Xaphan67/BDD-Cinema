@@ -169,13 +169,7 @@ class CinemaController
                 $film->execute(["titreFilm" => $titre, "anneeFilm" => $annee, "dureeFilm" => $duree, "synopsisFilm" => $synopsis, "noteFilm" => $note, "afficheFilm" => $affiche, "idRealisateurFilm" => $_POST["realisateur"]]);
 
                 // Récupère l'id du film ajouté
-                $filmID = $BDD->prepare("
-                SELECT
-                f.id_film
-                FROM film f
-                WHERE f.titre_film = :titreFilm");
-                $filmID->execute(["titreFilm" => $_POST["titre"]]);
-                $filmID = $filmID->fetch();
+                $filmID = intval($BDD->lastInsertId());
 
                 // Ajoute chaque genre au film
                 foreach ($_POST["genres"] as $genre) {
@@ -184,12 +178,12 @@ class CinemaController
                     posseder (id_film, id_genre_film)
                     VALUES
                     (:idFilm, :idGenre)");
-                    $requete->execute(["idFilm" => $filmID["id_film"], "idGenre" => $genre]);
+                    $requete->execute(["idFilm" => $filmID, "idGenre" => $genre]);
                 }
             }
         }
 
-        header("Location:index.php?action=formAddCasting&id=" . $filmID["id_film"]); // Redirection vers ajout d'un acteur au film
+        header("Location:index.php?action=formAddCasting&id=" . $filmID); // Redirection vers ajout d'un acteur au film
     }
 
     // Formulaire de modification d'un film
@@ -504,13 +498,7 @@ class CinemaController
                 $personne->execute(["nomPersonne" => $_POST["nom"], "prenomPersonne" => $_POST["prenom"], "sexePersonne" => $_POST["sexe"], "dateNaissancePersonne" => $_POST["dateNaissance"]]);
 
                 // Récupère l'id de la personne ajoutée
-                $personneID = $BDD->prepare("
-                SELECT
-                p.id_personne
-                FROM personne p
-                WHERE p.nom_personne = :nomPersonne AND p.prenom_personne = :prenomPersonne");
-                $personneID->execute(["nomPersonne" => $_POST["nom"], "prenomPersonne" => $_POST["prenom"]]);
-                $personneID = $personneID->fetch();
+                $personneID = intval($BDD->lastInsertId());
 
                 // Ajoute l'id de la personne dans la table réalisateur
                 $realisateur = $BDD->prepare("
@@ -518,7 +506,7 @@ class CinemaController
                 realisateur (id_personne)
                 VALUES
                 (:idPersonne)");
-                $realisateur->execute(["idPersonne" => $personneID["id_personne"]]);
+                $realisateur->execute(["idPersonne" => $personneID]);
             }
         }
 
@@ -717,13 +705,7 @@ class CinemaController
                 $personne->execute(["nomPersonne" => $_POST["nom"], "prenomPersonne" => $_POST["prenom"], "sexePersonne" => $_POST["sexe"], "dateNaissancePersonne" => $_POST["dateNaissance"]]);
 
                 // Récupère l'id de la personne ajoutée
-                $personneID = $BDD->prepare("
-                 SELECT
-                 p.id_personne
-                 FROM personne p
-                 WHERE p.nom_personne = :nomPersonne AND p.prenom_personne = :prenomPersonne");
-                $personneID->execute(["nomPersonne" => $_POST["nom"], "prenomPersonne" => $_POST["prenom"]]);
-                $personneID = $personneID->fetch();
+                $personneID = intval($BDD->lastInsertId());
 
                 // Ajoute l'id de la personne dans la table acteur
                 $acteur = $BDD->prepare("
@@ -731,7 +713,7 @@ class CinemaController
                  acteur (id_personne)
                  VALUES
                  (:idPersonne)");
-                $acteur->execute(["idPersonne" => $personneID["id_personne"]]);
+                $acteur->execute(["idPersonne" => $personneID]);
             }
         }
 
