@@ -14,31 +14,25 @@ $infosFilms = $films->fetchALL() ?>
         </a>
     </div>
 </div>
-<article class="article-main">
-    <div class="content">
-        <div class="infos">
-            <ul class="list-films">
-                <?php foreach ($infosFilms as $film) { ?>
-                    <li>
-                        <div class="films">
-                            <img class="affiche-small" src="public/img/posters/<?= $film["affiche_film"] ?>" alt="affiche">
-                            <div class="infos-films">
-                                <h2>
-                                    <a href="index.php?action=infoFilm&id=<?= $film["IdFilm"] ?>"><?= $film["titre_film"] ?></a>
-                                </h2>
-                                <ul>
-                                    <li><?= $film["anneeSortie_film"] ?></li>
-                                    <li><?= $film["duree"] ?></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
-                <?php
-                } ?>
-            </ul>
-        </div>
-    </div>
-</article>
+
+<div class="list-articles">
+    <?php foreach ($infosFilms as $film) {
+    ?>
+        <article>
+            <div class="content">
+                <img class="affiche" src="public/img/posters/<?= $film["affiche_film"] ?>" alt="affiche">
+                <div class="infos">
+                    <h2><a href="index.php?action=infoFilm&id=<?= $film["IdFilm"] ?>"><?= $film["titre_film"] ?></a></h2>
+                    <ul>
+                        <li><?= $film["anneeSortie_film"] ?></li>
+                        <li><?= $film["duree"] ?></li>
+                    </ul>
+                    <p>De : <a href="index.php?action=infoRealisateur&id=<?= $film["id_realisateur"] ?>"> <?= $film["realisateurFilm"] ?></a></p>
+                </div>
+            </div>
+        </article>
+    <?php } ?>
+</div>
 
 <?php
 $title = "Wiki Films : Informations sur le genre " . $infosGenre["libelle_genre_film"];
