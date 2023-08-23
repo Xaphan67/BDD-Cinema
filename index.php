@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 
 // Utilise le controller CinemaController
 use controller\CinemaController;

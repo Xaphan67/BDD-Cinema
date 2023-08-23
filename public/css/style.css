@@ -14,6 +14,18 @@
     background-color: #0a0e17;
 }
 
+.error {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin: auto;
+    background-color: #940000;
+    border-radius: 15px;
+    line-height: 20px;
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
 a {
     color: #60B0FF;
     text-decoration: none;

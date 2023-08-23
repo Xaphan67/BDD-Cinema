@@ -141,7 +141,7 @@ class CinemaController
                 $extension = strtolower(end($tabExtension)); // Stock l'extension
 
                 //Tableau des extensions acceptées
-                $extensions = ['jpg', 'png', 'jpeg', 'gif'];
+                $extensions = ['jpg', 'png', 'jpeg'];
 
                 // Taille maximale acceptée (en bytes)
                 $maxSize = 40000000;
@@ -153,12 +153,19 @@ class CinemaController
                     move_uploaded_file($tmpName, './public/img/posters/' . $affiche); // Upload le fichier dans le dossier des affiches
                 } else { // Erreur : Renvoie au formulaire
 
+                    if (!in_array($extension, $extensions)) {
+                        $_SESSION['message'][0] = "ExtError";
+                    } else if ($size >= $maxSize) {
+                        $_SESSION['message'][0] = "SizeError";
+                    } else if ($error != 0) {
+                        $_SESSION['message'][0] = "FileError";
+                    }
                     header("Location:index.php?action=formAddFilm");
                     exit();
                 }
             }
 
-            if ($titre && $annee && $duree && $note && $affiche) {
+            if ($titre && $annee && $duree && $note && $affiche) { // Pas d'erreur, ajoute le film
                 $BDD = $this->connectToBDD();
 
                 $film = $BDD->prepare("
@@ -180,6 +187,10 @@ class CinemaController
                     (:idFilm, :idGenre)");
                     $requete->execute(["idFilm" => $filmID, "idGenre" => $genre]);
                 }
+            } else { // Erreur : Renvoie au formulaire
+                $_SESSION['message'][0] = "Error";
+                header("Location:index.php?action=formAddFilm");
+                exit();
             }
         }
 
@@ -249,7 +260,7 @@ class CinemaController
             $extension = strtolower(end($tabExtension)); // Stock l'extension
 
             //Tableau des extensions acceptées
-            $extensions = ['jpg', 'png', 'jpeg', 'gif'];
+            $extensions = ['jpg', 'png', 'jpeg'];
 
             // Taille maximale acceptée (en bytes)
             $maxSize = 40000000;
@@ -273,12 +284,19 @@ class CinemaController
                 move_uploaded_file($tmpName, './public/img/posters/' . $affiche); // Upload le fichier dans le dossier des affiches
             } else { // Erreur : Renvoie au formulaire
 
-                header("Location:index.php?action=formAddFilm");
+                if (!in_array($extension, $extensions)) {
+                    $_SESSION['message'][0] = "ExtError";
+                } else if ($size >= $maxSize) {
+                    $_SESSION['message'][0] = "SizeError";
+                } else if ($error != 0) {
+                    $_SESSION['message'][0] = "FileError";
+                }
+                header("Location:index.php?action=formEditFilm&id=" . $idFilm);
                 exit();
             }
         }
 
-        if ($titre && $annee && $duree && $note) {
+        if ($titre && $annee && $duree && $note) { // Pas d'erreur, modifie le film
 
             $BDD = $this->connectToBDD();
 
@@ -311,6 +329,10 @@ class CinemaController
                  (:idFilm, :idGenre)");
                 $requete->execute(["idFilm" => $idFilm, "idGenre" => $genre]);
             }
+        } else { // Erreur : Renvoie au formulaire
+            $_SESSION['message'][0] = "Error";
+            header("Location:index.php?action=formEditFilm&id=" . $idFilm);
+            exit();
         }
 
         header("Location:index.php?action=listFilms"); // Redirection vers la liste des films
