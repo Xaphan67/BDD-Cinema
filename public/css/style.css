@@ -675,10 +675,6 @@ footer svg {
         max-height: 400px;
     }
 
-    .infos {
-        min-width: 388px;
-    }
-
     .films {
         flex-direction: column;
         background-color: #182031;
