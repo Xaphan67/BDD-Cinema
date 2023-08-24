@@ -530,6 +530,7 @@ main {
     height: 66px;
     vertical-align: middle;
     margin-top: 5px;
+    width: fit-content;
 }
 
 .infos-films li {
@@ -649,7 +650,7 @@ footer svg {
     }
 
     .infos-right {
-        width: calc(100vw - 380px);
+        width: calc(100vw - 400px);
         max-width: 1260px;
     }
 
