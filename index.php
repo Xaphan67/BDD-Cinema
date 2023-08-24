@@ -1,15 +1,23 @@
 <?php session_start();
 
-// Utilise le controller CinemaController
-use controller\CinemaController;
+// Utilise les controllers
+use controller\FilmsController;
+use controller\RealisateursController;
+use controller\ActeursController;
+use controller\GenresController;
+use controller\RolesController;
 
 // Auto-load des classes
 spl_autoload_register(function ($class_name) {
     include $class_name . '.php';
 });
 
-// Instancie le controller
-$ctrlCinema = new CinemaController();
+// Instancie les controllers
+$ctrlFilms = new FilmsController();
+$ctrlRealisateurs = new RealisateursController();
+$ctrlActeurs = new ActeursController();
+$ctrlGenres = new GenresController();
+$ctrlRoles = new RolesController();
 
 $id = isset($_GET["id"]) ? $_GET["id"] : null;
 $acteur = isset($_GET["acteur"]) ? $_GET["acteur"] : null;
@@ -19,158 +27,158 @@ if (isset($_GET["action"])) // Action spécifiée - Affiche la page correspondan
 {
     switch ($_GET["action"]) {
         case "listFilms": // Liste des films
-            $ctrlCinema->listFilms();
+            $ctrlFilms->listFilms();
             break;
 
         case "infoFilm": // Informations d'un film
-            $ctrlCinema->infosFilm($id);
+            $ctrlFilms->infosFilm($id);
             break;
 
         case "formAddFilm": // Formulaire d'ajout d'un film
-            $ctrlCinema->formAddFilm();
+            $ctrlFilms->formAddFilm();
             break;
 
         case "addFilm": // Ajout d'un film
-            $ctrlCinema->addFilm();
+            $ctrlFilms->addFilm();
             break;
 
         case "formEditFilm": // Formulaire de modification d'un film
-            $ctrlCinema->formEditFilm($id);
+            $ctrlFilms->formEditFilm($id);
             break;
 
         case "editFilm": // Modification d'un film
-            $ctrlCinema->editFilm($id);
+            $ctrlFilms->editFilm($id);
             break;
 
         case "deleteFilm": // Suppression d'un film
-            $ctrlCinema->deleteFilm($id);
+            $ctrlFilms->deleteFilm($id);
             break;
 
         case "formAddCasting": // Formulaire d'ajout d'un acteur à un film
-            $ctrlCinema->formAddCasting($id);
+            $ctrlFilms->formAddCasting($id);
             break;
 
         case "addCasting": // Ajout d'un acteur à un film
-            $ctrlCinema->addCasting($id);
+            $ctrlFilms->addCasting($id);
             break;
 
         case "deleteCasting": // Suppression d'un acteur d'un film
-            $ctrlCinema->deleteCasting($id, $acteur, $role);
+            $ctrlFilms->deleteCasting($id, $acteur, $role);
             break;
 
         case "listRealisateurs": // Liste des réalisateurs
-            $ctrlCinema->listRealisateurs();
+            $ctrlRealisateurs->listRealisateurs();
             break;
 
         case "infoRealisateur": // Information d'un réalisateur
-            $ctrlCinema->infosRealisateur($id);
+            $ctrlRealisateurs->infosRealisateur($id);
             break;
 
         case "formAddRealisateur": // Formulaire d'ajout d'un réalisateur
-            $ctrlCinema->formAddRealisateur();
+            $ctrlRealisateurs->formAddRealisateur();
             break;
 
         case "addRealisateur": // Ajout d'un réalisateur
-            $ctrlCinema->addRealisateur();
+            $ctrlRealisateurs->addRealisateur();
             break;
 
         case "formEditRealisateur": // Formulaire de modification d'un réalisateur
-            $ctrlCinema->formEditRealisateur($id);
+            $ctrlRealisateurs->formEditRealisateur($id);
             break;
 
         case "editRealisateur": // Modification d'un réalisateur
-            $ctrlCinema->editRealisateur($id);
+            $ctrlRealisateurs->editRealisateur($id);
             break;
 
         case "deleteRealisateur": // Suppression d'un réalisateur
-            $ctrlCinema->deleteRealisateur($id);
+            $ctrlRealisateurs->deleteRealisateur($id);
             break;
 
         case "listActeurs": // Liste des acteurs
-            $ctrlCinema->listActeurs();
+            $ctrlActeurs->listActeurs();
             break;
 
         case "infoActeur": // Informations d'un acteur
-            $ctrlCinema->infosActeur($id);
+            $ctrlActeurs->infosActeur($id);
             break;
 
         case "formAddActeur": // Formulaire d'ajout d'un acteur
-            $ctrlCinema->formAddActeur();
+            $ctrlActeurs->formAddActeur();
             break;
 
         case "addActeur": // Ajout d'un acteur
-            $ctrlCinema->addActeur();
+            $ctrlActeurs->addActeur();
             break;
 
         case "formEditActeur": // Formulaire de modification d'un acteur
-            $ctrlCinema->formEditActeur($id);
+            $ctrlActeurs->formEditActeur($id);
             break;
 
         case "editActeur": // Modification d'un acteur
-            $ctrlCinema->editActeur($id);
+            $ctrlActeurs->editActeur($id);
             break;
 
         case "deleteActeur": // Supression d'un acteur
-            $ctrlCinema->deleteActeur($id);
+            $ctrlActeurs->deleteActeur($id);
             break;
 
         case "listGenres": // Liste des genres
-            $ctrlCinema->listGenres();
+            $ctrlGenres->listGenres();
             break;
 
         case "infoGenre": // Informations d'un genre
-            $ctrlCinema->infosGenre($id);
+            $ctrlGenres->infosGenre($id);
             break;
 
         case "formAddGenre": // Formulaire d'ajout d'un genre
-            $ctrlCinema->formAddGenre();
+            $ctrlGenres->formAddGenre();
             break;
 
         case "formEditGenre": // Formulaire de modification d'un genre
-            $ctrlCinema->formEditGenre($id);
+            $ctrlGenres->formEditGenre($id);
             break;
 
         case "editGenre": // Modification d'un genre
-            $ctrlCinema->editGenre($id);
+            $ctrlGenres->editGenre($id);
             break;
 
         case "addGenre": // Ajout d'un genre
-            $ctrlCinema->addGenre();
+            $ctrlGenres->addGenre();
             break;
 
         case "deleteGenre": // Suppression d'un genre
-            $ctrlCinema->deleteGenre($id);
+            $ctrlGenres->deleteGenre($id);
             break;
 
         case "listRoles": // Liste des roles
-            $ctrlCinema->listRoles();
+            $ctrlRoles->listRoles();
             break;
 
         case "infoRole": // Informations d'un rôle
-            $ctrlCinema->infosRole($id);
+            $ctrlRoles->infosRole($id);
             break;
 
         case "formAddRole": // Formulaire d'ajout d'un rôle
-            $ctrlCinema->formAddRole();
+            $ctrlRoles->formAddRole();
             break;
 
         case "addRole": // Ajout d'un rôle
-            $ctrlCinema->addRole();
+            $ctrlRoles->addRole();
             break;
 
         case "formEditRole": // Formulaire de modification d'un rôle
-            $ctrlCinema->formEditRole($id);
+            $ctrlRoles->formEditRole($id);
             break;
 
         case "editRole": // Modification d'un rôle
-            $ctrlCinema->editRole($id);
+            $ctrlRoles->editRole($id);
             break;
 
         case "deleteRole": // Suppression d'un rôle
-            $ctrlCinema->deleteRole($id);
+            $ctrlRoles->deleteRole($id);
             break;
     }
 } else // Aucune action spécifiée - Affiche la liste des films
 {
-    $ctrlCinema->listFilms();
+    $ctrlFilms->listFilms();
 }

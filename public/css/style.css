@@ -105,6 +105,7 @@ h3 {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    column-gap: 10px;
 }
 
 .infos li {
@@ -199,6 +200,7 @@ form button,
 form button:hover,
 .button:hover {
     background-color: #007bff;
+    color: white;
 }
 
 svg {
@@ -442,7 +444,7 @@ header input[type="checkbox"] {
     border-radius: 15px;
 }
 
-.section a:hover {
+.add:hover {
     border: 1px solid #007bff;
 }
 

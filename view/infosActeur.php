@@ -54,10 +54,11 @@ $infosFilms = $films->fetchALL(); ?>
                                 <img class="affiche-small" src="public/img/posters/<?= $film["affiche_film"] ?>" alt="affiche">
                             </figure>
                             <div class="infos-films">
-                                <h3><a href="index.php?action=infoFilm&id=<?= $film["IdFilm"] ?>"><?= $film["titre_film"] ?></a></h3>
+                                <h3><a href="index.php?action=infoFilm&id=<?= $film["id_film"] ?>"><?= $film["titre_film"] ?></a></h3>
                                 <ul>
                                     <li><?= $film["anneeSortie_film"] ?></li>
                                     <li><?= $film["duree"] ?></li>
+                                    <li>Dans le rôle de<br><a href="index.php?action=infoRole&id=<?= $film["id_rôle"] ?>"><?= $film["nom_rôle"] ?></a></li>
                                 </ul>
                             </div>
                         </div>
